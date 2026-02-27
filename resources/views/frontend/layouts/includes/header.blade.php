@@ -5,28 +5,28 @@
         class="container mx-auto px-6 lg:px-12 py-3 flex items-center justify-between flex-wrap gap-4"
       >
         <!-- logo / name with pink dot -->
-        <div class="flex items-center gap-2">
+        <a class="flex items-center gap-2 cursor-pointer" href="{{route('home')}}">
           <div class="text-2xl sm:text-3xl font-light blue-primary">
             Nurse<span class="font-semibold text-[var(--accent)]"
               >NextDoor</span
             >
           </div>
           <div class="w-3 h-3 rounded-full pink-accent hidden sm:block"></div>
-        </div>
+  </a>
         <!-- menu links + super user -->
         <div class="flex items-center gap-6 text-sm md:text-base flex-wrap">
           <a
-            href="#"
+            href="{{route('home')}}"
             class="text-[#2B4F6E] hover:text-[#C63E5A] font-medium transition"
             >Home</a
           >
           <a
-            href="#service"
+            href="{{route('home')}}#service"
             class="text-[#2B4F6E] hover:text-[#C63E5A] font-medium transition"
             >Services</a
           >
           <a
-            href="order.html"
+            href="{{route('order')}}"
             class="text-[#2B4F6E] hover:text-[#C63E5A] font-medium transition"
             >My Order</a
           >
