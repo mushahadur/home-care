@@ -126,9 +126,9 @@
     </footer>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
     <!-- <script src="js/swiper-bundle.min.js"></script> -->
-    <!-- <script src="{{ asset('js/swiper-bundle.min.js') }}"></script> -->
+    <script src="{{ asset('assets/frontend/js/swiper-bundle.min.js') }}"></script>
     <!-- tiny "super user" hint (floating?) but already in nav -->
    <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -309,4 +309,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+ /* =========================
+     For tab switching in profile page (if needed in future)
+  ==========================*/
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll(".tab-btn");
+        const contents = document.querySelectorAll(".tab-content");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            // Remove active from all tabs
+            tabs.forEach((t) => {
+              t.classList.remove("tab-active");
+              t.classList.add("tab-inactive");
+            });
+
+            // Add active to clicked tab
+            tab.classList.remove("tab-inactive");
+            tab.classList.add("tab-active");
+
+            // Hide all contents
+            contents.forEach((c) => c.classList.remove("active"));
+
+            // Show selected content
+            const tabId = tab.getAttribute("data-tab");
+            document.getElementById(tabId).classList.add("active");
+          });
+        });
+      });
 </script>
