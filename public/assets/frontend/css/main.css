@@ -1,0 +1,50 @@
+/* custom smooth shadow & card hover effect, keeping the palette */
+:root {
+  --primary: #2b4f6e;
+  --accent: #c63e5a;
+  --light: #e6f2fc;
+  --soft: #f7fafc;
+}
+.pink-accent {
+  background-color: var(--accent);
+}
+.blue-primary {
+  color: var(--primary);
+}
+
+.card-hover {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 119, 190, 0.1),
+    0 8px 10px -6px rgba(0, 119, 190, 0.1);
+}
+
+.pink-accent-bg {
+  background-color: #f9b0b0;
+  /* warm pink for small accents */
+}
+
+.pink-accent-text {
+  color: #c63e5a;
+  /* deeper pink for readability on white */
+}
+
+.soft-blue-bg {
+  background-color: #e6f2fc;
+  /* medical soft blue */
+}
+
+.border-soft-blue {
+  border-color: #b8d9f5;
+}
+
+.required-badge {
+  background: #fce4e4;
+  border-left: 6px solid #f9b0b0;
+}
