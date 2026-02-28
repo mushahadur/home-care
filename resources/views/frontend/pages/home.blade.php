@@ -432,10 +432,7 @@
               পরিচিত পরিবেশে থেকেই প্রয়োজনীয় চিকিৎসা ও পরিচর্যা লাভ করতে
               পারেন। প্রবীণদের সুস্থতা, পুনর্বাসন-পরবর্তী পরিচর্যা এবং
               দীর্ঘমেয়াদি চিকিৎসা সহায়তার ক্ষেত্রে পরিবারকে সহায়ক ও
-              নির্ভরযোগ্য অংশীদার হিসেবে পাশে থাকা আমাদের অঙ্গীকার। আমরা এমন
-              একটি মানবিক ও সম্মানজনক সেবার পরিবেশ গড়ে তুলতে চাই, যেখানে
-              প্রতিটি রোগী মর্যাদা, নিরাপত্তা ও আস্থার সাথে চিকিৎসা সেবা গ্রহণ
-              করতে পারেন।
+              নির্ভরযোগ্য অংশীদার হিসেবে পাশে থাকা আমাদের অঙ্গীকার।
             </p>
           </div>
 
@@ -455,10 +452,7 @@
               ব্যক্তিকেন্দ্রিক পরিচর্যা লাভ করতে পারেন। আমরা এমন একটি
               সেবাব্যবস্থা গড়ে তুলতে চাই, যা হাসপাতাল-পরবর্তী সেবা,
               দীর্ঘমেয়াদি পরিচর্যা এবং প্রবীণদের সুস্থ জীবনযাপনকে ঘরের
-              পরিবেশেই সহজলভ্য ও নির্ভরযোগ্য করে তোলে। আমরা ভবিষ্যতে এমন একটি
-              সেবানেটওয়ার্ক গড়ে তুলতে প্রত্যাশী, যেখানে প্রতিটি প্রয়োজনীয়
-              পরিবার সহজে প্রশিক্ষিত নার্সিং সহায়তা পাবে এবং ঘরেই নিরাপদ
-              চিকিৎসা সেবার সুযোগ নিশ্চিত হবে।
+              পরিবেশেই সহজলভ্য ও নির্ভরযোগ্য করে তোলে।
             </p>
           </div>
         </div>
@@ -745,4 +739,320 @@
       </div>
     </div>
   </section>
+
+<!-- FAQ & Video Section - Fully Responsive -->
+  <section
+    class="flex items-center bg-gradient-to-br from-white to-[#fff7e8] overflow-hidden">
+    <div class="container mx-auto px-6 lg:px-12 py-16 lg:py-10">
+
+<!-- <section class="py-12 md:py-20 bg-gradient-to-b from-white to-[#f8fafc] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> -->
+        
+        <!-- Section Header - Mobile Optimized -->
+        <div class="text-center mb-8 md:mb-12">
+            <span class="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-[#e6f0fa] text-[#115c7e] rounded-full text-xs md:text-sm font-semibold mb-3 md:mb-4">
+                <i class="fas fa-play-circle mr-1.5 text-xs md:text-sm"></i>
+                <span class="bn-only">আমাদের সেবা সম্পর্কে জানুন</span>
+            </span>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 md:mb-4 px-2">
+                <span class="bn-only">দেখুন ও জানুন</span>
+            </h2>
+            <p class="text-sm md:text-base text-gray-600 max-w-2xl mx-auto px-4">
+                <span class="bn-only">দেখুন কীভাবে আমরা যত্নশীল সেবা প্রদান করি এবং সাধারণ প্রশ্নের উত্তর পান</span>
+            </p>
+        </div>
+
+        <!-- Main Content - Mobile First (Stacked) -->
+        <div class="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-12">
+            
+            <!-- LEFT SIDE: Video Section - Full width on mobile -->
+            <div class="w-full lg:w-1/2 space-y-4 md:space-y-6">
+                
+                <!-- Main Video Player - Mobile Optimized -->
+                <div class="relative group rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg md:shadow-xl bg-[#115c7e] aspect-video">
+                    <!-- Video Thumbnail -->
+                    <img src="https://shojonsheba.com/wp-content/uploads/2023/09/343404682_1366211944230060_285782814863529458_n.jpg" 
+                         alt="Home Nursing Care" 
+                         class="w-full h-full object-cover">
+                    
+                    <!-- Gradient Overlay - Lighter on mobile -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    
+                    <!-- Play Button - Smaller on mobile -->
+                    <button onclick="openVideoModal()" 
+                            class="absolute inset-0 w-full h-full flex items-center justify-center">
+                        <div class="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-[#dd88a0] rounded-full flex items-center justify-center shadow-xl transform transition-transform duration-300 hover:scale-110 active:scale-95">
+                            <!-- <i class="fas fa-youtube text-xl md:text-2xl lg:text-3xl text-white ml-1"></i> -->
+                             <i class="fab fa-youtube text-white text-2xl md:text-3xl"></i>
+                        </div>
+                    </button>
+                    
+                    <!-- Video Duration - Mobile adjusted -->
+                    <div class="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-black/70 backdrop-blur-sm text-white px-2 py-1 md:px-3 md:py-1.5 rounded-full text-xs md:text-sm font-medium">
+                        <i class="far fa-clock mr-1 text-xs"></i> 1:45
+                    </div>
+                    
+                    <!-- Video Title - Mobile optimized -->
+                    <div class="absolute bottom-2 left-2 md:bottom-4 md:left-4 text-white max-w-[80%]">
+                        <h3 class="text-sm md:text-base lg:text-xl font-bold leading-tight mb-0.5 md:mb-1">
+                            <span class="bn-only line-clamp-1">সেরা হোম নার্সিং সেবা</span>
+                        </h3>
+                        <p class="text-[10px] md:text-xs text-gray-200 line-clamp-1">
+                            <span class="bn-only">দেখুন কীভাবে আমরা আপনার প্রিয়জনদের যত্ন নেই</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Video Gallery Thumbnails - Horizontal scroll on mobile -->
+                <div class="grid grid-cols-3 gap-2 md:gap-3">
+                    <!-- Thumbnail 1 -->
+                    <div class="relative rounded-lg md:rounded-xl overflow-hidden cursor-pointer group aspect-video">
+                        <img src="https://images.pexels.com/photos/7551645/pexels-photo-7551645.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                             alt="Elderly Care" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition flex items-center justify-center">
+                            <i class="fab fa-youtube text-white text-xs md:text-sm opacity-0 group-hover:opacity-100"></i>
+                        </div>
+                        <span class="absolute bottom-1 left-1 text-[8px] md:text-xs text-white bg-black/60 px-1.5 py-0.5 rounded">2:30</span>
+                    </div>
+                    
+                    <!-- Thumbnail 2 -->
+                    <div class="relative rounded-lg md:rounded-xl overflow-hidden cursor-pointer group aspect-video">
+                        <img src="https://images.pexels.com/photos/7659568/pexels-photo-7659568.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                             alt="Nurse with Patient" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition flex items-center justify-center">
+                            <i class="fab fa-youtube text-white text-xs md:text-sm opacity-0 group-hover:opacity-100"></i>
+                        </div>
+                        <span class="absolute bottom-1 left-1 text-[8px] md:text-xs text-white bg-black/60 px-1.5 py-0.5 rounded">4:15</span>
+                    </div>
+                    
+                    <!-- Thumbnail 3 -->
+                    <div class="relative rounded-lg md:rounded-xl overflow-hidden cursor-pointer group aspect-video">
+                        <img src="https://images.pexels.com/photos/6647009/pexels-photo-6647009.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                             alt="Medical Care" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition flex items-center justify-center">
+                            <i class="fab fa-youtube text-white text-xs md:text-sm opacity-0 group-hover:opacity-100"></i>
+                        </div>
+                        <span class="absolute bottom-1 left-1 text-[8px] md:text-xs text-white bg-black/60 px-1.5 py-0.5 rounded">5:20</span>
+                    </div>
+                </div>
+
+                <!-- Video Stats - Mobile compact -->
+                <div class="flex items-center justify-between bg-white rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm">
+                    <div class="flex items-center gap-2 md:gap-4">
+                        <div class="flex -space-x-2">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white">
+                        </div>
+                        <div>
+                            <p class="text-xs md:text-sm font-semibold text-gray-900">
+                                <span class="bn-only">১২০০+ পরিবার</span>
+                            </p>
+                            <p class="text-[10px] md:text-xs text-gray-500">
+                                <span class="bn-only">দেখেছেন ও আস্থা রেখেছেন</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-0.5 md:gap-1 text-[#dd88a0]">
+                        <i class="fas fa-star text-xs md:text-sm"></i>
+                        <i class="fas fa-star text-xs md:text-sm"></i>
+                        <i class="fas fa-star text-xs md:text-sm"></i>
+                        <i class="fas fa-star text-xs md:text-sm"></i>
+                        <i class="fas fa-star-half-alt text-xs md:text-sm"></i>
+                        <span class="text-gray-700 ml-1 text-xs md:text-sm">4.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE: FAQ Section - Full width on mobile -->
+            <div class="w-full lg:w-1/2 mt-6 lg:mt-0">
+                <div class="bg-white rounded-xl md:rounded-2xl lg:rounded-3xl shadow-md p-4 md:p-6 lg:p-8">
+                    
+                    <!-- FAQ Header - Mobile optimized -->
+                    <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-6 pb-3 md:pb-4 border-b border-gray-100">
+                        <div class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-[#e6f0fa] rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-question-circle text-base md:text-xl lg:text-2xl text-[#115c7e]"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg md:text-xl lg:text-2xl font-bold text-gray-900">
+                                <span class="bn-only">সাধারণ জিজ্ঞাসা</span>
+                            </h3>
+                            <p class="text-xs md:text-sm text-gray-500">
+                                <span class="bn-only">সাধারণ প্রশ্নের দ্রুত উত্তর</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Accordion Items - Mobile friendly touch targets -->
+                    <div class="space-y-2 md:space-y-3" x-data="{selected:null}">
+                        
+                        <!-- FAQ Item 1 -->
+                        <div class="border border-gray-100 rounded-lg md:rounded-xl overflow-hidden hover:border-[#dd88a0] transition">
+                            <button @click="selected !== 1 ? selected = 1 : selected = null" 
+                                    class="w-full flex items-center justify-between p-3 md:p-4 text-left bg-white hover:bg-gray-50 transition">
+                                <div class="flex items-center gap-2 md:gap-3 flex-1 pr-2">
+                                    <span class="w-5 h-5 md:w-6 md:h-6 bg-[#e6f0fa] rounded-full flex items-center justify-center text-[#115c7e] font-semibold text-xs md:text-sm flex-shrink-0">1</span>
+                                    <span class="font-semibold text-gray-900 text-xs md:text-sm lg:text-base">
+                                        <span class="bn-only">কিভাবে সেবা বুক করব?</span>
+                                    </span>
+                                </div>
+                                <i class="fas fa-chevron-down text-xs md:text-sm transition-transform duration-300 flex-shrink-0" :class="{'rotate-180': selected === 1}"></i>
+                            </button>
+                            <div x-show="selected === 1" 
+                                 x-collapse.duration.300ms
+                                 class="px-3 md:px-4 pb-3 md:pb-4 text-gray-600 border-t border-gray-100 pt-2 md:pt-3">
+                                <p class="text-xs md:text-sm">
+                                    <span class="bn-only">"বুক সার্ভিস" এ ক্লিক করে অনলাইনে অথবা ২৪/৭ হেল্পলাইনে কল করে বুক করুন। চিকিৎসা সেবার জন্য প্রেসক্রিপশন প্রয়োজন।</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="border border-gray-100 rounded-lg md:rounded-xl overflow-hidden hover:border-[#dd88a0] transition">
+                            <button @click="selected !== 2 ? selected = 2 : selected = null" 
+                                    class="w-full flex items-center justify-between p-3 md:p-4 text-left bg-white hover:bg-gray-50 transition">
+                                <div class="flex items-center gap-2 md:gap-3 flex-1 pr-2">
+                                    <span class="w-5 h-5 md:w-6 md:h-6 bg-[#e6f0fa] rounded-full flex items-center justify-center text-[#115c7e] font-semibold text-xs md:text-sm flex-shrink-0">2</span>
+                                    <span class="font-semibold text-gray-900 text-xs md:text-sm lg:text-base">
+                                        <span class="bn-only">সেবা এলাকা?</span>
+                                    </span>
+                                </div>
+                                <i class="fas fa-chevron-down text-xs md:text-sm transition-transform duration-300 flex-shrink-0" :class="{'rotate-180': selected === 2}"></i>
+                            </button>
+                            <div x-show="selected === 2" 
+                                 x-collapse.duration.300ms
+                                 class="px-3 md:px-4 pb-3 md:pb-4 text-gray-600 border-t border-gray-100 pt-2 md:pt-3">
+                                <p class="text-xs md:text-sm">
+                                    <span class="bn-only">বর্তমানে শুধুমাত্র ব্রাহ্মণবাড়িয়া পৌরসভায় সেবা দিচ্ছি। শীঘ্রই অন্যান্য এলাকায় সম্প্রসারণ হবে।</span>
+                                </p>
+                                <div class="mt-2 flex items-center gap-1 text-[10px] md:text-xs text-[#115c7e]">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="bn-only">ব্রাহ্মণবাড়িয়া পৌরসভা</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="border border-gray-100 rounded-lg md:rounded-xl overflow-hidden hover:border-[#dd88a0] transition">
+                            <button @click="selected !== 3 ? selected = 3 : selected = null" 
+                                    class="w-full flex items-center justify-between p-3 md:p-4 text-left bg-white hover:bg-gray-50 transition">
+                                <div class="flex items-center gap-2 md:gap-3 flex-1 pr-2">
+                                    <span class="w-5 h-5 md:w-6 md:h-6 bg-[#e6f0fa] rounded-full flex items-center justify-center text-[#115c7e] font-semibold text-xs md:text-sm flex-shrink-0">3</span>
+                                    <span class="font-semibold text-gray-900 text-xs md:text-sm lg:text-base">
+                                        <span class="bn-only">নার্সরা কি যোগ্য?</span>
+                                    </span>
+                                </div>
+                                <i class="fas fa-chevron-down text-xs md:text-sm transition-transform duration-300 flex-shrink-0" :class="{'rotate-180': selected === 3}"></i>
+                            </button>
+                            <div x-show="selected === 3" 
+                                 x-collapse.duration.300ms
+                                 class="px-3 md:px-4 pb-3 md:pb-4 text-gray-600 border-t border-gray-100 pt-2 md:pt-3">
+                                <p class="text-xs md:text-sm">
+                                    <span class="bn-only">হ্যাঁ, সকল নার্স পেশাদারভাবে প্রশিক্ষিত এবং সার্টিফিকেট প্রাপ্ত। অধিকাংশের ৫+ বছরের অভিজ্ঞতা রয়েছে।</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="border border-gray-100 rounded-lg md:rounded-xl overflow-hidden hover:border-[#dd88a0] transition">
+                            <button @click="selected !== 4 ? selected = 4 : selected = null" 
+                                    class="w-full flex items-center justify-between p-3 md:p-4 text-left bg-white hover:bg-gray-50 transition">
+                                <div class="flex items-center gap-2 md:gap-3 flex-1 pr-2">
+                                    <span class="w-5 h-5 md:w-6 md:h-6 bg-[#e6f0fa] rounded-full flex items-center justify-center text-[#115c7e] font-semibold text-xs md:text-sm flex-shrink-0">4</span>
+                                    <span class="font-semibold text-gray-900 text-xs md:text-sm lg:text-base">
+                                        <span class="bn-only">কি কি ডকুমেন্ট প্রয়োজন?</span>
+                                    </span>
+                                </div>
+                                <i class="fas fa-chevron-down text-xs md:text-sm transition-transform duration-300 flex-shrink-0" :class="{'rotate-180': selected === 4}"></i>
+                            </button>
+                            <div x-show="selected === 4" 
+                                 x-collapse.duration.300ms
+                                 class="px-3 md:px-4 pb-3 md:pb-4 text-gray-600 border-t border-gray-100 pt-2 md:pt-3">
+                                <p class="text-xs md:text-sm">
+                                    <span class="bn-only">ডাক্তারের প্রেসক্রিপশন এবং স্বাক্ষরিত সম্মতি ফর্ম প্রয়োজন। আমরা ইমেইল/হোয়াটসঅ্যাপে ফর্ম পাঠাব।</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Still Have Questions? - Mobile optimized -->
+                    <div class="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-gray-100">
+                        <div class="bg-gradient-to-r from-[#e6f0fa] to-[#fbe4e8] rounded-xl md:rounded-2xl p-3 md:p-5">
+                            <div class="flex items-start gap-2 md:gap-4">
+                                <div class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-headset text-base md:text-xl lg:text-2xl text-[#115c7e]"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900 text-sm md:text-base mb-0.5 md:mb-1">
+                                        <span class="bn-only">এখনও প্রশ্ন আছে?</span>
+                                    </h4>
+                                    <p class="text-xs md:text-sm text-gray-700 mb-2 md:mb-3">
+                                        <span class="bn-only">আমাদের টিম ২৪/৭ উপলব্ধ</span>
+                                    </p>
+                                    <div class="flex gap-2">
+                                        <a href="tel:+8801XXXXXXXXX" 
+                                           class="flex items-center gap-1 md:gap-2 bg-white px-2 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm font-semibold text-[#115c7e] hover:shadow transition">
+                                            <i class="fas fa-phone-alt text-xs md:text-sm"></i>
+                                            <span class="bn-only hidden sm:inline">কল</span>
+                                            <span class="bn-only sm:hidden">কল</span>
+                                        </a>
+                                        <a href="#" 
+                                           class="flex items-center gap-1 md:gap-2 bg-[#115c7e] px-2 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm font-semibold text-white hover:bg-[#0d4a66] transition">
+                                            <i class="fas fa-envelope text-xs md:text-sm"></i>
+                                            <span class="bn-only hidden sm:inline">ইমেইল</span>
+                                            <span class="bn-only sm:hidden">ইমেইল</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Badges - Responsive grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mt-8 md:mt-12">
+            <div class="bg-white rounded-lg md:rounded-xl p-2 md:p-4 text-center shadow-sm hover:shadow transition">
+                <i class="fas fa-user-md text-lg md:text-2xl lg:text-3xl text-[#115c7e] mb-1 md:mb-2"></i>
+                <p class="font-semibold text-[10px] md:text-sm bn-only">১০০+ নার্স</p>
+            </div>
+            <div class="bg-white rounded-lg md:rounded-xl p-2 md:p-4 text-center shadow-sm hover:shadow transition">
+                <i class="fas fa-clock text-lg md:text-2xl lg:text-3xl text-[#dd88a0] mb-1 md:mb-2"></i>
+                <p class="font-semibold text-[10px] md:text-sm bn-only">২৪/৭ সেবা</p>
+            </div>
+            <div class="bg-white rounded-lg md:rounded-xl p-2 md:p-4 text-center shadow-sm hover:shadow transition">
+                <i class="fas fa-heartbeat text-lg md:text-2xl lg:text-3xl text-[#115c7e] mb-1 md:mb-2"></i>
+                <p class="font-semibold text-[10px] md:text-sm bn-only">৫k+ পরিবার</p>
+            </div>
+            <div class="bg-white rounded-lg md:rounded-xl p-2 md:p-4 text-center shadow-sm hover:shadow transition">
+                <i class="fas fa-shield-alt text-lg md:text-2xl lg:text-3xl text-[#dd88a0] mb-1 md:mb-2"></i>
+                <p class="font-semibold text-[10px] md:text-sm bn-only">বীমাকৃত</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal - Mobile Optimized -->
+    <div id="videoModal" class="fixed inset-0 bg-black/95 hidden items-center justify-center z-50 p-2 md:p-4">
+        <div class="relative w-full max-w-4xl">
+            <button onclick="closeVideoModal()" 
+                    class="absolute -top-8 md:-top-12 right-0 text-white hover:text-[#dd88a0] transition z-10">
+                <i class="fas fa-times-circle text-2xl md:text-3xl"></i>
+            </button>
+            <div class="aspect-video bg-black rounded-lg md:rounded-xl overflow-hidden">
+                <iframe class="w-full h-full" 
+                        src="https://www.youtube.com/embed/NlIQfZHrG3k?autoplay=0&rel=0" 
+                        title="Nurse Next Door"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
 @endsection

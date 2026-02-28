@@ -7,20 +7,41 @@
 @section('content')
      <!-- Main Content -->
 <main class="bg-gray-50 min-h-screen pb-12">
-    
-    <!-- Header Banner with Brand Colors -->
-    <div class="bg-gradient-to-r from-[#115c7e] to-[#1a7a9e] py-12 md:py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                <span class="en-only">My Orders</span>
-                <span class="bn-only">আমার অর্ডারসমূহ</span>
+    <!-- Header with Search -->
+<div class="bg-gradient-to-r from-[#115c7e] to-[#1a7a9e] py-8 md:py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h1 class="text-2xl md:text-3xl lg:text-3xl font-bold text-white mb-4">
+                <span class="bn-only block">আমার অর্ডারসমূহ</span>
             </h1>
-            <p class="text-lg text-blue-100 max-w-2xl mx-auto">
-                <span class="en-only">Track and manage your home nursing service bookings</span>
-                <span class="bn-only">আপনার হোম নার্সিং সেবার বুকিং ট্র্যাক ও পরিচালনা করুন</span>
+            
+            <p class="text-base md:text-lg text-blue-100 max-w-2xl mx-auto">
+                <span class="en-only block">Track and manage your home nursing service bookings</span>
+                <span class="bn-only block">আপনার হোম নার্সিং সেবার বুকিং ট্র্যাক ও পরিচালনা করুন</span>
             </p>
         </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold text-white">12</p>
+                <p class="text-xs text-blue-100">Total Orders</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold text-white">8</p>
+                <p class="text-xs text-blue-100">Completed</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold text-white">3</p>
+                <p class="text-xs text-blue-100">Active</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold text-white">1</p>
+                <p class="text-xs text-blue-100">Cancelled</p>
+            </div>
+        </div>
     </div>
+</div>
 
     <!-- Content Container -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">

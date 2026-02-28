@@ -102,6 +102,54 @@
     .tab-content.active {
       display: block;
     }
+
+
+     /* Smooth accordion transitions */
+   /* Mobile first responsive adjustments */
+    @media (max-width: 640px) {
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+    
+    /* Smooth transitions */
+    .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+    
+    /* Modal animation */
+    #videoModal {
+        transition: opacity 0.3s ease;
+    }
+    
+    #videoModal.show {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    /* Better touch targets for mobile */
+    button, a {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Hide scrollbar for thumbnails on mobile if needed */
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
   </style>
 </head>
 
