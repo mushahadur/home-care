@@ -12,7 +12,7 @@
             >
           </div>
           <div class="w-3 h-3 rounded-full pink-accent hidden sm:block"></div>
-  </a>
+          </a>
         <!-- menu links + super user -->
         <div class="flex items-center gap-6 text-sm md:text-base flex-wrap">
           <a
