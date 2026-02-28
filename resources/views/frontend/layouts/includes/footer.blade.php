@@ -1,7 +1,6 @@
  
-    <footer
-      class="bg-gradient-to-br from-white to-[#ffe2f1] border-t border-soft-blue py-8 relative"
-    >
+    <!-- <footer class="bg-gradient-to-br from-white to-[#ffe2f1] border-t border-soft-blue py-8 relative"> -->
+    <footer class="bg-gray-900 border-t border-soft-blue py-8 relative">
       <!-- Floating Municipality Badge -->
       <div
         class="absolute -top-6 left-1/2 -translate-x-1/2 w-full px-4 flex justify-center"
@@ -71,7 +70,7 @@
         </div>
         <div>
           <h5 class="font-semibold text-[#2B4F6E]">Service area</h5>
-          <div class="mt-3 bg-[#E6F2FC] p-4 rounded-xl border border-[#B8D9F5]">
+          <div class="mt-3 bg-gray-950 p-4 rounded-lg border border-[#B8D9F5]">
             <p class="font-medium flex items-center gap-2 text-[#1A3B4F]">
               <i class="fas fa-map-pin text-[#C63E5A]"></i> exclusively within
             </p>
@@ -84,7 +83,7 @@
       </div>
       <button
         id="scrollToTopProgress"
-        class="fixed bottom-6 right-4 z-50 w-10 h-10 rounded-full bg-white shadow-xl border border-gray-200 flex items-center justify-center group hover:border-[var(--accent)] transition-all duration-300 opacity-0 scale-90 pointer-events-none"
+        class="fixed bottom-6 right-4 z-50 w-10 h-10 rounded-full bg-white shadow-xl border border-red-600 flex items-center justify-center group hover:border-[var(--accent)] transition-all duration-300 opacity-0 scale-90 pointer-events-none"
         aria-label="Scroll to top"
       >
         <div class="relative w-8 h-8">
@@ -118,7 +117,7 @@
       </button>
 
       <div
-        class="text-center text-xs text-gray-950 mt-10 border-t border-soft-blue pt-5"
+        class="text-center text-xs text-white mt-10 border-t border-soft-blue pt-5"
       >
         © Nurse Next Door — compassionate home nursing, Brahmanbaria. 💙
         doctor’s prescription & consent mandatory.
@@ -128,6 +127,7 @@
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
     <!-- <script src="js/swiper-bundle.min.js"></script> -->
+     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="{{ asset('assets/frontend/js/swiper-bundle.min.js') }}"></script>
     <!-- tiny "super user" hint (floating?) but already in nav -->
    <script>
@@ -339,4 +339,37 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         });
       });
+
+      // Video Modal Functions
+    function openVideoModal() {
+        const modal = document.getElementById('videoModal');
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeVideoModal() {
+        const modal = document.getElementById('videoModal');
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+        
+        // Stop video when closing
+        const iframe = document.querySelector('#videoModal iframe');
+        if (iframe) {
+            iframe.src = iframe.src; // Reload to stop video
+        }
+    }
+    
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeVideoModal();
+        }
+    });
+    
+    // Click outside to close
+    document.getElementById('videoModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeVideoModal();
+        }
+    });
 </script>
