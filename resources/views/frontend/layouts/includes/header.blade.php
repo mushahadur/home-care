@@ -7,7 +7,7 @@
         <!-- logo / name with pink dot -->
         <a class="flex items-center gap-2 cursor-pointer" href="{{route('home')}}">
           <div class="text-2xl sm:text-3xl font-light blue-primary">
-            Nurse<span class="font-semibold text-[var(--accent)]"
+            Nurse<span class="font-semibold text-rose-600"
               >NextDoor</span
             >
           </div>
@@ -26,7 +26,7 @@
             >Services</a
           >
           <a
-            href="{{route('order')}}"
+            href="#"
             class="text-[#2B4F6E] hover:text-[#C63E5A] font-medium transition"
             >My Order</a
           >
@@ -37,8 +37,7 @@
           <span>Super User</span>
         </a> -->
           <a
-            href="#"
-            id="openAuth"
+            href="{{route('login')}}"
             class="ml-2 flex items-center gap-2 bg-[#E6F2FC] px-4 py-2 rounded-full text-[#2B4F6E] font-medium border border-[#B8D9F5] hover:bg-[#FCE4E4] hover:border-[#F9B0B0] transition"
           >
             <i class="fas fa-user-lock text-[#C63E5A]"></i>
