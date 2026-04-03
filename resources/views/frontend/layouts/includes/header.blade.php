@@ -7,7 +7,7 @@
         <!-- logo / name with pink dot -->
         <a class="flex items-center gap-2 cursor-pointer" href="{{route('home')}}">
           <div class="text-2xl sm:text-3xl font-light blue-primary">
-            Nurse<span class="font-semibold text-[var(--accent)]"
+            Nurse<span class="font-semibold text-rose-600"
               >NextDoor</span
             >
           </div>
@@ -25,25 +25,31 @@
             class="text-[#2B4F6E] hover:text-[#C63E5A] font-medium transition"
             >Services</a
           >
-          <a
-            href="{{route('order')}}"
-            class="text-[#2B4F6E] hover:text-[#C63E5A] font-medium transition"
-            >My Order</a
-          >
           <!-- super user login button (soft blue bg, pink accent) -->
-          <!-- <a href="#"
-          class="ml-2 flex items-center gap-2 bg-[#E6F2FC] px-4 py-2 rounded-full text-[#2B4F6E] font-medium border border-[#B8D9F5] hover:bg-[#FCE4E4] hover:border-[#F9B0B0] transition">
-          <i class="fas fa-user text-[#C63E5A]"></i>
-          <span>Super User</span>
-        </a> -->
-          <a
-            href="#"
-            id="openAuth"
-            class="ml-2 flex items-center gap-2 bg-[#E6F2FC] px-4 py-2 rounded-full text-[#2B4F6E] font-medium border border-[#B8D9F5] hover:bg-[#FCE4E4] hover:border-[#F9B0B0] transition"
-          >
-            <i class="fas fa-user-lock text-[#C63E5A]"></i>
-            <span>Register</span>
-          </a>
+           @if (Auth::user())
+           <a href="{{route('user.profile')}}"
+             class="ml-2 flex items-center gap-2 bg-[#E6F2FC] px-4 py-2 rounded-lg text-[#2B4F6E] font-medium border border-[#B8D9F5] hover:bg-[#FCE4E4] hover:border-[#F9B0B0] transition">
+             <i class="fas fa-user text-[#C63E5A]"></i>
+             <span>{{Auth::user()->name}}</span>
+           </a>
+           <!-- Logout Form -->
+              <form method="POST" action="{{ route('logout') }}" class="block">
+                                @csrf
+                <button
+                  class="inline-flex items-center gap-2 px-2 py-2 rounded-lg border border-rose-600 transition shadow-sm"
+                >
+                  <i class="fas fa-sign-out-alt text-[#C63E5A]"></i> 
+                </button>
+              </form>
+           @else
+           <a
+             href="{{route('login')}}"
+             class="ml-2 flex items-center gap-2 bg-[#E6F2FC] px-4 py-2 rounded-full text-[#2B4F6E] font-medium border border-[#B8D9F5] hover:bg-[#FCE4E4] hover:border-[#F9B0B0] transition"
+           >
+             <i class="fas fa-user-lock text-[#C63E5A]"></i>
+             <span>Register</span>
+           </a>
+           @endif
         </div>
       </div>
     </nav>

@@ -48,9 +48,9 @@
                 </div>
               </div>
               <button
-                class="inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--primary)] text-white rounded-lg hover:bg-[#1e3a54] transition shadow-sm"
+                class="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition shadow-sm"
               >
-                <i class="fas fa-edit"></i> Edit Profile
+                <i class="fas fa-sign-out-alt"></i> Logout
               </button>
             </div>
           </div>

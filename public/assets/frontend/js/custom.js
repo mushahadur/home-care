@@ -35,25 +35,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (tabLogin && tabSignup) {
-    tabLogin.addEventListener("click", () => {
-      loginForm.classList.remove("hidden");
-      signupForm.classList.add("hidden");
+  // if (tabLogin && tabSignup) {
+  //   tabLogin.addEventListener("click", () => {
+  //     loginForm.classList.remove("hidden");
+  //     signupForm.classList.add("hidden");
 
-      tabLogin.classList.add("border-[#2B4F6E]", "text-[#2B4F6E]");
-      tabSignup.classList.remove("border-[#2B4F6E]", "text-[#2B4F6E]");
-      tabSignup.classList.add("text-gray-400");
-    });
+  //     tabLogin.classList.add("border-[#2B4F6E]", "text-[#2B4F6E]");
+  //     tabSignup.classList.remove("border-[#2B4F6E]", "text-[#2B4F6E]");
+  //     tabSignup.classList.add("text-gray-400");
+  //   });
 
-    tabSignup.addEventListener("click", () => {
-      signupForm.classList.remove("hidden");
-      loginForm.classList.add("hidden");
+  //   tabSignup.addEventListener("click", () => {
+  //     signupForm.classList.remove("hidden");
+  //     loginForm.classList.add("hidden");
 
-      tabSignup.classList.add("border-[#2B4F6E]", "text-[#2B4F6E]");
-      tabLogin.classList.remove("border-[#2B4F6E]", "text-[#2B4F6E]");
-      tabLogin.classList.add("text-gray-400");
-    });
-  }
+  //     tabSignup.classList.add("border-[#2B4F6E]", "text-[#2B4F6E]");
+  //     tabLogin.classList.remove("border-[#2B4F6E]", "text-[#2B4F6E]");
+  //     tabLogin.classList.add("text-gray-400");
+  //   });
+  // }
 
   /* =========================
      HERO SLIDER

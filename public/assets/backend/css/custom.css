@@ -1,0 +1,79 @@
+ /* Smooth transitions for dropdown */
+    #dropdownMenu {
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+      box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark #dropdownMenu {
+      box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Hover effects for menu items */
+    #dropdownMenu a:hover i,
+    #dropdownMenu button:hover i {
+      transform: scale(1.1);
+    }
+
+    #dropdownMenu a i,
+    #dropdownMenu button i {
+      transition: transform 0.2s ease;
+    }
+
+    /* Mobile touch optimization */
+    @media (max-width: 640px) {
+      #dropdownMenu {
+        width: calc(58vw - 32px);
+        max-width: 320px;
+        right: 0;
+      }
+    }
+
+     /* Custom scrollbar for the navigation */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 20px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #4b5563;
+    }
+
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #6b7280;
+    }
+
+    /* Ensure sidebar takes full height */
+    #sidebar {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Mobile menu animation */
+    #sidebar:not(.md\\:translate-x-0) {
+      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Active link styling */
+    .nav-link-active {
+      background-color: #10b981;
+      color: white;
+    }
+
+    .dark .nav-link-active {
+      background-color: #059669;
+    }
