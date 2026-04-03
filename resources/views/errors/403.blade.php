@@ -8,11 +8,11 @@
         <!-- Animated 404 Number -->
         <div class="relative mb-8">
             <div class="text-[120px] md:text-[180px] font-extrabold text-gray-200 dark:text-gray-800 select-none">
-                404
+                403
             </div>
             <div class="absolute inset-0 flex items-center justify-center">
                 <div class="bg-gradient-to-r from-emerald-500 to-blue-500 bg-clip-text text-transparent text-[100px] md:text-[150px] font-extrabold animate-pulse">
-                    404
+                    403
                 </div>
             </div>
         </div>

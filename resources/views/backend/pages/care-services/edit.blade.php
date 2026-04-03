@@ -204,19 +204,19 @@
                     </label>
                     <div class="flex flex-wrap items-center gap-4">
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="radio" name="status" value="active" 
-                                {{ old('status', $care_service->status ?? 'active') == 'active' ? 'checked' : '' }}
+                            <input type="radio" name="care_services_status" value="1" 
+                                {{ old('care_services_status', $care_service->care_services_status ?? '1') == '1' ? 'checked' : '' }}
                                 class="text-emerald-500 focus:ring-emerald-500 h-4 w-4">
                             <span class="text-sm text-gray-700 dark:text-gray-300">Active</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="radio" name="status" value="inactive" 
-                                {{ old('status', $care_service->status ?? '') == 'inactive' ? 'checked' : '' }}
+                            <input type="radio" name="care_services_status" value="0" 
+                                {{ old('care_services_status', $care_service->care_services_status ?? '0') == '0' ? 'checked' : '' }}
                                 class="text-red-500 focus:ring-red-500 h-4 w-4">
                             <span class="text-sm text-gray-700 dark:text-gray-300">Inactive</span>
                         </label>
                     </div>
-                    @error('status')
+                    @error('care_services_status')
                         <span class="text-red-600 dark:text-red-400 text-sm flex items-center gap-1 mt-1">
                             <i class="fas fa-exclamation-circle"></i> {{ $message }}
                         </span>

@@ -39,8 +39,11 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
         
+        if ($user->default_role === 'user' && $user->is_verified) {
+            return redirect()->intended(route('user.dashboard'));
+        }
         if ($user->hasRole('super-admin') || $user->is_verified) {
-            return redirect()->intended(route('dashboard'));
+            return redirect()->intended(route('admin.dashboard'));
         }
 
         //Unverifyed user for OTP page redirect

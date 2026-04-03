@@ -106,7 +106,7 @@
                         
                         <!-- Status -->
                         <td class="px-4 py-3 whitespace-nowrap">
-                            @if($care_service->status == 'active')
+                            @if($care_service->care_services_status == '1')
                                 <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300">
                                     <i class="fas fa-circle text-[8px] mr-1.5 text-green-500"></i>
                                     Active
@@ -295,7 +295,8 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+<script src="{{ asset('assets/backend/js/sweetalert2@11.js')}}"></script>
 <script>
     function confirmDelete(serviceId) {
         Swal.fire({

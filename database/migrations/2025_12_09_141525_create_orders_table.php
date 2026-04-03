@@ -12,37 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-        $table->unsignedBigInteger('user_id')->nullable();
-
-        // Customer Info
-        $table->string('name');
-        $table->string('email');
-        $table->string('phone');
-        $table->text('address');
-
-        // Payment
-        $table->enum('payment_method', ['credit_card', 'paypal', 'bank_transfer']);
-        $table->string('card_number')->nullable();
-        $table->string('expiry')->nullable();
-        $table->string('cvv')->nullable();
-        $table->string('card_name')->nullable();
-
-        // Notes
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('care_service_id')->constrained('care_services')->onDelete('restrict');
+        $table->string('service_plan');
+        $table->string('user_name');
+        $table->string('user_email');
+        $table->string('user_phone');
+        $table->text('user_address');
+         // Files
+        $table->string('prescription')->nullable();
         $table->text('notes')->nullable();
 
-        // Files
-        $table->string('prescription')->nullable();
-        $table->json('other_documents')->nullable();
+        $table->date('preferred_date')->index(); 
+        $table->string('preferred_time');
 
-        // Service
-        $table->unsignedBigInteger('service_id');
-        $table->decimal('service_charge', 10, 2);
-        $table->decimal('tax', 10, 2);
-        $table->decimal('total', 10, 2);
-        $table->string('status')->default('pending');
+        $table->decimal('tax', 10, 2)->nullable();
+        $table->decimal('total_price', 10, 2);
+        $table->string('status')->default('pending')->index();
 
         $table->timestamps();
+
         });
     }
 

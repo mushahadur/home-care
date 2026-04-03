@@ -102,307 +102,69 @@
 
       <!-- responsive grid: interactive cards (hover scale + shadow) -->
       <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-5">
-          <!-- service 1: IV Injection -->
            
         <!-- Service Card: Left Image Layout -->
-        <div
-          class="bg-white border border-soft-blue rounded-2xl shadow-sm card-hover overflow-hidden flex flex-col md:flex-row cursor-pointer transition">
-          <!-- Left Image -->
-          <div class="md:w-48 w-full h-40 md:h-auto">
-            <img
-              src="https://images.unsplash.com/photo-1584515933487-779824d29309"
-              alt="IV Injection"
-              class="w-full h-full object-cover" />
-          </div>
+         @foreach ($careServices as $careService)
+          <div
+            class="bg-white border border-soft-blue rounded-2xl shadow-sm card-hover overflow-hidden flex flex-col md:flex-row cursor-pointer transition">
+            <!-- Left Image -->
+            <div class="md:w-48 w-full h-40 md:h-auto">
+                   @if($careService->care_services_image)
+                        <img src="{{ asset($careService->care_services_image) }}" 
+                            alt="{{ $careService->care_services_name }}"
+                            class="w-full h-full object-cover" />
+                    @else
+                        <img src="https://placehold.co/600x400@2x.png?text=No+Image" 
+                            alt="{{ $careService->care_services_name }}"
+                            class="w-full h-full" />
+                    @endif
 
-          <!-- Right Content -->
-          <div class="flex-1 p-5 flex flex-col justify-between">
-            <!-- Title -->
-            <h3 class="font-bold text-[#1A3B4F] text-lg">
-              Redesigned Service Card mage Layout
-            </h3>
-
-           <!-- Prices Row - Modern Pill Design -->
-            <!-- Prices Row - Minimalist Style -->
-            <div class="flex flex-wrap items-center gap-2 mt-3">
-                <!-- Single -->
-                <div class="bg-[#FCE4E4] px-3 py-1 rounded-full font-semibold">
-                    <span class="text-xs font-medium text-gray-700">Single</span>
-                    <span class="text-xs font-bold text-rose-700">৳350</span>
-                </div>
-                
-                <!-- 3 Day -->
-                <div class="bg-[#E6F2FC] px-3 py-1 rounded-full font-semibold">
-                    <span class="text-xs font-medium text-gray-700">3-Day</span>
-                    <span class="text-xs font-bold text-blue-700">৳1,700</span>
-                </div>
-                
-                <!-- 7 Day -->
-                <div class="bg-[#e0fff6] px-3 py-1 rounded-full font-semibold">
-                    <span class="text-xs font-medium text-gray-700">7-Day</span>
-                    <span class="text-xs font-bold text-cyan-600">৳2,100</span>
-                </div>
+             
             </div>
 
-            <!-- Description -->
-            <p class="text-sm text-gray-700 mt-3">
-              পিপল হোম কেয়ার লিমিটেড একটি সেবা মূলক প্রতিষ্ঠান। আমরা
-              বাসাবাড়িতে নার্সিং সার্ভিস, হোম কেয়ার সার্ভিস, ফিজিওথেরাপি
-              সার্ভিস, ইলডারলি কেয়ার সার্ভিস সহ যেকোন স্ব্যাথ্য সেবা দিয়ে থাকি
-              এবং সকল ধরনের মেডিকেল সরঞ্জাম ভাড়া দেয়া কিংবা বিক্রয় করে থাকি।
-            </p>
+            <!-- Right Content -->
+            <div class="flex-1 p-5 flex flex-col justify-between">
+              <!-- Title -->
+              <h3 class="font-bold text-[#1A3B4F] text-lg">
+                {{ $careService->care_services_name }}
+              </h3>
 
-            <!-- Button -->
-            <a
-               href="{{route('service')}}"
-              type="submit"
-              class="mt-4 bg-[#1A3B4F] text-white px-5 py-2 rounded-lg text-sm hover:bg-[#163344] w-full md:w-fit text-center no-underline">
-              Order Service
-            </a>
-          </div>
-        </div>
-
-
-        <!-- service 1: IV Injection -->
-        <!-- Service Card: Left Image Layout -->
-        <div
-          class="bg-white border border-soft-blue rounded-2xl shadow-sm card-hover overflow-hidden flex flex-col md:flex-row cursor-pointer transition">
-          <!-- Left Image -->
-          <div class="md:w-48 w-full h-40 md:h-auto">
-            <img
-              src="https://images.unsplash.com/photo-1584515933487-779824d29309"
-              alt="IV Injection"
-              class="w-full h-full object-cover" />
-          </div>
-
-          <!-- Right Content -->
-          <div class="flex-1 p-5 flex flex-col justify-between">
-            <!-- Title -->
-            <h3 class="font-bold text-[#1A3B4F] text-lg">
-              Redesigned Service Card mage Layout
-            </h3>
-
-            <!-- Prices Row -->
-            <div class="flex flex-wrap items-center gap-4 mt-3">
-              <!-- Single -->
-              <div class="flex items-center gap-2">
-                <span
-                  class="bg-[#FCE4E4] text-[#C63E5A] px-3 py-1 rounded-full text-xs font-semibold">
-                  Single
-                </span>
-                <span class="text-[#2B4F6E] font-bold">৳350</span>
+            <!-- Prices Row - Modern Pill Design -->
+              <div class="flex flex-wrap items-center gap-2 mt-3">
+                  <!-- Single -->
+                  <div class="bg-[#FCE4E4] px-3 py-1 rounded-full font-semibold">
+                      <span class="text-xs font-medium text-gray-700">Single</span>
+                      <span class="text-xs font-bold text-rose-700">৳{{ $careService->single_services_price }}</span>
+                  </div>
+                  
+                  <!-- 3 Day -->
+                  <div class="bg-[#E6F2FC] px-3 py-1 rounded-full font-semibold">
+                      <span class="text-xs font-medium text-gray-700">3-Day</span>
+                      <span class="text-xs font-bold text-blue-700">৳{{ $careService->triple_services_price }}</span>
+                  </div>
+                  
+                  <!-- 7 Day -->
+                  <div class="bg-[#e0fff6] px-3 py-1 rounded-full font-semibold">
+                      <span class="text-xs font-medium text-gray-700">7-Day</span>
+                      <span class="text-xs font-bold text-cyan-600">৳{{ $careService->seven_services_price }}</span>
+                  </div>
               </div>
 
-               <!-- 3 Day -->
-              <div class="flex items-center gap-2">
-                <span
-                  class="bg-[#E6F2FC] text-[#1A3B4F] px-3 py-1 rounded-full text-xs font-semibold border border-[#B8D9F5]">
-                  3-Day
-                </span>
-                <span class="text-[#2B4F6E] font-bold">৳1600</span>
-              </div>
+              <!-- Description -->
+              <p class="text-sm text-gray-700 mt-3 text-justify">
+                 {{ Str::limit($careService->care_services_description, 298, '...') }}
+              </p>
 
-              <!-- 7 Day -->
-              <div class="flex items-center gap-2">
-                <span
-                  class="bg-[#E6F2FC] text-[#1A3B4F] px-3 py-1 rounded-full text-xs font-semibold border border-[#B8D9F5]">
-                  7-Day
-                </span>
-                <span class="text-[#2B4F6E] font-bold">৳2100</span>
-              </div>
+              <!-- Button -->
+              <a
+                href="{{route('order.show', $careService->id)}}"
+                type="submit"
+                class="mt-4 bg-[#1A3B4F] text-white px-5 py-2 rounded-lg text-sm hover:bg-[#163344] w-full md:w-fit text-center no-underline">
+                Order Service
+              </a>
             </div>
-
-            <!-- Description -->
-            <p class="text-sm text-gray-700 mt-3">
-              পিপল হোম কেয়ার লিমিটেড একটি সেবা মূলক প্রতিষ্ঠান। আমরা
-              বাসাবাড়িতে নার্সিং সার্ভিস, হোম কেয়ার সার্ভিস, ফিজিওথেরাপি
-              সার্ভিস, ইলডারলি কেয়ার সার্ভিস সহ যেকোন স্ব্যাথ্য সেবা দিয়ে থাকি
-              এবং সকল ধরনের মেডিকেল সরঞ্জাম ভাড়া দেয়া কিংবা বিক্রয় করে থাকি।
-            </p>
-
-            <!-- Button -->
-            <a
-               href="{{route('service')}}"
-              type="submit"
-              class="mt-4 bg-[#1A3B4F] text-white px-5 py-2 rounded-lg text-sm hover:bg-[#163344] w-full md:w-fit text-center no-underline">
-              Order Service
-            </a>
           </div>
-        </div>
-
-        <!-- Service Card: Left Image Layout -->
-        <div
-          class="bg-white border border-soft-blue rounded-2xl shadow-sm card-hover overflow-hidden flex flex-col md:flex-row cursor-pointer transition">
-          <!-- Left Image -->
-          <div class="md:w-48 w-full h-40 md:h-auto">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9aRFjXOVjIkog40iAbKuzK0VmhciccBqqtg&s"
-              alt="IV Injection"
-              class="w-full h-full object-cover" />
-          </div>
-
-          <!-- Right Content -->
-          <div class="flex-1 p-5 flex flex-col justify-between">
-            <!-- Title -->
-            <h3 class="font-bold text-[#1A3B4F] text-lg">
-              Redesigned Service Card mage Layout
-            </h3>
-
-            <!-- Prices Row -->
-            <div class="flex flex-wrap items-center gap-20 mt-3">
-              <!-- Single -->
-              <div class="flex items-center gap-2">
-                <span
-                  class="bg-[#FCE4E4] text-[#C63E5A] px-3 py-1 rounded-full text-xs font-semibold">
-                  Single
-                </span>
-                <span class="text-[#2B4F6E] font-bold">৳350</span>
-              </div>
-
-              <!-- 7 Day -->
-              <div class="flex items-center gap-2">
-                <span
-                  class="bg-[#E6F2FC] text-[#1A3B4F] px-3 py-1 rounded-full text-xs font-semibold border border-[#B8D9F5]">
-                  7-Day
-                </span>
-                <span class="text-[#2B4F6E] font-bold">৳2100</span>
-              </div>
-            </div>
-
-            <!-- Description -->
-            <p class="text-sm text-gray-700 mt-3">
-              পিপল হোম কেয়ার লিমিটেড একটি সেবা মূলক প্রতিষ্ঠান। আমরা
-              বাসাবাড়িতে নার্সিং সার্ভিস, হোম কেয়ার সার্ভিস, ফিজিওথেরাপি
-              সার্ভিস, ইলডারলি কেয়ার সার্ভিস সহ যেকোন স্ব্যাথ্য সেবা দিয়ে
-              থাকি এবং সকল ধরনের মেডিকেল সরঞ্জাম ভাড়া দেয়া কিংবা বিক্রয় করে
-              থাকি।
-            </p>
-
-            <!-- Button -->
-             <a
-               href="{{route('service')}}"
-              type="submit"
-              class="mt-4 bg-[#1A3B4F] text-white px-5 py-2 rounded-lg text-sm hover:bg-[#163344] w-full md:w-fit text-center no-underline">
-              Order Service
-            </a>
-          </div>
-        </div>
-
-        <!-- Service Card: Left Image Layout -->
-        <div
-          class="bg-white border border-soft-blue rounded-2xl shadow-sm card-hover overflow-hidden flex flex-col md:flex-row cursor-pointer transition">
-          <!-- Left Image -->
-          <div class="md:w-48 w-full h-40 md:h-auto">
-            <img
-              src="https://c-care.ca/wp-content/uploads/2019/04/5-important-benefits-of-homecare.jpg"
-              alt="IV Injection"
-              class="w-full h-full object-cover" />
-          </div>
-
-          <!-- Right Content -->
-          <div class="flex-1 p-5 flex flex-col justify-between">
-            <!-- Title -->
-            <h3 class="font-bold text-[#1A3B4F] text-lg">
-              Redesigned Service Card mage Layout
-            </h3>
-
-            <!-- Prices Row -->
-            <div class="flex flex-wrap items-center gap-20 mt-3">
-              <!-- Single -->
-              <div class="flex items-center gap-2">
-                <span
-                  class="bg-[#FCE4E4] text-[#C63E5A] px-3 py-1 rounded-full text-xs font-semibold">
-                  Single
-                </span>
-                <span class="text-[#2B4F6E] font-bold">৳350</span>
-              </div>
-
-              <!-- 7 Day -->
-              <div class="flex items-center gap-2">
-                <span
-                  class="bg-[#E6F2FC] text-[#1A3B4F] px-3 py-1 rounded-full text-xs font-semibold border border-[#B8D9F5]">
-                  7-Day
-                </span>
-                <span class="text-[#2B4F6E] font-bold">৳2100</span>
-              </div>
-            </div>
-
-            <!-- Description -->
-            <p class="text-sm text-gray-700 mt-3">
-              পিপল হোম কেয়ার লিমিটেড একটি সেবা মূলক প্রতিষ্ঠান। আমরা
-              বাসাবাড়িতে নার্সিং সার্ভিস, হোম কেয়ার সার্ভিস, ফিজিওথেরাপি
-              সার্ভিস, ইলডারলি কেয়ার সার্ভিস সহ যেকোন স্ব্যাথ্য সেবা দিয়ে
-              থাকি এবং সকল ধরনের মেডিকেল সরঞ্জাম ভাড়া দেয়া কিংবা বিক্রয় করে
-              थাকি।
-            </p>
-
-            <!-- Button -->
-            <a
-               href="{{route('service')}}"
-              type="submit"
-              class="mt-4 bg-[#1A3B4F] text-white px-5 py-2 rounded-lg text-sm hover:bg-[#163344] w-full md:w-fit text-center no-underline">
-              Order Service
-            </a>
-          </div>
-        </div>
-
-        <!-- Service Card: Left Image Layout -->
-        <div
-          class="bg-white border border-soft-blue rounded-2xl shadow-sm card-hover overflow-hidden flex flex-col md:flex-row cursor-pointer transition">
-          <!-- Left Image -->
-          <div class="md:w-48 w-full h-40 md:h-auto">
-            <img
-              src="https://doctorshomecarebd.com/wp-content/uploads/2024/09/White-and-Blue-Illustrative-Senior-Home-Care-Health-and-Wellness-Service-Instagram-Post-1587-x-1000-px.png.webp"
-              alt="IV Injection"
-              class="w-full h-full object-cover" />
-          </div>
-
-          <!-- Right Content -->
-          <div class="flex-1 p-5 flex flex-col justify-between">
-            <!-- Title -->
-            <h3 class="font-bold text-[#1A3B4F] text-lg">
-              Redesigned Service Card mage Layout
-            </h3>
-
-            <!-- Prices Row -->
-            <div class="flex flex-wrap items-center gap-20 mt-3">
-              <!-- Single -->
-              <div class="flex items-center gap-2">
-                <span
-                  class="bg-[#FCE4E4] text-[#C63E5A] px-3 py-1 rounded-full text-xs font-semibold">
-                  Single
-                </span>
-                <span class="text-[#2B4F6E] font-bold">৳350</span>
-              </div>
-
-              <!-- 7 Day -->
-              <div class="flex items-center gap-2">
-                <span
-                  class="bg-[#E6F2FC] text-[#1A3B4F] px-3 py-1 rounded-full text-xs font-semibold border border-[#B8D9F5]">
-                  7-Day
-                </span>
-                <span class="text-[#2B4F6E] font-bold">৳2100</span>
-              </div>
-            </div>
-
-            <!-- Description -->
-            <p class="text-sm text-gray-700 mt-3">
-              পিপল হোম কেয়ার লিমিটেড একটি সেবা মূলক প্রতিষ্ঠান। আমরা
-              বাসাবাড়িতে নার্সিং সার্ভিস, হোম কেয়ার সার্ভিস, ফিজিওথেরাপি
-              সার্ভিস, ইলডারলি কেয়ার সার্ভিস সহ যেকোন স্ব্যাথ্য সেবা দিয়ে
-              থাকি এবং সকল ধরনের মেডিকেল সরঞ্জাম ভাড়া দেয়া কিংবা বিক্রয় করে
-              थাকি।
-            </p>
-
-            <!-- Button -->
-             <a
-               href="{{route('service')}}"
-              type="submit"
-              class="mt-4 bg-[#1A3B4F] text-white px-5 py-2 rounded-lg text-sm hover:bg-[#163344] w-full md:w-fit text-center no-underline">
-              Order Service
-            </a>
-          </div>
-        </div>
+          @endforeach
       </div>
     </div>
   </section>

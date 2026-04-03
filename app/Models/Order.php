@@ -7,44 +7,62 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'user_id', 'name', 'email', 'phone', 'address',
-        'payment_method', 'card_number', 'expiry', 'cvv', 'card_name',
-        'notes', 'prescription', 'other_documents',
-        'service_id', 'service_charge', 'tax', 'total',
-        'status' // new field
+        'user_id',
+        'care_service_id',
+        'service_plan',
+
+        'user_name',
+        'user_email',
+        'user_phone',
+        'user_address',
+
+        'prescription',
+        'notes',
+
+        'preferred_date',
+        'preferred_time',
+
+        'tax',
+        'total_price',
+        'status',
     ];
 
     protected $casts = [
-        'other_documents' => 'array',
+        'preferred_date' => 'date',
+        'tax' => 'decimal:2',
+        'total_price' => 'decimal:2',
     ];
 
-    // Order status constants
-    const STATUS_PENDING = 'pending';
-    const STATUS_PROCESSING = 'processing';
-    const STATUS_SHIPPED = 'shipped';
-    const STATUS_DELIVERED = 'delivered';
-    const STATUS_CANCELLED = 'cancelled';
-    const STATUS_FAILED = 'failed';
-    const STATUS_RETURNED = 'returned';
-    const STATUS_REFUNDED = 'refunded';
-
-    // Helper function for badge class (Bootstrap)
-    public function statusBadge(): string
+    // Relationships
+    public function user()
     {
-        return match ($this->status) {
-            self::STATUS_PENDING => 'warning',
-            self::STATUS_PROCESSING => 'primary',
-            self::STATUS_SHIPPED => 'info',
-            self::STATUS_DELIVERED => 'success',
-            self::STATUS_CANCELLED, self::STATUS_FAILED => 'danger',
-            self::STATUS_RETURNED, self::STATUS_REFUNDED => 'secondary',
-            default => 'light',
-        };
+        return $this->belongsTo(User::class);
     }
 
-    public function service()
-{
-    return $this->belongsTo(CareService::class, 'id');
-}
+    public function careService()
+    {
+        return $this->belongsTo(CareService::class);
+    }
 
+    // Status Helpers
+    public function isPending()
+    {
+        return $this->status === 'pending';
+    }
+
+    public function isCompleted()
+    {
+        return $this->status === 'completed';
+    }
+
+    public function isCancelled()
+    {
+        return $this->status === 'cancelled';
+    }
+
+    // Accessor
+    public function getFormattedTotalAttribute()
+    {
+        return '৳' . number_format($this->total_price, 2);
+    }
 }

@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Notifications\SendOtpNotification;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Crypt;
 
 class RegisteredUserController extends Controller
 {
@@ -69,26 +70,25 @@ class RegisteredUserController extends Controller
         ]);
 
         // OTP
-        $otp = Str::random(6); 
-        $otpExpiresAt = now()->addMinutes(5); 
-
+        $otp = rand(100000, 999999);
+        $hashedOtp = Hash::make($otp);
+         
+        $otpExpiresAt = now()->addMinutes(5);
         // dd($otp);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'otp' => $otp,
+            'otp' => $hashedOtp,
             'otp_expires_at' => $otpExpiresAt,
             'is_verified' => false,
         ]);
 
         $user->notify(new SendOtpNotification($otp));
-        // dd($otp);
 
-       
-        Auth::login($user);
-
-        
-        return redirect()->route('otp.verify');
+         return redirect()->route('otp.verify', [
+        'email'   => Crypt::encryptString($user->email),
+        'expires' => Crypt::encryptString($user->otp_expires_at),
+        ])->with('success', 'Check your mail inbox! Please verify your email with the OTP sent.');
     }
 }

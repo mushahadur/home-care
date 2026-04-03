@@ -58,8 +58,9 @@ class RolePermissionSeeder extends Seeder
             ['email' => 'mrk@gmail.com'],
             [
                 'name' => 'MRK',
-                'password' => Hash::make('1234@mrk'),
+                'password' => Hash::make('12345678'),
                 'is_verified' => true,
+                'default_role' => 'super-admin',
             ]
         );
         $superAdmin->assignRole('super-admin');

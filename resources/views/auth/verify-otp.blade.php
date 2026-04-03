@@ -122,58 +122,51 @@
             <div class="w-1/2 bg-[#F9B0B0]"></div>
         </div>
 
-        @php
-            use Carbon\Carbon;
-            $otpExpiresAt = Auth::user() ? Auth::user()->otp_expires_at : null;
-            $isOtpValid = $otpExpiresAt && Carbon::parse($otpExpiresAt)->isFuture();
-        @endphp
-
         <!-- inner padding (mobile friendly) -->
         <div class="px-6 py-8 md:px-8">
-
             <!-- OTP Timer Display -->
-            @if($isOtpValid)
-                <div class="text-center mb-4">
-                    <p class="text-lg font-medium text-[#1A3B4F]">
-                        OTP expires in: <span id="otp-timer" class="timer text-[#C63E5A] font-bold"></span>
-                    </p>
-                </div>
-            @endif
+            <div class="text-center mb-4">
+                <p class="text-lg font-medium text-[#1A3B4F]">
+                    OTP expires in:
+                    <span id="otp-timer" class="timer text-[#C63E5A] font-bold"></span>
+                </p>
+            </div>
 
             <!-- Display validation errors if any -->
             @if ($errors->any())
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-2xl text-sm mb-4">
-                    <ul class="list-disc pl-5">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-2xl text-sm mb-4">
+                <ul class="list-disc pl-5">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
             @endif
 
             <!-- Display session messages -->
             @if(session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-2xl text-sm mb-4">
-                    {{ session('success') }}
-                </div>
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-2xl text-sm mb-4">
+                {{ session('success') }}
+            </div>
             @endif
 
             @if(session('error'))
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-2xl text-sm mb-4">
-                    {{ session('error') }}
-                </div>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-2xl text-sm mb-4">
+                {{ session('error') }}
+            </div>
             @endif
 
-            <!-- OTP Verification Form (shown when OTP is valid) -->
-            <div id="otp-section" class="space-y-5 transition-opacity duration-200 {{ $isOtpValid ? '' : 'd-none' }}">
+            @if($isOtpExpiresValid)
+            <div id="otp-section" class="space-y-5 transition-opacity duration-200">
                 <form method="POST" action="{{ route('otp.verify') }}" class="space-y-5">
                     @csrf
-                    
+
                     <!-- OTP Code Input -->
                     <div>
                         <label for="otp" class="block text-sm font-medium text-[#1A3B4F] mb-1">
                             <i class="far fa-envelope mr-2 text-[#C63E5A]"></i>OTP Code
                         </label>
+                        <input type="hidden" class="bg-white/80" name="email" value="{{$email}}">
                         <input
                             type="text"
                             name="otp"
@@ -191,7 +184,7 @@
                             maxlength="6"
                             title="Please enter a 6-digit OTP">
                         @error('otp')
-                            <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -203,23 +196,24 @@
                     </button>
                 </form>
             </div>
-
+            @else
             <!-- Resend OTP Section (shown when OTP expired) -->
-            <div id="resend-section" class="space-y-4 {{ $isOtpValid ? 'd-none' : '' }}">
+            <div id="resend-section" class="space-y-4 transition-opacity duration-200">
                 <div class="alert-warning p-4 rounded-2xl text-center">
                     <i class="fas fa-exclamation-triangle text-[#C63E5A] mr-2"></i>
                     <span class="font-medium">The OTP has expired. Click below to receive a new OTP.</span>
                 </div>
-                
+
                 <form action="{{ route('otp.resend') }}" method="POST" class="text-center">
                     @csrf
+                    <input type="hidden" class="bg-white/80" name="email" value="{{$email}}">
                     <button type="submit" class="btn-success w-full py-3 px-4 rounded-2xl flex items-center justify-center gap-2">
                         <i class="fas fa-paper-plane"></i>
                         Resend OTP
                     </button>
                 </form>
             </div>
-
+            @endif
             <!-- Back to Login Link -->
             <div class="text-center mt-6">
                 <a href="{{ route('login') }}" class="text-sm text-[#2B4F6E] hover:text-[#C63E5A] transition">
@@ -230,58 +224,33 @@
     </div>
 </div>
 
-@if($isOtpValid)
+@endsection
+
+
+@push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get OTP expiration time from PHP
-        const otpExpiresAt = new Date('{{ \Carbon\Carbon::parse($otpExpiresAt)->toIso8601String() }}').getTime();
-        const timerElement = document.getElementById('otp-timer');
-        const otpSection = document.getElementById('otp-section');
-        const resendSection = document.getElementById('resend-section');
+    const expiresAt = "{{ $expires }}"; // Example: 2026-03-31 23:30:52
+    const timerElement = document.getElementById("otp-timer");
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const timeLeft = otpExpiresAt - now;
+    function updateOtpTimer() {
+        const expiryTime = new Date(expiresAt.replace(" ", "T")).getTime();
+        const now = new Date().getTime();
+        const distance = expiryTime - now;
 
-            if (timeLeft <= 0) {
-                // OTP expired
-                if (otpSection) otpSection.classList.add('d-none');
-                if (resendSection) resendSection.classList.remove('d-none');
-                clearInterval(timerInterval);
-                
-                // Show expired message in timer
-                if (timerElement) timerElement.textContent = 'Expired';
-                return;
-            }
-
-            // Calculate minutes and seconds
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            // Format with leading zeros
-            const formattedMinutes = String(minutes).padStart(2, '0');
-            const formattedSeconds = String(seconds).padStart(2, '0');
-
-            // Update timer display
-            if (timerElement) {
-                timerElement.textContent = `${formattedMinutes}:${formattedSeconds}`;
-            }
-
-            // Add visual warning when less than 30 seconds remain
-            if (timeLeft < 30000) {
-                timerElement.style.color = '#dc3545';
-            }
+        if (distance <= 0) {
+            timerElement.innerHTML = "Expired";
+            clearInterval(timerInterval);
+            return;
         }
 
-        // Start timer
-        const timerInterval = setInterval(updateTimer, 1000);
-        updateTimer(); // Initial call
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Clean up interval when page unloads
-        window.addEventListener('beforeunload', function() {
-            clearInterval(timerInterval);
-        });
-    });
+        timerElement.innerHTML =
+            String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
+    }
+
+    updateOtpTimer(); // Run immediately
+    const timerInterval = setInterval(updateOtpTimer, 1000);
 </script>
-@endif
-@endsection
+@endpush

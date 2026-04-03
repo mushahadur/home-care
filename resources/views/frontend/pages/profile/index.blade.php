@@ -1,11 +1,12 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-    Profile
+Oreder
 @endsection
 
 @section('content')
- <main class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+
+    <main class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <!-- Profile Header -->
       <div
         class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8"
@@ -31,10 +32,10 @@
             >
               <div>
                 <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
-                  Rahima Akter
+                  {{$user->name}}
                 </h1>
                 <p class="text-gray-600 mt-1">
-                  +880 1712-345678 • rahima@example.com
+                  {{$user->phone}} • {{$user->email}}
                 </p>
                 <div class="flex items-center gap-4 mt-3 flex-wrap">
                   <span
@@ -43,37 +44,42 @@
                     <i class="fas fa-check-circle mr-1.5"></i> Verified
                   </span>
                   <span class="text-sm text-gray-500"
-                    >Member since Feb 2025</span
+                    >{{$user->created_at->format('F Y')}}</span
                   >
                 </div>
               </div>
-              <button
+              <!-- Logout Form -->
+                <form method="POST" action="{{ route('logout') }}" class="block">
+                                @csrf
+               <button
                 class="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition shadow-sm"
               >
                 <i class="fas fa-sign-out-alt"></i> Logout
               </button>
+                </form>
             </div>
           </div>
         </div>
       </div>
 
+     
       <!-- Tabs Navigation -->
       <div
-        class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden"
+        class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8"
       >
         <div class="border-b border-gray-200">
           <div class="flex overflow-x-auto scrollbar-hide px-2 sm:px-6">
             <button
               class="tab-btn py-4 px-5 sm:px-8 font-medium tab-active"
-              data-tab="info"
+              data-tab="orders"
             >
-              Personal
+              Order
             </button>
             <button
               class="tab-btn py-4 px-5 sm:px-8 font-medium tab-inactive"
-              data-tab="orders"
+              data-tab="info"
             >
-              Orders
+              Personal 
             </button>
             <button
               class="tab-btn py-4 px-5 sm:px-8 font-medium tab-inactive"
@@ -92,8 +98,85 @@
 
         <!-- Tab Contents -->
         <div class="p-6 sm:p-10">
+          <!-- My Orders -->
+          <div id="orders" class="tab-content active">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-xl sm:text-2xl font-bold text-gray-900">
+                Recent Orders
+              </h2>
+              <a href="{{ route('user.orders') }}"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-[#2B4F6E] text-white text-sm rounded-lg hover:bg-[#1e3a54] transition"
+              >
+                <i class="fas fa-eye"></i> Show Details
+              </a>
+            </div>
+
+            <div class="space-y-5">
+              <!-- Order item -->
+              @forelse($order_inf as $order)
+                <div class="border border-gray-200 rounded-xl p-5 hover:shadow-sm transition">
+                    
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        
+                        <!-- LEFT -->
+                        <div>
+                            <h3 class="font-semibold text-lg">
+                                {{ $order->careService->care_services_name ?? 'Service Name' }}
+                            </h3>
+
+                            <p class="text-sm text-gray-600 mt-1">
+                                Order #ORD-{{ $order->id }} • 
+                                {{ $order->created_at->format('d M Y, h:i A') }}
+                            </p>
+                        </div>
+
+                        <!-- RIGHT -->
+                        <div class="flex items-center gap-4">
+                            
+                            {{-- Status --}}
+                            @php
+                                $statusClass = match($order->status) {
+                                    'pending' => 'bg-yellow-100 text-yellow-800',
+                                    'completed' => 'bg-green-100 text-green-800',
+                                    'cancelled' => 'bg-red-100 text-red-800',
+                                    default => 'bg-gray-100 text-gray-800',
+                                };
+                            @endphp
+
+                            <span class="px-3 py-1 rounded-full text-sm font-medium {{ $statusClass }}">
+                                {{ ucfirst($order->status) }}
+                            </span>
+
+                            {{-- Price --}}
+                            <span class="font-bold text-[var(--accent)]">
+                                ৳{{ number_format($order->total_price, 0) }}
+                            </span>
+
+                        </div>
+                    </div>
+
+                    <!-- Bottom Info -->
+                    <div class="mt-4 text-sm text-gray-600">
+                        Patient: {{ $order->user_name }} • {{ $order->user_address }}
+                    </div>
+
+                </div>
+                @empty
+                    <div class="text-center py-10 text-gray-500">
+                        No orders found 😔
+                    </div>
+              @endforelse
+
+              <p class="text-center text-gray-500 mt-8 italic">
+                Showing last 2 orders •
+                <a href="#" class="text-rose-500 hover:underline"
+                  >View all orders</a
+                >
+              </p>
+            </div>
+          </div>
           <!-- Personal Info -->
-          <div id="info" class="tab-content active">
+          <div id="info" class="tab-content">
             <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
               Personal Information
             </h2>
@@ -102,109 +185,43 @@
                 <label class="block text-sm font-medium text-gray-600 mb-1.5"
                   >Full Name</label
                 >
-                <p class="text-gray-900 font-medium">Rahima Akter</p>
+                <p class="text-gray-900 font-medium">{{ $user->name }}</p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-600 mb-1.5"
                   >Phone Number</label
                 >
-                <p class="text-gray-900 font-medium">+880 1712-345678</p>
+                <p class="text-gray-900 font-medium">{{ $user->phone }}</p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-600 mb-1.5"
                   >Email</label
                 >
-                <p class="text-gray-900 font-medium">rahima.khan@example.com</p>
+                <p class="text-gray-900 font-medium">{{ $user->email }}</p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-600 mb-1.5"
                   >Date of Birth</label
                 >
-                <p class="text-gray-900 font-medium">15 March 1992</p>
+                <p class="text-gray-900 font-medium">{{ $user->date_of_birth }}</p>
               </div>
               <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-600 mb-1.5"
                   >Blood Group</label
                 >
-                <p class="text-gray-900 font-medium">O+</p>
+                <p class="text-gray-900 font-medium">{{ $user->blood_group ?? "Not specified" }}</p>
               </div>
             </div>
             <div class="mt-10">
               <button
-                class="inline-flex items-center gap-2 px-6 py-3 bg-[var(--primary)] text-white rounded-lg hover:bg-[#1e3a54] transition"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-[#2B4F6E] text-white rounded-lg hover:bg-[#1e3a54] transition"
               >
                 <i class="fas fa-edit"></i> Edit Information
               </button>
             </div>
           </div>
 
-          <!-- My Orders -->
-          <div id="orders" class="tab-content">
-            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
-              Recent Orders
-            </h2>
-
-            <div class="space-y-5">
-              <!-- Order item -->
-              <div
-                class="border border-gray-200 rounded-xl p-5 hover:shadow-sm transition"
-              >
-                <div
-                  class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                >
-                  <div>
-                    <h3 class="font-semibold text-lg">IV Injection at Home</h3>
-                    <p class="text-sm text-gray-600 mt-1">
-                      Order #ORD-20260224-0789 • 24 Feb 2026, 10:30 AM
-                    </p>
-                  </div>
-                  <div class="flex items-center gap-4">
-                    <span
-                      class="px-3 py-1 rounded-full text-sm bg-green-100 text-green-800 font-medium"
-                      >Completed</span
-                    >
-                    <span class="font-bold text-[var(--accent)]">৳350</span>
-                  </div>
-                </div>
-                <div class="mt-4 text-sm text-gray-600">
-                  Patient: Md. Rahim • Kandipara, Brahmanbaria
-                </div>
-              </div>
-
-              <!-- Another order -->
-              <div
-                class="border border-gray-200 rounded-xl p-5 hover:shadow-sm transition"
-              >
-                <div
-                  class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                >
-                  <div>
-                    <h3 class="font-semibold text-lg">Wound Dressing</h3>
-                    <p class="text-sm text-gray-600 mt-1">
-                      Order #ORD-20260215-0342 • 15 Feb 2026, 2:45 PM
-                    </p>
-                  </div>
-                  <div class="flex items-center gap-4">
-                    <span
-                      class="px-3 py-1 rounded-full text-sm bg-green-100 text-green-800 font-medium"
-                      >Completed</span
-                    >
-                    <span class="font-bold text-[var(--accent)]">৳480</span>
-                  </div>
-                </div>
-                <div class="mt-4 text-sm text-gray-600">
-                  Patient: Self • College Road, Brahmanbaria
-                </div>
-              </div>
-
-              <p class="text-center text-gray-500 mt-8 italic">
-                Showing last 2 orders •
-                <a href="#" class="text-[var(--primary)] hover:underline"
-                  >View all orders</a
-                >
-              </p>
-            </div>
-          </div>
+          
 
           <!-- Addresses -->
           <div id="addresses" class="tab-content">
@@ -215,7 +232,7 @@
                 Saved Addresses
               </h2>
               <button
-                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--primary)] text-white rounded-lg hover:bg-[#1e3a54] transition text-sm"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2B4F6E] text-white rounded-lg hover:bg-[#1e3a54] transition text-sm"
               >
                 <i class="fas fa-plus"></i> Add New Address
               </button>
@@ -245,26 +262,6 @@
                   class="inline-block mt-3 px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full"
                   >Default</span
                 >
-              </div>
-
-              <div class="border border-gray-200 rounded-xl p-5">
-                <div class="flex justify-between items-start">
-                  <div>
-                    <p class="font-medium">Office / Relative</p>
-                    <p class="text-sm text-gray-600 mt-1">
-                      Flat #B3, Green Tower<br />
-                      College Road, Brahmanbaria
-                    </p>
-                  </div>
-                  <div class="flex gap-3">
-                    <button class="text-blue-600 hover:text-blue-800 text-sm">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="text-red-600 hover:text-red-800 text-sm">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -311,7 +308,7 @@
 
               <div class="pt-4">
                 <button
-                  class="px-6 py-3 bg-[var(--primary)] text-white rounded-lg hover:bg-[#1e3a54] transition"
+                  class="px-6 py-3 bg-[#2B4F6E] text-white rounded-lg hover:bg-[#1e3a54] transition"
                 >
                   Update Password
                 </button>
@@ -335,5 +332,94 @@
         </div>
       </div>
     </main>
+
     
 @endsection
+
+@push('scripts')
+<script src="{{ asset('assets/backend/js/sweetalert2@11.js')}}"></script>
+
+@if (session('success'))
+        <script>
+            (() => {
+                const now = new Date();
+
+                const currentTime = now.toLocaleTimeString('en-BD', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                });
+
+                let countdown = 20; // 60 seconds
+                let countdownInterval;
+
+                Swal.fire({
+                    icon: 'success',
+                    title: @json(session('success')),
+                    html: `
+                        <div style="line-height: 1.8;">
+                            <p style="font-size: 15px; color: #555;">
+                                We will contact you within a few minutes.
+                            </p>
+                            <p style="font-size: 14px; color: #666;">
+                                <strong>Current Time:</strong> ${currentTime}
+                            </p>
+                            <p id="countdown-text" style="font-size: 14px; color: #999;">
+                                Auto closing in <strong>5</strong> seconds...
+                            </p>
+                        </div>
+                    `,
+                    timer: 20000,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didOpen: () => {
+                        countdownInterval = setInterval(() => {
+                            countdown--;
+                            const countdownText = document.getElementById('countdown-text');
+
+                            if (countdownText && countdown >= 0) {
+                                countdownText.innerHTML = `Auto closing in <strong>${countdown?? '2'}</strong> minutes...`;
+                            }
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearInterval(countdownInterval);
+                    }
+                });
+            })();
+        </script>
+    @endif
+
+
+    <script>
+      <!-- JavaScript for tab switching -->
+      document.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll(".tab-btn");
+        const contents = document.querySelectorAll(".tab-content");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            // Remove active from all tabs
+            tabs.forEach((t) => {
+              t.classList.remove("tab-active");
+              t.classList.add("tab-inactive");
+            });
+
+            // Add active to clicked tab
+            tab.classList.remove("tab-inactive");
+            tab.classList.add("tab-active");
+
+            // Hide all contents
+            contents.forEach((c) => c.classList.remove("active"));
+
+            // Show selected content
+            const tabId = tab.getAttribute("data-tab");
+            document.getElementById(tabId).classList.add("active");
+          });
+        });
+      });
+    </script>
+@endpush

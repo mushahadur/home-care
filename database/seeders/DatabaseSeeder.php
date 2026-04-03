@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => Hash::make('1234@test'),
-        ]);
+            'is_verified' => true,
+            'default_role' => 'user',
+        ])->assignRole('user'); 
+
     }
 }

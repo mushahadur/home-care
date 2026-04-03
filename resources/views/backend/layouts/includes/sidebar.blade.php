@@ -29,9 +29,9 @@
       <nav class="flex-1 overflow-y-auto p-4 space-y-1 custom-scrollbar">
         <!-- Main Menu Items -->
         <div class="space-y-1">
-            <a href="{{ route('dashboard') }}"
+            <a href="{{ route('admin.dashboard') }}"
               class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
-              {{ request()->routeIs('dashboard') ? $activeClass : $inactiveClass }}">
+              {{ request()->routeIs('admin.dashboard') ? $activeClass : $inactiveClass }}">
                 <i class="fa-solid fa-gauge w-5"></i>
                 <span class="text-sm font-medium">Dashboard</span>
             </a>

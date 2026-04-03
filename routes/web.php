@@ -10,41 +10,44 @@ use App\Http\Controllers\Backend\Pages\ProductController;
 use App\Http\Controllers\Auth\OtpVerificationController;
 use App\Http\Controllers\Backend\Pages\NotificationController;
 use App\Http\Controllers\Backend\Pages\CareServiceController;
+use App\Http\Controllers\Frontend\OrderController;
+
+/*
+|--------------------------------------------------------------------------
+| Frontend Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/order/{id}', [OrderController::class, 'getOrder'])
+    ->whereNumber('id')
+    ->name('order.show');
+
+Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('order.place');
+
+Route::get('/service-details/{id}', [OrderController::class, 'serviceDetails'])
+    ->whereNumber('id')
+    ->name('service.details');
+
+Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
+
+Route::get('/order/track/{id}', [OrderController::class, 'orderTrack'])
+    ->whereNumber('id')
+    ->name('order.track');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Dashboard
+|--------------------------------------------------------------------------
+*/
 
 
-Route::fallback(function () {
-    return response()->view('errors.404', [], 404);
-});
-
-
- Route::get('/', [HomeController::class, 'index'])->name('home');
- Route::get('/service', [HomeController::class, 'service'])->name('service');
- Route::get('/order', [HomeController::class, 'order'])->name('order');
- Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
-
- 
- Route::get('//service-details/{id}', [HomeController::class, 'serviceDetails'])->name('service.details');
- Route::get('/place-order/{id}', [HomeController::class, 'placeOrder'])->name('place.order');
-Route::post('/order/store', [HomeController::class, 'store'])->name('order.store');
-Route::get('/order/track/{id}', [HomeController::class, 'orderTrack'])->name('order.track');
-
-
-
- 
-
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-
-
-
-
+/*
+|--------------------------------------------------------------------------
+| User Authenticated Profile Routes
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,30 +56,66 @@ Route::middleware('auth')->group(function () {
 });
 
 
+
 require __DIR__.'/auth.php';
 
+/*
+|--------------------------------------------------------------------------
+| OTP Verification Routes
+|--------------------------------------------------------------------------
+*/
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('verify-otp', [OtpVerificationController::class, 'show'])->name('otp.verify');
-    Route::post('verify-otp', [OtpVerificationController::class, 'verify'])->name('otp.verify');
-    Route::post('resend-otp', [OtpVerificationController::class, 'resend'])->name('otp.resend');
+Route::get('verify-otp', [OtpVerificationController::class, 'show'])->name('otp.verify');
+Route::post('verify-otp', [OtpVerificationController::class, 'verify'])->name('otp.verify');
+Route::post('resend-otp', [OtpVerificationController::class, 'resend'])->name('otp.resend');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Customer Routes
+|--------------------------------------------------------------------------
+| Use verified.user if using custom OTP verification
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
+    Route::get('/my-profile', [HomeController::class, 'userProfile'])->name('profile');
+    Route::get('/my-orders', [HomeController::class, 'userOrders'])->name('orders');
 });
 
 
-// Route::middleware(['auth', 'verified','route_permission'])->group(function () {
-Route::middleware(['auth', 'verified','route_permission'])->prefix('admin')->group(function () {
+/*
+|--------------------------------------------------------------------------
+| Admin Protected Routes
+|--------------------------------------------------------------------------
+*/
+// Dashboard
+Route::middleware(['auth', 'verified'])
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    });
+
+// Other admin routes
+Route::middleware(['auth', 'verified', 'route_permission'])
+    ->prefix('admin')
+    ->group(function () {
+        Route::resource('roles', RoleController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('products', ProductController::class);
+        Route::resource('care-services', CareServiceController::class);
+
+        Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
+        Route::post('notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+    });
     
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
-    Route::resource('care-services', CareServiceController::class);
+    
+/*
+|--------------------------------------------------------------------------
+| Fallback Route
+|--------------------------------------------------------------------------
+*/
 
-
-    Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
-    Route::post('notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
 });
-
-
-
-
-

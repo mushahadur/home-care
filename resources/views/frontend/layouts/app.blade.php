@@ -163,6 +163,11 @@
   <!-- GEOGRAPHIC FOCUS BADGE + FOOTER NOTICE (Exclusive to Brahmanbaria Municipality) -->
   @include('frontend.layouts.includes.footer')
 
+
+
+   <!-- Stack for Page-wise Scripts -->
+    @stack('scripts')
+    
 </body>
 
 </html>
