@@ -77,6 +77,17 @@
                 <span class="text-sm font-medium">Roles</span>
             </a>
           @endcan
+          
+          @can('permissions-list')
+              <a href="{{ route('permissions.index') }}"
+                class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
+                {{ request()->routeIs('permissions.index') || request()->routeIs('permissions.*') ? $activeClass : $inactiveClass }}">
+                
+                  <i class="fa-solid fa-lock w-5"></i>
+                  <span class="text-sm font-medium">Permissions</span>
+              </a>
+          @endcan
+
         </div>
 
         
@@ -96,6 +107,38 @@
               {{ request()->routeIs('care-services.*') ? $activeClass : $inactiveClass }}">
                <i class="fa-solid fa-hand-holding-heart"></i>
                 <span class="text-sm font-medium">Services</span>
+            </a>
+          @endcan
+         
+
+         
+            <a href="{{ route('orders.index') }}"
+              class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
+              {{ request()->routeIs('orders.*') ? $activeClass : $inactiveClass }}">
+               <i class="fa-solid fa-hand-holding-heart"></i>
+                <span class="text-sm font-medium">Order List</span>
+            </a>
+   
+
+        
+
+             @can('users-manage')
+              <a href="{{ route('users.manage.index') }}"
+                class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
+                {{ request()->routeIs('users.manage.*') ? $activeClass : $inactiveClass }}">
+                
+                  <i class="fa-solid fa-users w-5"></i>
+                  <span class="text-sm font-medium">Order Users</span>
+              </a>
+          @endcan
+
+
+            @can('package-list')
+            <a href="{{ route('package.index') }}"
+              class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
+              {{ request()->routeIs('package.*') ? $activeClass : $inactiveClass }}">
+                <i class="fa-solid fa-chart-pie w-5"></i>
+                <span class="text-sm font-medium">Package</span>
             </a>
           @endcan
 

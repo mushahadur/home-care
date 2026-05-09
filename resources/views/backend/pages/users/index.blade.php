@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Role Settings ')
+@section('title', 'Users')
 
 @section('content')
 <!-- ... Keep everything from previous version up to </header> ... -->
@@ -11,9 +11,9 @@
     <h3 class="text-sm font-bold pb-3">
         <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
-        <span>Roles</span>
+        <span>Users</span>
     </h3>
-    <!-- New: Roles Data Table -->
+    <!-- New: Users / Customers Data Table -->
     <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden">
 
         <!-- Header + Search -->
@@ -22,7 +22,7 @@
 
             <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2.5">
                 <i class="fa-solid fa-receipt text-emerald-600 text-xl"></i>
-                Recent Roles
+                Recent Users
             </h3>
 
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
@@ -31,68 +31,60 @@
                     <input
                         id="table-search"
                         type="text"
-                        placeholder="Search roles..."
+                        placeholder="Search orders..."
                         class="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
                     </div>
                 </div>
 
-                <!-- Create Role Button -->
-                <a href="{{ route('roles.create') }}"
+                <!-- Create User Button -->
+                <a href="{{ route('users.create') }}"
                     class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 min-w-[140px]">
                     <i class="fa-solid fa-plus text-base"></i>
-                    Create Role
+                    Create User
                 </a>
             </div>
         </div>
 
         <!-- Table Wrapper (horizontal scroll on mobile) -->
         <div class="overflow-x-auto">
-            <table id="roles-table" class="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+            <table id="users-table" class="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
                 <thead class="bg-gray-50 dark:bg-gray-800">
                     <tr>
                         <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">SI</th>
                         <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Name</th>
-                        <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Permission</th>
-                        <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                        <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Email</th>
+                        <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Role</th>
                         <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Date</th>
                         <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
                     <!-- Sample Row -->
-                     @foreach ($roles as $key => $role)
+                    @foreach ($users as $key => $user)
                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">{{ $loop->iteration }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $role->name }}</td>
-                       <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
-                            <div class="max-w-[1200px] overflow-x-auto">
-                                <div class="flex flex-wrap gap-1.5 min-w-min">
-                                    @foreach($role->permissions as $permission)
-                                        <span class="px-2.5 py-1 inline-flex items-center text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 whitespace-nowrap">
-                                            <svg class="w-2.5 h-2.5 mr-1 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                                            </svg>
-                                            <span>{{ $permission->name }}</span>
-                                        </span>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $user->name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $user->email }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300">Active</span>
+                            @if(!empty($user->getRoleNames()))
+                            @foreach($user->getRoleNames() as $role)
+                            <label class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300">{{ $role }}</label>
+                            @endforeach
+                            @endif
+                            <!-- <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300">Completed</span> -->
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $role->created_at->format('M j, Y') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $user->created_at->format('M j, Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                            <button 
-                                onclick="window.location.href='{{ route('roles.edit', $role->id) }}'" 
+                                onclick="window.location.href='{{ route('users.edit', $user->id) }}'" 
                                 class="text-blue-500 hover:text-blue-700 transition-colors">
                                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                                 </svg>
                             </button>
-                            <button class="text-red-500 hover:text-red-700 ml-2" onclick="confirmDelete('{{ $role->id }}')">
+                            <button class="text-red-500 hover:text-red-700 ml-2" onclick="confirmDelete('{{ $user->id }}')">
                                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -100,7 +92,7 @@
                                 </svg>
                             </button>
                             <!-- Hidden Form -->
-                            <form id="delete-role-form-{{ $role->id }}" method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display: none;">
+                            <form id="delete-user-form-{{ $user->id }}" method="POST" action="{{ route('users.destroy', $user->id) }}" style="display: none;">
                                 @csrf
                                 @method('DELETE')
                             </form>
@@ -133,7 +125,7 @@
 @push('scripts')
 <script src="{{ asset('assets/backend/js/sweetalert2@11.js') }}"></script>
 <script>
-    function confirmDelete(roleId) {
+    function confirmDelete(productId) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -144,12 +136,12 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                // role Confiremed
-                const form = document.getElementById('delete-role-form-' + roleId);
+                // User Confiremed
+                const form = document.getElementById('delete-product-form-' + productId);
                 if (form) {
                     form.submit();
                 } else {
-                    console.error('Delete form not found for role:', roleId);
+                    console.error('Delete form not found for product:', productId);
                 }
             }
         });
@@ -158,7 +150,7 @@
      // Table search functionality
     document.addEventListener('DOMContentLoaded', () => {
         const searchInput = document.getElementById('table-search');
-        const table = document.getElementById('roles-table');
+        const table = document.getElementById('users-table');
         const rows = table.querySelectorAll('tbody tr');
 
         searchInput.addEventListener('input', (e) => {

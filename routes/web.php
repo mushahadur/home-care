@@ -11,6 +11,9 @@ use App\Http\Controllers\Auth\OtpVerificationController;
 use App\Http\Controllers\Backend\Pages\NotificationController;
 use App\Http\Controllers\Backend\Pages\CareServiceController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Backend\Settings\PermissionController;
+use App\Http\Controllers\Backend\Pages\OrderConteroller as BackendOrderController;
+use App\Http\Controllers\Backend\Pages\PackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,9 +104,22 @@ Route::middleware(['auth', 'verified', 'route_permission'])
     ->prefix('admin')
     ->group(function () {
         Route::resource('roles', RoleController::class);
+        Route::resource('permissions', PermissionController::class);
         Route::resource('users', UserController::class);
         Route::resource('products', ProductController::class);
         Route::resource('care-services', CareServiceController::class);
+        
+        Route::resource('package', PackageController::class);
+        Route::get('orders', [BackendOrderController::class, 'index'])
+                ->name('orders.index')
+                ->middleware('permission:orders-list');
+       
+        Route::get('users/orders', [BackendOrderController::class, 'orderUsers'])
+                ->name('users.manage.index')
+                ->middleware(['auth', 'permission:users-manage']);
+
+
+
 
         Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
         Route::post('notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
