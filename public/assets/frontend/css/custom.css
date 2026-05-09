@@ -1,0 +1,187 @@
+/* custom smooth shadow & card hover effect, keeping the palette */
+:root {
+  --primary: #2b4f6e;
+  --accent: #c63e5a;
+  --light: #e6f2fc;
+  --soft: #f7fafc;
+}
+.pink-accent {
+  background-color: var(--accent);
+}
+.blue-primary {
+  color: var(--primary);
+}
+
+.card-hover {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 119, 190, 0.1),
+    0 8px 10px -6px rgba(0, 119, 190, 0.1);
+}
+
+.pink-accent-bg {
+  background-color: #f9b0b0;
+  /* warm pink for small accents */
+}
+
+.pink-accent-text {
+  color: #c63e5a;
+  /* deeper pink for readability on white */
+}
+
+.soft-blue-bg {
+  background-color: #e6f2fc;
+  /* medical soft blue */
+}
+
+.border-soft-blue {
+  border-color: #b8d9f5;
+}
+
+.required-badge {
+  background: #fce4e4;
+  border-left: 6px solid #f9b0b0;
+}
+
+
+
+    /* custom smooth shadow & card hover effect, keeping the palette */
+    :root {
+      --primary: #2b4f6e;
+      --accent: #c63e5a;
+      --light: #e6f2fc;
+      --soft: #f7fafc;
+    }
+
+    .pink-accent {
+      background-color: var(--accent);
+    }
+
+    .blue-primary {
+      color: var(--primary);
+    }
+
+    .card-hover {
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 20px 25px -5px rgba(0, 119, 190, 0.1),
+        0 8px 10px -6px rgba(0, 119, 190, 0.1);
+    }
+
+    .pink-accent-bg {
+      background-color: #f9b0b0;
+      /* warm pink for small accents */
+    }
+
+    .pink-accent-text {
+      color: #c63e5a;
+      /* deeper pink for readability on white */
+    }
+
+    .soft-blue-bg {
+      background-color: #e6f2fc;
+      /* medical soft blue */
+    }
+
+    .border-soft-blue {
+      border-color: #b8d9f5;
+    }
+
+    .required-badge {
+      background: #fce4e4;
+      border-left: 6px solid #f9b0b0;
+    }
+
+    /* Smooth fade for slides */
+    .slide {
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Optional overlay gradient */
+    .slider-overlay {
+      background: linear-gradient(to right,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(0, 0, 0, 0.1) 100%);
+    }
+
+    .tab-active {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      font-weight: 600;
+    }
+    .tab-inactive {
+      color: #4b5563;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+
+     /* Smooth accordion transitions */
+   /* Mobile first responsive adjustments */
+    @media (max-width: 640px) {
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+    
+    /* Smooth transitions */
+    .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+    
+    /* Modal animation */
+    #videoModal {
+        transition: opacity 0.3s ease;
+    }
+    
+    #videoModal.show {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    /* Better touch targets for mobile */
+    button, a {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Hide scrollbar for thumbnails on mobile if needed */
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
