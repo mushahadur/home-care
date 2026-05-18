@@ -89,36 +89,46 @@
                             {{ optional($groupPermissions->first()->created_at)->format('M d, Y') }}
                         </td>
 
+
                         <td class="px-6 py-4 text-sm">
                             <div class="flex items-center gap-2">
 
                                 {{-- Edit --}}
                                 @can('permissions-edit')
-                                <a href="{{ route('permissions.edit', $groupPermissions->first()->id) }}"
-                                    class="inline-flex items-center px-3 py-1.5 rounded-md bg-yellow-100 text-yellow-700 hover:bg-yellow-200 text-xs font-medium transition">
-                                    <i class="fas fa-pen"></i>
-                                </a>
+                                <button
+                                    onclick="window.location.href='{{ route('permissions.edit', $groupPermissions->first()->id) }}'"
+                                    class="text-blue-500 hover:text-blue-700 transition-colors">
+                                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                    </svg>
+                                </button>
                                 @endcan
 
                                 {{-- Delete --}}
                                 @can('permissions-destroy')
-                                <form action="{{ route('permissions.destroy', $groupPermissions->first()->id) }}" method="POST"
-                                    onsubmit="return confirm('Are you sure you want to delete this group? All permissions in this group will be deleted.')">
+                                <button class="text-red-500 hover:text-red-700 ml-2" onclick="confirmDelete('{{ $groupPermissions->first()->id }}')">
+                                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7h6m-3-3v3" />
+                                    </svg>
+                                </button>
+                                <!-- Hidden Form -->
+                                <form id="delete-permissions-form-{{ $groupPermissions->first()->id }}" method="POST" action="{{ route('permissions.destroy', $groupPermissions->first()->id) }}" style="display: none;">
                                     @csrf
                                     @method('DELETE')
-
-                                    <button type="submit"
-                                        class="inline-flex items-center px-3 py-1.5 rounded-md bg-red-100 text-red-700 hover:bg-red-200 text-xs font-medium transition">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
                                 </form>
                                 @endcan
 
                             </div>
-                            </td>
+                        </td>
 
-                    
-                        </tr>
+
+
+
+
+
+                    </tr>
                     @endforeach
 
                 </tbody>
@@ -144,7 +154,7 @@
 @push('scripts')
 <script src="{{ asset('assets/backend/js/sweetalert2@11.js') }}"></script>
 <script>
-    function confirmDelete(productId) {
+    function confirmDelete(permissionsId) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -156,11 +166,11 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // User Confiremed
-                const form = document.getElementById('delete-product-form-' + productId);
+                const form = document.getElementById('delete-permissions-form-' + permissionsId);
                 if (form) {
                     form.submit();
                 } else {
-                    console.error('Delete form not found for product:', productId);
+                    console.error('Delete form not found for permissions:', permissionsId);
                 }
             }
         });
