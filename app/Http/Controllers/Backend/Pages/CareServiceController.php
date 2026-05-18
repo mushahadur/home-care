@@ -14,9 +14,6 @@ class CareServiceController extends Controller
      */
     public function index(Request $request)
     {
-    //     if (!auth()->user()->can('care-services.index')) {
-    //     abort(403, 'You do not have permission to edit this role.');
-    // }
         $care_services = CareService::latest()->paginate(5);
         // dump($care_services->toArray());
         return view('backend.pages.care-services.index', compact('care_services'))

@@ -18,6 +18,7 @@ class RolePermissionSeeder extends Seeder
         // 2️⃣ Define group-wise permissions
         $permissions = [
             'roles' => ['list','create','store','show','edit','update','destroy'],
+            'permissions' => ['list','create','store','show','edit','update','destroy'],
             'users' => ['list','create','store','show','edit','update','destroy','manage'],
             'products' => ['list','create','store','show','edit','update','destroy'],
             'articles' => ['edit','view'],

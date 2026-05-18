@@ -67,9 +67,12 @@ class UserController extends Controller
      */
     public function show($id): View
     {
-        $user = User::find($id);
+        $users = User::latest()->paginate(5);
+  
+        return view('backend.pages.settings.users.index',compact('users'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
 
-        return view('users.show',compact('user'));
+        return view('backend.pages.users.index',compact('user'));
     }
     
     /**

@@ -38,16 +38,18 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
-        
-        if ($user->default_role === 'user' && $user->is_verified) {
-            return redirect()->intended(route('user.dashboard'));
-        }
-        if ($user->hasRole('super-admin') || $user->is_verified) {
-            return redirect()->intended(route('admin.dashboard'));
+
+        if (!$user->is_verified) {
+            return redirect()->route('otp.verify');
         }
 
-        //Unverifyed user for OTP page redirect
-        return redirect()->route('otp.verify');
+        // customer/user role
+        if ($user->hasRole('user')) {
+            return redirect()->route('user.profile');
+        }
+
+        // all other roles => admin panel
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -63,5 +65,4 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
-    
 }
