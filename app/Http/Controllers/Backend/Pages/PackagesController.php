@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\Pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PackageController extends Controller
+class PackagesController extends Controller
 {
     /**
      * Display a listing of the resource.

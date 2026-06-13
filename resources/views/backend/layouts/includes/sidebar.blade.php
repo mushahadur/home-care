@@ -1,13 +1,14 @@
   <!-- Sidebar - Fixed Structure with Scrollable Nav and Fixed Profile -->
     <aside
       id="sidebar"
-      class="fixed inset-y-0 left-0 z-50 w-72 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transform -translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col">
+      class="fixed inset-y-0 left-0 z-50 w-72 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transform -translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col overflow-y-auto sidebar-scroll"
+      >
       <!-- ===== HEADER - Fixed at top ===== -->
       <div
         class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 flex-shrink-0">
         <div class="flex items-center gap-3">
           <div
-            class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-xl">
+            class="w-8 h-8 rounded-sm bg-emerald-600 flex items-center justify-center text-white font-bold text-xl">
             CL
           </div>
           <span
@@ -30,21 +31,21 @@
         <!-- Main Menu Items -->
         <div class="space-y-1">
             <a href="{{ route('admin.dashboard') }}"
-              class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
+              class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors
               {{ request()->routeIs('admin.dashboard') ? $activeClass : $inactiveClass }}">
                 <i class="fa-solid fa-gauge w-5"></i>
                 <span class="text-sm font-medium">Dashboard</span>
             </a>
 
 
-          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <i class="fa-solid fa-chart-line w-5"></i>
             <span class="text-sm font-medium">Analytics</span>
           </a>
 
           <a
             href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            class="flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <i class="fa-solid fa-address-book w-5"></i>
             <span class="text-sm font-medium">Profile</span>
           </a>
@@ -60,28 +61,30 @@
             Settings
           </p>
 
+
+
           @can('users-list')
-            <a href="{{ route('users.index') }}"
-              class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
-              {{ request()->routeIs('users.*') ? $activeClass : $inactiveClass }}">
+            <a href="{{ route('admin.users.index') }}"
+              class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors
+              {{ request()->routeIs('admin.users.*') ? $activeClass : $inactiveClass }}">
                 <i class="fa-solid fa-users w-5"></i>
                 <span class="text-sm font-medium">Users</span>
             </a>
           @endcan
 
            @can('roles-list')
-            <a href="{{ route('roles.index') }}"
-              class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
-              {{ request()->routeIs('roles.*') ? $activeClass : $inactiveClass }}">
+            <a href="{{ route('admin.roles.index') }}"
+              class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors
+              {{ request()->routeIs('admin.roles.*') ? $activeClass : $inactiveClass }}">
                 <i class="fa-solid fa-gear w-5"></i>
                 <span class="text-sm font-medium">Roles</span>
             </a>
           @endcan
           
           @can('permissions-list')
-              <a href="{{ route('permissions.index') }}"
-                class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
-                {{ request()->routeIs('permissions.index') || request()->routeIs('permissions.*') ? $activeClass : $inactiveClass }}">
+              <a href="{{ route('admin.permissions.index') }}"
+                class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors
+                {{ request()->routeIs('admin.permissions.index') || request()->routeIs('admin.permissions.*') ? $activeClass : $inactiveClass }}">
                 
                   <i class="fa-solid fa-lock w-5"></i>
                   <span class="text-sm font-medium">Permissions</span>
@@ -102,30 +105,30 @@
           </p>
 
           @can('care-services-list')
-            <a href="{{ route('care-services.index') }}"
-              class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
-              {{ request()->routeIs('care-services.*') ? $activeClass : $inactiveClass }}">
+            <a href="{{ route('admin.care-services.index') }}"
+              class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors
+              {{ request()->routeIs('admin.care-services.*') ? $activeClass : $inactiveClass }}">
                <i class="fa-solid fa-hand-holding-heart"></i>
                 <span class="text-sm font-medium">Services</span>
             </a>
           @endcan
          
 
-         
-            <a href="{{ route('orders.index') }}"
-              class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
-              {{ request()->routeIs('orders.*') ? $activeClass : $inactiveClass }}">
+          @can('orders-list')
+            <a href="{{ route('admin.orders.index') }}"
+              class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors
+              {{ request()->routeIs('admin.orders.*') ? $activeClass : $inactiveClass }}">
                <i class="fa-solid fa-hand-holding-heart"></i>
                 <span class="text-sm font-medium">Order List</span>
             </a>
-   
+          @endcan
 
         
 
              @can('users-manage')
-              <a href="{{ route('users.manage.index') }}"
-                class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
-                {{ request()->routeIs('users.manage.*') ? $activeClass : $inactiveClass }}">
+              <a href="{{ route('admin.users.manage.index') }}"
+                class="nav-link flex items-center gap-3 px-4 py-3 rounded-md  transition-colors
+                {{ request()->routeIs('admin.users.manage.*') ? $activeClass : $inactiveClass }}">
                 
                   <i class="fa-solid fa-users w-5"></i>
                   <span class="text-sm font-medium">Order Users</span>
@@ -133,10 +136,10 @@
           @endcan
 
 
-            @can('package-list')
-            <a href="{{ route('package.index') }}"
-              class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
-              {{ request()->routeIs('package.*') ? $activeClass : $inactiveClass }}">
+            @can('packages-list')
+            <a href="{{ route('admin.packages.index') }}"
+              class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors
+              {{ request()->routeIs('admin.packages.*') ? $activeClass : $inactiveClass }}">
                 <i class="fa-solid fa-chart-pie w-5"></i>
                 <span class="text-sm font-medium">Package</span>
             </a>
@@ -144,7 +147,7 @@
 
             <a
             href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            class="flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <i class="fa-solid fa-box w-5"></i>
             <span class="text-sm font-medium">Products</span>
           </a>
@@ -159,16 +162,89 @@
             Applications
           </p>
 
-          <a
-            href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <i class="fa-solid fa-calendar w-5"></i>
-            <span class="text-sm font-medium">Calendar</span>
-          </a>
+   
+     
+          <div class="relative">
+              <button type="button" id="mainDropdownBtn"
+                  class="nav-link flex items-center justify-between w-full px-4 py-3 rounded-md transition-colors
+                        {{ request()->routeIs('admin.nurses.*') ? $activeClass : $inactiveClass }}">
+                  <div class="flex items-center gap-3">
+                      <i class="fa-solid fa-user-nurse w-5"></i>
+                      <span class="text-sm font-medium">Nurses</span>
+                  </div>
+                  <svg class="w-4 h-4 transition-transform duration-200 dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+              </button>
+
+              <div id="listDropdownMenu" class="hidden pl-11 mt-1 space-y-1">
+                  <!-- Nurse List (index) -->
+                  <a href="#"
+                    class="flex items-center gap-3 px-4 py-2 rounded-md text-xs transition-colors  border border-[#354a5c] hover:border-[#718690]
+                            {{ request()->routeIs('admin.nurses.index') ? $activeClass : $inactiveClass }}">
+                      <i class="fa-solid fa-list-ul w-4"></i>
+                      <span>All Nurses</span>
+                  </a>
+
+                  <!-- View Nurse (example – requires an ID) -->
+                  <a href="#"
+                    class="flex items-center gap-3 px-4 py-2 rounded-md text-xs transition-colors  border border-[#354a5c] hover:border-[#718690]
+                            {{ request()->routeIs('admin.nurses.show') ? $activeClass : $inactiveClass }}">
+                      <i class="fa-solid fa-eye w-4"></i>
+                      <span>View Nurse</span>
+                  </a>
+
+                  <!-- Edit Nurse -->
+                  <a href="#"
+                    class="flex items-center gap-4 px-4 py-2 rounded-md text-xs transition-colors border border-[#354a5c] hover:border-[#718690]
+                            {{ request()->routeIs('admin.nurses.edit') ? $activeClass : $inactiveClass }}">
+                      <i class="fa-solid fa-pen w-4"></i>
+                      <span>Edit Nurse</span>
+                  </a>
+
+                  <!-- Manage Nurse (custom page) -->
+                  <a href="#"
+                    class="flex items-center gap-3 px-4 py-2 rounded-md text-xs transition-colors  border border-[#354a5c] hover:border-[#718690]
+                            {{ request()->routeIs('admin.nurses.manage') ? $activeClass : $inactiveClass }}">
+                      <i class="fa-solid fa-gear w-4"></i>
+                      <span>Manage Nurses</span>
+                  </a>
+              </div>
+          </div>
+
+          <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  const btn = document.getElementById('mainDropdownBtn');
+                  const menu = document.getElementById('listDropdownMenu');
+                  const arrow = btn?.querySelector('.dropdown-arrow');
+
+                  if (btn && menu) {
+                      function toggleDropdown(event) {
+                          event.stopPropagation();
+                          menu.classList.toggle('hidden');
+                          arrow?.classList.toggle('rotate-180');
+                      }
+
+                      btn.addEventListener('click', toggleDropdown);
+
+                      // Close when clicking outside
+                      document.addEventListener('click', function(event) {
+                          if (!btn.contains(event.target) && !menu.contains(event.target)) {
+                              menu.classList.add('hidden');
+                              arrow?.classList.remove('rotate-180');
+                          }
+                      });
+                  }
+              });
+          </script>
+
+
+
+
 
           <a
             href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            class="flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <i class="fa-solid fa-message w-5"></i>
             <span class="text-sm font-medium">Messages</span>
             <span
@@ -177,20 +253,13 @@
 
           <a
             href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            class="flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <i class="fa-solid fa-bell w-5"></i>
             <span class="text-sm font-medium">Notifications</span>
             <span
               class="ml-auto bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">12</span>
           </a>
 
-          <a
-            href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <i class="fa-solid fa-file w-5"></i>
-            <span class="text-sm font-medium">Documents</span>
-          </a>
-        </div>
 
       
         <!-- Extra items to demonstrate scrolling -->
@@ -202,35 +271,28 @@
 
           <a
             href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <i class="fa-solid fa-box w-5"></i>
-            <span class="text-sm font-medium">Products</span>
-          </a>
-
-          <a
-            href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            class="flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <i class="fa-solid fa-truck w-5"></i>
             <span class="text-sm font-medium">Orders</span>
           </a>
 
           <a
             href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            class="flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <i class="fa-solid fa-tag w-5"></i>
             <span class="text-sm font-medium">Discounts</span>
           </a>
 
           <a
             href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            class="flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <i class="fa-solid fa-chart-pie w-5"></i>
             <span class="text-sm font-medium">Reports</span>
           </a>
 
           <a
             href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            class="flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <i class="fa-solid fa-database w-5"></i>
             <span class="text-sm font-medium">Backup</span>
           </a>

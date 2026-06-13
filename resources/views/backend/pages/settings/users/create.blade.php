@@ -10,25 +10,25 @@
     <h3 class="text-sm font-bold pb-3">
         <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
-        <span><a href="{{ route('users.index') }}" class="hover:underline text-blue-600">Users</a></span>
+        <span><a href="{{ route('admin.users.index') }}" class="hover:underline text-blue-600">Users</a></span>
         <span class="mx-2"> / </span>
         <span class="text-gray-700 dark:text-gray-300">Create New User</span>
     </h3>
 
     <!-- Users / Customers Form Card -->
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded shadow-sm dark:shadow-none overflow-hidden">
         
         <div class="p-6 md:p-8">
             <h4 class="flex justify-between items-center text-lg font-semibold text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
                 <span><i class="fas fa-user-plus mr-2 text-emerald-500"></i> Add New User</span>
-                <a href="{{ route('users.index') }}" 
-                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded-lg transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm"
+                <a href="{{ route('admin.users.index') }}" 
+                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm"
                 >
                     <i class="fas fa-arrow-left"></i> Back
                 </a>
             </h4>
 
-            <form method="POST" action="{{ route('users.store') }}" class="space-y-6">
+            <form method="POST" action="{{ route('admin.users.store') }}" class="space-y-6">
                 @csrf
 
                 <!-- Name Field -->
@@ -42,7 +42,7 @@
                         id="name" 
                         value="{{ old('name') }}"
                         placeholder="Enter full name"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('name') border-red-500 dark:border-red-500 @enderror"
+                        class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('name') border-red-500 dark:border-red-500 @enderror"
                         required
                         autofocus
                     >
@@ -64,7 +64,7 @@
                         id="email" 
                         value="{{ old('email') }}"
                         placeholder="user@example.com"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('email') border-red-500 dark:border-red-500 @enderror"
+                        class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('email') border-red-500 dark:border-red-500 @enderror"
                         required
                     >
                     @error('email')
@@ -85,7 +85,7 @@
                             name="password" 
                             id="password" 
                             placeholder="Enter password"
-                            class="w-full px-4 py-3 pr-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('password') border-red-500 dark:border-red-500 @enderror"
+                            class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('password') border-red-500 dark:border-red-500 @enderror"
                             required
                         >
                         <button 
@@ -115,7 +115,7 @@
                             name="password_confirmation" 
                             id="password_confirmation" 
                             placeholder="Enter password again"
-                            class="w-full px-4 py-3 pr-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
+                            class="w-full px-4 py-2 pr-12 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                         >
                         <button 
                             type="button" 
@@ -150,7 +150,7 @@
                             name="roles[]" 
                             id="roles"
                             multiple="multiple" 
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition min-h-[120px] @error('roles') border-red-500 dark:border-red-500 @enderror"
+                            class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition min-h-[120px] @error('roles') border-red-500 dark:border-red-500 @enderror"
                             size="4"
                         >
                             @foreach ($roles as $value => $label)
@@ -184,15 +184,15 @@
                 <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
                     <button 
                         type="submit" 
-                        class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded-lg transition flex items-center justify-center gap-2 shadow-sm"
+                        class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded transition flex items-center justify-center gap-2 shadow-sm"
                     >
                         <i class="fas fa-save"></i>
                         Create User
                     </button>
                     
                     <a 
-                        href="{{ route('users.index') }}" 
-                        class="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-6 rounded-lg transition flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600"
+                        href="{{ route('admin.users.index') }}" 
+                        class="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-6 rounded transition flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600"
                     >
                         <i class="fas fa-times"></i>
                         Cancel

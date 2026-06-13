@@ -9,25 +9,25 @@
     <h3 class="text-sm font-bold pb-3">
         <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
-        <span><a href="{{ route('permissions.index') }}" class="hover:underline text-blue-600">Permissions</a></span>
+        <span><a href="{{ route('admin.permissions.index') }}" class="hover:underline text-blue-600">Permissions</a></span>
         <span class="mx-2"> / </span>
         <span class="text-gray-700 dark:text-gray-300">Edit Permission</span>
     </h3>
 
     <!-- Users / Customers Form Card -->
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded shadow-sm dark:shadow-none overflow-hidden">
         
         <div class="p-6 md:p-8">
             <h4 class="flex justify-between items-center text-lg font-semibold text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
                 <span><i class="fas fa-user-edit mr-2 text-emerald-500"></i> Edit Permission: {{ $groupName}}</span>
-                <a href="{{ route('permissions.index') }}" 
-                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded-lg transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm"
+                <a href="{{ route('admin.permissions.index') }}" 
+                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm"
                 >
                     <i class="fas fa-arrow-left"></i> Back
                 </a>
             </h4>
 
-            <form action="{{ route('permissions.update', $permission->id) }}" method="POST">
+            <form action="{{ route('admin.permissions.update', $permission->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -43,7 +43,7 @@
                         name="group_name"
                         value="{{ old('group_name', $groupName) }}"
                         placeholder="Enter group name"
-                        class="w-full px-4 py-2 rounded-lg border 
+                        class="w-full px-4 py-2 rounded border 
                         {{ $errors->has('group_name') 
                             ? 'border-red-500 focus:ring-red-500 focus:border-red-500' 
                             : 'border-gray-300 dark:border-gray-700 focus:ring-blue-500 focus:border-blue-500' 
@@ -85,7 +85,7 @@
                 </div>
 
                 <!-- Submit -->
-                <button class="mt-5 bg-[#2B4F6E] text-white px-6 py-2 rounded-lg">
+                <button class="mt-5 bg-[#2B4F6E] text-white px-6 py-2 rounded">
                     Update Permission
                 </button>
             </form>

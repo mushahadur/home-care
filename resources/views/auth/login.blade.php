@@ -98,7 +98,7 @@ Login - NurseNextDoor
                 </div>
                 @endif
 
-                <form method="POST" action="{{ route('login') }}" class="space-y-5">
+                <form method="POST" action="{{ route('login') }}" class="space-y-5" autocomplete="off" novalidate>
                     @csrf
                     <!-- email / phone (using Laravel old() helper) -->
                     <div>
@@ -113,6 +113,7 @@ Login - NurseNextDoor
                             placeholder="you@example.com / +8801XXXXXXXXX"
                             class="w-full px-5 py-3 rounded-2xl border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('email') border-red-500 @enderror"
                             autofocus
+                            autocomplete="off"
                             required>
                         @error('email')
                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
@@ -129,6 +130,7 @@ Login - NurseNextDoor
                             name="password"
                             id="password"
                             placeholder="••••••••"
+                             autocomplete="off"
                             class="w-full px-5 py-3 rounded-2xl border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('password') border-red-500 @enderror"
                             required>
                         @error('password')
@@ -174,7 +176,7 @@ Login - NurseNextDoor
             <!-- === REGISTER FORM (hidden by default) === -->
             <div id="registerForm" class="space-y-5 hidden transition-opacity duration-200">
                 <!-- full name -->
-                <form method="POST" action="{{ route('register') }}" class="space-y-5">
+                <form method="POST" action="{{ route('register') }}" class="space-y-5" autocomplete="off">
                     @csrf
                     
                     <!-- Display validation errors if any -->

@@ -10,25 +10,25 @@
     <h3 class="text-sm font-bold pb-3">
         <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
-        <span><a href="{{ route('roles.index') }}" class="hover:underline text-blue-600">Roles</a></span>
+        <span><a href="{{ route('admin.roles.index') }}" class="hover:underline text-blue-600">Roles</a></span>
         <span class="mx-2"> / </span>
         <span class="text-gray-700 dark:text-gray-300">Edit Role: {{ $role->name }}</span>
     </h3>
 
     <!-- Role Form Card -->
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded shadow-sm dark:shadow-none overflow-hidden">
         
         <div class="p-6 md:p-8">
             <h4 class="flex justify-between items-center text-lg font-semibold text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
                 <span><i class="fas fa-edit mr-2 text-emerald-500"></i> Edit Role: {{ $role->name }}</span>
-                <a href="{{ route('roles.index') }}" 
-                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded-lg transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm"
+                <a href="{{ route('admin.roles.index') }}" 
+                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm"
                 >
                     <i class="fas fa-arrow-left"></i> Back
                 </a>
             </h4>
 
-            <form action="{{ route('roles.update', $role->id) }}" method="POST" class="space-y-6" autocomplete="off">
+            <form action="{{ route('admin.roles.update', $role->id) }}" method="POST" class="space-y-6" autocomplete="off">
                 @csrf
                 @method('PUT')
 
@@ -43,7 +43,7 @@
                         id="name" 
                         value="{{ old('name', $role->name) }}" 
                         placeholder="Enter role name (e.g., Admin, Editor, Viewer)"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('name') border-red-500 dark:border-red-500 @enderror"
+                        class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('name') border-red-500 dark:border-red-500 @enderror"
                         required
                         autofocus
                     >
@@ -63,14 +63,14 @@
                     <div class="space-y-6">
                         @foreach($groupedPermissions as $group => $permissions)
                         <!-- Permission Group Card -->
-                        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div class="bg-gray-50 dark:bg-gray-800/50 rounded border border-gray-200 dark:border-gray-700 overflow-hidden">
                             <!-- Group Header -->
                             <div class="px-4 py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                                 <h3 class="font-semibold text-gray-800 dark:text-gray-200">
                                     <i class="fas fa-folder-open mr-2 text-emerald-500"></i>
                                     {{ ucwords(str_replace('-', ' ', $group)) }}
                                 </h3>
-                                <label class="flex items-center gap-2 text-sm font-medium cursor-pointer bg-white dark:bg-gray-700 px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition">
+                                <label class="flex items-center gap-2 text-sm font-medium cursor-pointer bg-white dark:bg-gray-700 px-3 py-1.5 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition">
                                     <input type="checkbox" class="group-checkbox h-4 w-4 text-emerald-600 border-gray-300 rounded focus:ring-2 focus:ring-emerald-500" data-group="{{ $group }}">
                                     <span class="text-gray-700 dark:text-gray-300">Select All</span>
                                 </label>
@@ -115,15 +115,15 @@
                 <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
                     <button 
                         type="submit" 
-                        class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-6 rounded-lg transition flex items-center justify-center gap-2 shadow-sm"
+                        class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-6 rounded transition flex items-center justify-center gap-2 shadow-sm"
                     >
                         <i class="fas fa-save"></i>
                         Update Role
                     </button>
                     
                     <a 
-                        href="{{ route('roles.index') }}" 
-                        class="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2.5 px-6 rounded-lg transition flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600"
+                        href="{{ route('admin.roles.index') }}" 
+                        class="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2.5 px-6 rounded transition flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600"
                     >
                         <i class="fas fa-times"></i>
                         Cancel

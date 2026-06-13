@@ -14,7 +14,7 @@
     </h3>
 
     <!-- Care Services Table Card -->
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded shadow-sm dark:shadow-none overflow-hidden">
         
     <div class="p-5 md:p-6 border-b border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
@@ -28,15 +28,15 @@
                         id="table-search"
                         type="text"
                         placeholder="Search orders..."
-                        class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
+                        class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
                     </div>
                 </div>
 
                 <!-- Create User Button -->
-                <a href="{{ route('care-services.create') }}" 
-                class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 rounded-lg transition flex items-center gap-2 shadow-sm text-sm">
+                <a href="{{ route('admin.care-services.create') }}" 
+                class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded transition flex items-center gap-2 shadow-sm text-sm">
                     <i class="fas fa-plus"></i>
                     Add Care Service
                 </a>
@@ -129,14 +129,14 @@
                             <div class="flex items-center gap-2">
                                 <!-- View Button -->
                                 <button onclick="viewService({{ $care_service->id }})" 
-                                    class="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition"
+                                    class="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-600 transition"
                                     title="View Service">
                                     <i class="fas fa-eye"></i>
                                 </button>
                                 
                                 <!-- Edit Button -->
-                                <a href="{{ route('care-services.edit', $care_service->id) }}" 
-                                   class="text-gray-500 hover:text-emerald-600 dark:text-gray-400 dark:hover:text-emerald-400 transition"
+                                <a href="{{ route('admin.care-services.edit', $care_service->id) }}" 
+                                   class="text-emerald-500 hover:text-emerald-600 dark:text-emerald-400 dark:hover:text-emerald-600 transition"
                                    title="Edit Service">
                                     <i class="fas fa-edit"></i>
                                 </a>
@@ -144,7 +144,7 @@
                                 <!-- Delete Button -->
                                 <button type="button"
                                         onclick="confirmDelete('{{ $care_service->id }}')"
-                                        class="text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition"
+                                        class="text-red-700 hover:text-red-600 dark:text-red-500 dark:hover:text-red-600 transition"
                                         title="Delete Service">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
@@ -153,7 +153,7 @@
                             <!-- Hidden Delete Form -->
                             <form id="delete-care-service-form-{{ $care_service->id }}"
                                   method="POST"
-                                  action="{{ route('care-services.destroy', $care_service->id) }}"
+                                  action="{{ route('admin.care-services.destroy', $care_service->id) }}"
                                   style="display: none;">
                                 @csrf
                                 @method('DELETE')
@@ -167,7 +167,7 @@
                                 <i class="fas fa-box-open text-5xl text-gray-400 dark:text-gray-600 mb-3"></i>
                                 <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">No Care Services Found</h3>
                                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Get started by creating your first care service.</p>
-                                <a href="{{ route('care-services.create') }}" 
+                                <a href="{{ route('admin.care-services.create') }}" 
                                    class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition text-sm">
                                     <i class="fas fa-plus"></i>
                                     Add Care Service

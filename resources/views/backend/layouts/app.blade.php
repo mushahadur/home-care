@@ -99,6 +99,33 @@
     @stack('scripts')
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('usersDropdownBtn');
+        const menu = document.getElementById('usersDropdownMenu');
+        const arrow = btn?.querySelector('.dropdown-arrow');
+
+        if (btn && menu) {
+            function toggleDropdown(event) {
+                event.stopPropagation();
+                menu.classList.toggle('hidden');
+                arrow?.classList.toggle('rotate-180');
+            }
+
+            btn.addEventListener('click', toggleDropdown);
+
+            // Close when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!btn.contains(event.target) && !menu.contains(event.target)) {
+                    menu.classList.add('hidden');
+                    arrow?.classList.remove('rotate-180');
+                }
+            });
+        }
+    });
+</script>
+
+
 </body>
 
 </html>

@@ -95,7 +95,7 @@ class OtpVerificationController extends Controller
             }
 
             if ($user->default_role === 'user' && $user->is_verified) {
-                return redirect()->intended(route('user.dashboard'));
+                return redirect()->intended(route('home')); //{{route('home')}}#service
             }
             if ($user->hasRole('super-admin') || $user->is_verified) {
                 return redirect()->intended(route('admin.dashboard'));

@@ -69,7 +69,7 @@
             <!-- Dropdown Menu -->
             <div
               id="dropdownMenu"
-              class="absolute right-0 top-full mt-2 w-52 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-200 origin-top-right scale-95 opacity-0 pointer-events-none z-50"
+              class="absolute right-0 top-full mt-2 w-52 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-200 origin-top-right scale-95 opacity-0 pointer-events-none z-50"
               style="transform-origin: top right"
               role="menu"
               aria-orientation="vertical"
@@ -95,7 +95,7 @@
                 <!-- Newsletter -->
                 <a
                   href="#"
-                  class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
+                  class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
                   <i
                     class="fa-regular fa-bell text-gray-400 group-hover:text-emerald-500 text-base w-5"></i>
                   <span>Newsletter</span>
@@ -104,7 +104,7 @@
                 <!-- Purchases -->
                 <a
                   href="#"
-                  class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
+                  class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
                   <i
                     class="fa-regular fa-folder text-gray-400 group-hover:text-emerald-500 text-base w-5"></i>
                   <span>Purchases</span>
@@ -113,7 +113,7 @@
                 <!-- Downloads -->
                 <a
                   href="#"
-                  class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
+                  class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
                   <i
                     class="fa-regular fa-circle-down text-gray-400 group-hover:text-emerald-500 text-base w-5"></i>
                   <span>Downloads</span>
@@ -124,7 +124,7 @@
                 <!-- Team Account -->
                 <a
                   href="#"
-                  class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
+                  class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
                   <i
                     class="fa-regular fa-users text-gray-400 group-hover:text-emerald-500 text-base w-5"></i>
                   <span>Team Account</span>
@@ -137,7 +137,7 @@
                 <!-- Settings -->
                 <a
                   href="#"
-                  class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
+                  class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group">
                   <i
                     class="fa-regular fa-gear text-gray-400 group-hover:text-emerald-500 text-base w-5"></i>
                   <span>Settings</span>
@@ -148,7 +148,7 @@
                                 @csrf
                   <button
                     type="submit"
-                    class="flex items-center gap-3 px-3 py-2.5 w-full text-left rounded-lg text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors group">
+                    class="flex items-center gap-3 px-3 py-2.5 w-full text-left rounded-md text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors group">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round">

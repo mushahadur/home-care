@@ -12,10 +12,10 @@ class RolePermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1️⃣ Clear cache
+        // Clear cache
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // 2️⃣ Define group-wise permissions
+        // Define group-wise permissions
         $permissions = [
             'roles' => ['list','create','store','show','edit','update','destroy'],
             'permissions' => ['list','create','store','show','edit','update','destroy'],
@@ -27,7 +27,7 @@ class RolePermissionSeeder extends Seeder
             'blogs' => ['list','create','store','show','edit','update','destroy'],
         ];
 
-        // 3️⃣ Create permissions in DB with group_name
+        // Create permissions in DB with group_name
         foreach($permissions as $group => $actions){
             foreach($actions as $action){
                 Permission::firstOrCreate([
@@ -38,7 +38,7 @@ class RolePermissionSeeder extends Seeder
             }
         }
 
-        // 4️⃣ Define roles and assign permissions automatically from group
+        // Define roles and assign permissions automatically from group
         $roles = [
             'super-admin' => ['roles','users','products','articles','orders','care-services'], // all groups
             'admin'       => ['roles','products','articles'], // selected groups
@@ -54,7 +54,7 @@ class RolePermissionSeeder extends Seeder
             $role->syncPermissions($rolePermissions);
         }
 
-        // 5️⃣ Create Super Admin user
+        // Create Super Admin user
         $superAdmin = User::firstOrCreate(
             ['email' => 'mrk@gmail.com'],
             [

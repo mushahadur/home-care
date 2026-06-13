@@ -291,7 +291,7 @@
                         </div>
                     </div>
                     
-                    <a href="{{ route('package.create') }}" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition shadow-sm">
+                    <a href="{{ route('admin.packages.create') }}" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition shadow-sm">
                         <i class="fas fa-plus"></i>
                         New Package
                     </a>

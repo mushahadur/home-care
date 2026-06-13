@@ -39,7 +39,7 @@
                 </div>
 
                 <!-- Create User Button -->
-                <a href="{{ route('users.create') }}"
+                <a href="{{ route('admin.users.create') }}"
                     class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 min-w-[140px]">
                     <i class="fa-solid fa-plus text-base"></i>
                     Create User

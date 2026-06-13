@@ -40,22 +40,31 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-        'group_name' => 'required|string|max:50',
-        'actions'    => 'required|array|min:1',
-    ]);
-
-    $group = strtolower($request->group_name);
-
-    foreach ($request->actions as $action) {
-        Permission::firstOrCreate([
-            'name' => $group . '-' . $action,
-            'guard_name' => 'web',
-            'group_name' => $group,
+        // dd($request->all());
+        $request->validate([
+            'group_name' => 'required|string|max:50',
+            'actions'    => 'required|array|min:1',
         ]);
-    }
 
-    return redirect()->route('permissions.index')->with('success', 'Permissions created successfully ✅');
+        // sanitize group name
+        $group = strtolower($request->group_name);
+        $group = str_replace(' ', '-', $group);
+
+        foreach ($request->actions as $action) {
+
+            $permissionName = $group . '-' . strtolower($action);
+
+            Permission::firstOrCreate([
+                'name' => $permissionName,
+                'guard_name' => 'web',
+            ], [
+                'group_name' => $group,
+            ]);
+        }
+
+        return redirect()
+            ->route('admin.permissions.index')
+            ->with('success', 'Permissions created successfully ');
     }
 
     /**
@@ -102,10 +111,10 @@ class PermissionController extends Controller
         $oldGroup = $permission->group_name;
         $newGroup = strtolower($request->group_name);
 
-        // 1️⃣ Delete old group permissions
+        //  Delete old group permissions
         Permission::where('group_name', $oldGroup)->delete();
 
-        // 2️⃣ Create new permissions
+        //  Create new permissions
         foreach ($request->actions as $action) {
             Permission::firstOrCreate([
                 'name' => $newGroup . '-' . $action,
@@ -114,8 +123,8 @@ class PermissionController extends Controller
             ]);
         }
 
-        return redirect()->route('permissions.index')
-            ->with('success', 'Permissions updated successfully ✅');
+        return redirect()->route('admin.permissions.index')
+            ->with('success', 'Permissions updated successfully ');
     }
 
     /**
@@ -124,7 +133,7 @@ class PermissionController extends Controller
     public function destroy(string $id)
     {
         Permission::findOrFail($id)->delete();
-        return redirect()->route('permissions.index')
+        return redirect()->route('admin.permissions.index')
                         ->with('success','Permission deleted successfully');
     }
 }
