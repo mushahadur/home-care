@@ -14,7 +14,7 @@
         <span>Permissions</span>
     </h3>
     <!-- New: Users / Customers Data Table -->
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded shadow-sm dark:shadow-none overflow-hidden">
 
         <!-- Header + Search -->
         <!-- Header + Search + Create Button -->
@@ -32,15 +32,15 @@
                         id="table-search"
                         type="text"
                         placeholder="Search permissions..."
-                        class="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
+                        class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
                     </div>
                 </div>
 
                 <!-- Create User Button -->
-                <a href="{{ route('permissions.create') }}"
-                    class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 min-w-[140px]">
+                <a href="{{ route('admin.permissions.create') }}"
+                    class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-medium rounded flex items-center justify-center gap-2 transition shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 min-w-[140px]">
                     <i class="fa-solid fa-plus text-base"></i>
                     Create Permission
                 </a>
@@ -96,7 +96,7 @@
                                 {{-- Edit --}}
                                 @can('permissions-edit')
                                 <button
-                                    onclick="window.location.href='{{ route('permissions.edit', $groupPermissions->first()->id) }}'"
+                                    onclick="window.location.href='{{ route('admin.permissions.edit', $groupPermissions->first()->id) }}'"
                                     class="text-blue-500 hover:text-blue-700 transition-colors">
                                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
@@ -114,7 +114,7 @@
                                     </svg>
                                 </button>
                                 <!-- Hidden Form -->
-                                <form id="delete-permissions-form-{{ $groupPermissions->first()->id }}" method="POST" action="{{ route('permissions.destroy', $groupPermissions->first()->id) }}" style="display: none;">
+                                <form id="delete-permissions-form-{{ $groupPermissions->first()->id }}" method="POST" action="{{ route('admin.permissions.destroy', $groupPermissions->first()->id) }}" style="display: none;">
                                     @csrf
                                     @method('DELETE')
                                 </form>
@@ -122,12 +122,6 @@
 
                             </div>
                         </td>
-
-
-
-
-
-
                     </tr>
                     @endforeach
 

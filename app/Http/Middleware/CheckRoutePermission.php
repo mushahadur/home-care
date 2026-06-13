@@ -51,15 +51,31 @@ class CheckRoutePermission
             'manage'  => 'manage',
         ];
 
-        if (!str_contains($routeName, '.')) {
-            return $routeName; // fallback
+        // if (!str_contains($routeName, '.')) {
+        //     return $routeName; // fallback
+        // }
+        // [$resource, $action] = explode('.', $routeName);
+        // $convertedAction = $map[$action] ?? $action;
+        // return "{$resource}-{$convertedAction}";
+
+        $parts = explode('.', $routeName);
+        // Remove admin prefix if exists
+        if ($parts[0] === 'admin') {
+            array_shift($parts);
         }
 
-        [$resource, $action] = explode('.', $routeName);
+        if (count($parts) < 2) {
+            return $routeName;
+        }
+
+        $action = array_pop($parts); // last part
+        $resource = implode('-', $parts); // remaining parts
 
         $convertedAction = $map[$action] ?? $action;
 
         return "{$resource}-{$convertedAction}";
+
+
     }
 }
 

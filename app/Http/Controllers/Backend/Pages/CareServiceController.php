@@ -33,20 +33,20 @@ class CareServiceController extends Controller
      */
     public function store(CareServicesRequest $request)
     {
-        // ✅ Get all validated data
+        // Get all validated data
         $data = $request->validated();
-        // ✅ Handle single FileImage upload
+        // Handle single FileImage upload
         if ($request->hasFile('care_services_image')) {
             $data['care_services_image'] = $this->uploadFileImage($request->file('care_services_image'));
         }
-        // ✅ Create the record
+        // Create the record
         // dd($data);
 
         $careService = CareService::create($data);
 
-        // ✅ Redirect or show the Blade view
+        // Redirect or show the Blade view
         return redirect()
-            ->route('care-services.index')
+            ->route('admin.care-services.index')
             ->with('success', 'Care service created successfully!');
     }
 
@@ -86,7 +86,7 @@ public function show(string $id)
         ]);
     }
 
-    return view('backend.care-services.show', compact('careService'));
+    return view('backend.pages.care-services.show', compact('careService'));
 }
 
     /**
@@ -104,13 +104,13 @@ public function show(string $id)
      */
     public function update(CareServicesRequest $request, string $id)
     {
-        // ✅ Find the existing care service
+        // Find the existing care service
         $careService = CareService::findOrFail($id);
 
-        // ✅ Get all validated data
+        // Get all validated data
         $data = $request->validated();
 
-        // ✅ Handle single thumbnail upload (replace if new file uploaded)
+        // Handle single thumbnail upload (replace if new file uploaded)
         if ($request->hasFile('care_services_image')) {
             // Optional: delete old thumbnail
             if ($careService->care_services_image && file_exists(public_path($careService->care_services_image))) {
@@ -120,12 +120,12 @@ public function show(string $id)
             $data['care_services_image'] = $this->uploadFileImage($request->file('care_services_image'));
         }
 
-        // ✅ Update the record
+        // Update the record
         $careService->update($data);
 
-        // ✅ Redirect with success message
+        // Redirect with success message
         return redirect()
-            ->route('care-services.index')
+            ->route('admin.care-services.index')
             ->with('success', 'Care service updated successfully!');
     }
 
@@ -137,7 +137,7 @@ public function show(string $id)
     {
         CareService::find($id)->delete();
         // return response()->json(['message' => 'Product delete successfully'], 200);
-        return redirect()->route('care-services.index')
+        return redirect()->route('admin.care-services.index')
             ->with('success', 'Services deleted successfully');
     }
 }

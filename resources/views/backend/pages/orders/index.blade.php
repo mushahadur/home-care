@@ -14,12 +14,12 @@
     </h3>
 
     <!-- Care Services Table Card -->
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden">
-        
-    <div class="p-5 md:p-6 border-b border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                    <i class="fas fa-hand-holding-heart mr-2 text-emerald-500"></i>Users Order list
-                </h2>
+    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-sm dark:shadow-none overflow-hidden">
+
+        <div class="p-5 md:p-6 border-b border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                <i class="fas fa-hand-holding-heart mr-2 text-emerald-500"></i>Users Order list
+            </h2>
 
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
                 <!-- Search -->
@@ -64,56 +64,56 @@
                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                             {{ $loop->iteration }}
                         </td>
-                        
+
                         <!-- Order ID -->
                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">ID#_00-{{ $order->id }}</span>
                         </td>
-                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ $order->careService->care_services_name ?? 'No Service' }}</span>
                         </td>
-                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ \Carbon\Carbon::parse($order->preferred_date)->format('d M Y') }}</span>
                         </td>
-                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ $order->preferred_time }}</span>
                         </td>
-                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ $order->user_name }}</span>
                         </td>
-                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ $order->user_phone }}</span>
                         </td>
-                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ $order->user_address }}</span>
                         </td>
-                       <td class="px-4 py-3 whitespace-nowrap">
+                        <td class="px-4 py-3 whitespace-nowrap">
                             @if($order->prescription)
-                                <img src="{{ asset($order->prescription) }}" 
-                                     alt="Prescription for Order #{{ $order->id }}"
-                                     class="h-10 w-12 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                            <img src="{{ asset($order->prescription) }}"
+                                alt="Prescription for Order #{{ $order->id }}"
+                                class="h-10 w-12 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                             @else
-                                <span class="text-xs text-gray-400">No image</span>
+                            <span class="text-xs text-gray-400">No image</span>
                             @endif
                         </td>
-                      
-                             <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+
+                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ $order->total_price }}</span>
                         </td>
-                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ $order->status }}</span>
                         </td>
-                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ \Carbon\Carbon::parse($order->created_at)->format('d M Y, h:i A') }}</span>
-                          </td>
-                        
-                         
-                        
+                        </td>
+
+
+
                         <!-- Actions -->
                         <td class="px-4 py-3 whitespace-nowrap">
                             <div class="flex items-center gap-2">
-                                <a href="#" 
-                                   class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition text-sm">
+                                <a href="#"
+                                    class="showOrderDetails px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-sm transition text-sm">
                                     <i class="fas fa-eye"></i> View
                                 </a>
                         </td>
@@ -125,8 +125,8 @@
                                 <i class="fas fa-box-open text-5xl text-gray-400 dark:text-gray-600 mb-3"></i>
                                 <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">No Care Services Found</h3>
                                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Get started by creating your first care service.</p>
-                                <a href="{{ route('care-services.create') }}" 
-                                   class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition text-sm">
+                                <a href="{{ route('care-services.create') }}"
+                                    class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition text-sm">
                                     <i class="fas fa-plus"></i>
                                     Add Care Service
                                 </a>
@@ -137,64 +137,64 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Footer with Pagination -->
         @if($orders->hasPages())
         <div class="px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-gray-200 dark:border-gray-700">
             <!-- Showing Results Info -->
             <p class="text-sm text-gray-600 dark:text-gray-400">
-                Showing 
+                Showing
                 <span class="font-medium text-gray-800 dark:text-gray-200">{{ $orders->firstItem() }}</span>
-                to 
+                to
                 <span class="font-medium text-gray-800 dark:text-gray-200">{{ $orders->lastItem() }}</span>
-                of 
+                of
                 <span class="font-medium text-gray-800 dark:text-gray-200">{{ $orders->total() }}</span>
                 results
             </p>
-            
+
             <!-- Pagination Links -->
             <div class="flex items-center gap-2">
                 <!-- Previous Page -->
                 @if($orders->onFirstPage())
-                    <span class="px-3 py-2 rounded-lg text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
-                        <i class="fas fa-chevron-left mr-1"></i> Previous
-                    </span>
+                <span class="px-3 py-2 rounded-lg text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </span>
                 @else
-                    <a href="{{ $orders->previousPageUrl() }}" 
-                       class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                        <i class="fas fa-chevron-left mr-1"></i> Previous
-                    </a>
+                <a href="{{ $orders->previousPageUrl() }}"
+                    class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </a>
                 @endif
-                
+
                 <!-- Page Numbers (responsive - show limited on mobile) -->
                 <div class="hidden sm:flex items-center gap-1">
                     @foreach($orders->getUrlRange(max(1, $orders->currentPage() - 2), min($orders->lastPage(), $orders->currentPage() + 2)) as $page => $url)
-                        @if($page == $orders->currentPage())
-                            <span class="px-3 py-2 rounded-lg text-sm font-medium bg-emerald-600 text-white">{{ $page }}</span>
-                        @else
-                            <a href="{{ $url }}" 
-                               class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                                {{ $page }}
-                            </a>
-                        @endif
+                    @if($page == $orders->currentPage())
+                    <span class="px-3 py-2 rounded-lg text-sm font-medium bg-emerald-600 text-white">{{ $page }}</span>
+                    @else
+                    <a href="{{ $url }}"
+                        class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        {{ $page }}
+                    </a>
+                    @endif
                     @endforeach
                 </div>
-                
+
                 <!-- Mobile Page Indicator -->
                 <div class="sm:hidden px-3 py-2 rounded-lg text-sm font-medium text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-300">
                     Page {{ $orders->currentPage() }} of {{ $orders->lastPage() }}
                 </div>
-                
+
                 <!-- Next Page -->
                 @if($orders->hasMorePages())
-                    <a href="{{ $orders->nextPageUrl() }}" 
-                       class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                        Next <i class="fas fa-chevron-right ml-1"></i>
-                    </a>
+                <a href="{{ $orders->nextPageUrl() }}"
+                    class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </a>
                 @else
-                    <span class="px-3 py-2 rounded-lg text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
-                        Next <i class="fas fa-chevron-right ml-1"></i>
-                    </span>
+                <span class="px-3 py-2 rounded-lg text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </span>
                 @endif
             </div>
         </div>
@@ -210,7 +210,7 @@
 
 @push('scripts')
 <script>
-         // Table search functionality
+    // Table search functionality
     document.addEventListener('DOMContentLoaded', () => {
         const searchInput = document.getElementById('table-search');
         const table = document.getElementById('order-table');

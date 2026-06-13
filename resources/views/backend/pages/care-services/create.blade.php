@@ -10,24 +10,24 @@
     <h3 class="text-sm font-bold pb-3">
         <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
-        <span><a href="{{ route('care-services.index') }}" class="hover:underline text-blue-600">Care Services</a></span>
+        <span><a href="{{ route('admin.care-services.index') }}" class="hover:underline text-blue-600">Care Services</a></span>
         <span class="mx-2"> / </span>
         <span class="text-gray-700 dark:text-gray-300">Create New Service</span>
     </h3>
 
     <!-- Care Services Form Card -->
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded shadow-sm dark:shadow-none overflow-hidden">
         
         <div class="p-6 md:p-8">
             <h4 class="flex justify-between items-center text-lg font-semibold text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
                 <span><i class="fas fa-hand-holding-heart mr-2 text-emerald-500"></i> Add Care Service</span>
-                <a href="{{ route('care-services.index') }}" 
-                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded-lg transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm">
+                <a href="{{ route('admin.care-services.index') }}" 
+                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm">
                     <i class="fas fa-arrow-left"></i> Back
                 </a>
             </h4>
 
-            <form action="{{ route('care-services.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            <form action="{{ route('admin.care-services.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
 
                 <!-- Service Name Field -->
@@ -41,7 +41,7 @@
                         id="care_services_name"
                         value="{{ old('care_services_name') }}" 
                         placeholder="Enter service name (e.g., IV Injection, Home Visit)"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('care_services_name') border-red-500 dark:border-red-500 @enderror"
+                        class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('care_services_name') border-red-500 dark:border-red-500 @enderror"
                         required
                         autofocus
                     >
@@ -66,7 +66,7 @@
                             value="{{ old('single_services_price') }}" 
                             placeholder="Enter service price"
                             step="0.01"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('single_services_price') border-red-500 dark:border-red-500 @enderror"
+                            class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('single_services_price') border-red-500 dark:border-red-500 @enderror"
                             required
                         >
                         @error('single_services_price')
@@ -87,7 +87,7 @@
                             value="{{ old('triple_services_price') }}" 
                             placeholder="Enter service price"
                             step="0.01"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('triple_services_price') border-red-500 dark:border-red-500 @enderror"
+                            class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('triple_services_price') border-red-500 dark:border-red-500 @enderror"
                             required
                         >
                         @error('triple_services_price')
@@ -108,7 +108,7 @@
                             value="{{ old('seven_services_price') }}" 
                             placeholder="Enter service price"
                             step="0.01"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('seven_services_price') border-red-500 dark:border-red-500 @enderror"
+                            class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('seven_services_price') border-red-500 dark:border-red-500 @enderror"
                             required
                         >
                         @error('seven_services_price')
@@ -129,7 +129,7 @@
                         id="care_services_description"
                         rows="5" 
                         placeholder="Enter detailed service description (e.g., procedure, benefits, what to expect)"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('care_services_description') border-red-500 dark:border-red-500 @enderror"
+                        class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('care_services_description') border-red-500 dark:border-red-500 @enderror"
                     >{{ old('care_services_description') }}</textarea>
                     @error('care_services_description')
                         <span class="text-red-600 dark:text-red-400 text-sm flex items-center gap-1 mt-1">
@@ -152,12 +152,12 @@
                                 name="care_services_image" 
                                 id="care_services_image"
                                 accept="image/*"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 dark:file:bg-emerald-900/30 dark:file:text-emerald-400 @error('care_services_image') border-red-500 dark:border-red-500 @enderror"
+                                class="w-full px-4 py-1 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 dark:file:bg-emerald-900/30 dark:file:text-emerald-400 @error('care_services_image') border-red-500 dark:border-red-500 @enderror"
                             >
                         </div>
                         
                         <!-- Image Preview -->
-                        <div id="image-preview" class="hidden w-20 h-20 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 overflow-hidden bg-gray-50 dark:bg-gray-800 flex-shrink-0">
+                        <div id="image-preview" class="hidden w-20 h-20 rounded border-2 border-dashed border-gray-300 dark:border-gray-600 overflow-hidden bg-gray-50 dark:bg-gray-800 flex-shrink-0">
                             <img id="image-img" class="w-full h-full object-cover" alt="Image preview">
                         </div>
                     </div>
@@ -178,15 +178,15 @@
                 <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
                     <button 
                         type="submit" 
-                        class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-6 rounded-lg transition flex items-center justify-center gap-2 shadow-sm"
+                        class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded transition flex items-center justify-center gap-2 shadow-sm"
                     >
                         <i class="fas fa-save"></i>
                         Create Service
                     </button>
                     
                     <a 
-                        href="{{ route('care-services.index') }}" 
-                        class="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2.5 px-6 rounded-lg transition flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600"
+                        href="{{ route('admin.care-services.index') }}" 
+                        class="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-6 rounded transition flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600"
                     >
                         <i class="fas fa-times"></i>
                         Cancel

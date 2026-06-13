@@ -37,12 +37,13 @@ class NewUserVerifiedNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        // dd($this->user);
         return (new MailMessage)
                     ->subject('নতুন ইউজার ভেরিফিকেশন')
                     ->line('নতুন ইউজার ভেরিফাই করেছে!')
                     ->line('নাম: ' . $this->user->name)
                     ->line('ইমেইল: ' . $this->user->email)
-                    ->action('ইউজার দেখুন', route('users.show', $this->user->id));
+                    ->action('ইউজার দেখুন', route('admin.users.index', $this->user->id));
     }
 
     public function toArray($notifiable)
@@ -50,7 +51,7 @@ class NewUserVerifiedNotification extends Notification
         return [
             'message' => 'নতুন ইউজার ভেরিফাই করেছে: ' . $this->user->name,
             'user_id' => $this->user->id,
-            'url' => route('users.show', $this->user->id),
+            'url' => route('admin.users.index', $this->user->id),
         ];
     }
 }

@@ -86,7 +86,7 @@ class RoleController extends Controller
         // dd($role);
 
         // 5️⃣ Redirect with success
-        return redirect()->route('roles.index')
+        return redirect()->route('admin.roles.index')
             ->with('success', 'Role created successfully!');
     }
     /**
@@ -157,7 +157,7 @@ class RoleController extends Controller
 
         // 5️⃣ Redirect with success message
 
-        return redirect()->route('roles.index')
+        return redirect()->route('admin.roles.index')
             ->with('success', 'Role updated successfully!');
     }
     /**
@@ -170,7 +170,7 @@ class RoleController extends Controller
     {
         // dd($id);
         Role::find($id)->delete();
-        return redirect()->route('roles.index')
+        return redirect()->route('admin.roles.index')
             ->with('success', 'role deleted successfully');
     }
 }
