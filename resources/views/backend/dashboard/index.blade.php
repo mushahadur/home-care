@@ -12,7 +12,7 @@
   <div class="mb-6 md:mb-8">
     <h2
       class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-      Welcome back, Aigars
+      Welcome back, {{ Auth::user()->name }}
     </h2>
     <p
       class="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-1">

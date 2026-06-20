@@ -101,7 +101,7 @@ Oreder
             </div>
 
             <!-- Actions -->
-            <div class="flex flex-wrap gap-3 mt-auto">
+              <div class="flex flex-wrap gap-3 mt-auto hidden sm:flex"style="display: none;">
               <a href="#"
                 class="inline-flex items-center px-5 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm font-medium">
                 <i class="fas fa-eye mr-2"></i> View Details

@@ -47,7 +47,7 @@ class OrderController extends Controller
                         'phone'        => $request->phone,
                         'address'      => $request->address,
                         'password'     => bcrypt($request->phone),
-                        'is_verified'  => true, 
+                        'is_verified'  => false, 
                         'default_role' => 'user',
                     ]);
                     // dd($user);

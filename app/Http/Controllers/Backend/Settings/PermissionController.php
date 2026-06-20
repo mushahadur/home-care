@@ -5,26 +5,36 @@ namespace App\Http\Controllers\Backend\Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $permissions = Permission::select('group_name', 'name', 'created_at')->get()->groupBy('group_name');
-        // dd($permissions);
-         $permissions = Permission::all()->groupBy(function($permission) {
+        $allPermissions = Permission::all();
+
+        $groupedPermissions = $allPermissions->groupBy(function ($permission) {
             return explode('-', $permission->name)[0];
         });
-        
-        // Filter out any groups that don't have a valid ID
-        $permissions = $permissions->filter(function($group) {
-            return $group->first() !== null;
-        });
-        return view('backend.pages.settings.permissions.index', compact('permissions'));
 
+        $perPage = 5;
+        $currentPage = Paginator::resolveCurrentPage('page');
+
+        $currentPageItems = $groupedPermissions->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+        $permissions = new LengthAwarePaginator(
+            $currentPageItems,
+            $groupedPermissions->count(),
+            $perPage,
+            $currentPage,
+            ['path' => Paginator::resolveCurrentPath()]
+        );
+
+        return view('backend.pages.settings.permissions.index', compact('permissions'));
     }
 
     /**
@@ -32,7 +42,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-            return view('backend.pages.settings.permissions.create');
+        return view('backend.pages.settings.permissions.create');
     }
 
     /**
@@ -82,18 +92,17 @@ class PermissionController extends Controller
     {
         $permission = \Spatie\Permission\Models\Permission::findOrFail($id);
 
-    $groupName = $permission->group_name;
+        $groupName = $permission->group_name;
 
-    // This group of all permissions
-    $groupPermissions = \Spatie\Permission\Models\Permission::where('group_name', $groupName)->get();
+        // This group of all permissions
+        $groupPermissions = \Spatie\Permission\Models\Permission::where('group_name', $groupName)->get();
 
-    // Just extract the actions (orders-list → list)
-    $selectedActions = $groupPermissions->pluck('name')->map(function ($name) {
-        return explode('-', $name)[1];
-    })->toArray();
+        // Just extract the actions (orders-list → list)
+        $selectedActions = $groupPermissions->pluck('name')->map(function ($name) {
+            return explode('-', $name)[1];
+        })->toArray();
 
-    return view('backend.pages.settings.permissions.edit', compact('permission', 'groupName', 'selectedActions', 'groupPermissions'));
-
+        return view('backend.pages.settings.permissions.edit', compact('permission', 'groupName', 'selectedActions', 'groupPermissions'));
     }
 
     /**
@@ -134,6 +143,6 @@ class PermissionController extends Controller
     {
         Permission::findOrFail($id)->delete();
         return redirect()->route('admin.permissions.index')
-                        ->with('success','Permission deleted successfully');
+            ->with('success', 'Permission deleted successfully');
     }
 }

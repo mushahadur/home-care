@@ -21,18 +21,32 @@ Oreder
   <!-- <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 pt-12"> -->
   <form class="space-y-6 " action="{{ route('order.place') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 pt-12">
+    <div class="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 pt-6">
       <!-- LEFT: FORM -->
-      <div class="lg:col-span-2 space-y-6 xs:px-4 sm:px-6 lg:px-8">
+      <div class="lg:col-span-2 space-y-6 p-5 sm:p-7 md:p-0 lg:p-0 xl:p-0 2xl:p-0">
         <!-- 1. Service Selection -->
-        <section
-          class="rounded-xl sm:rounded-2xl bg-white shadow-lg shadow-gray-900/50 p-5 sm:p-7 md:p-8">
-          <div class="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
-            <h2 class="text-xl font-bold text-[#2b4f6e] mb-5">Select Service</h2>
-          </div>
+        <section class="rounded-lg sm:rounded-lg bg-white shadow-lg shadow-gray-900/50 border border-1 border-blue-200">
+          <!-- Collapsible Header -->
+          <button type="button" id="toggleServicesBtn" class="w-full flex items-center rounded-t-lg rounded-b-none justify-between bg-blue-50 hover:bg-blue-100 p-4 transition">
+            <h2 class="text-xl font-bold text-[#2b4f6e]">Select Service</h2>
+            <span id="toggleIcon" class="text-2xl font-bold text-[#2b4f6e]">−</span>
+          </button>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-            <!-- Single Day -->
+          <!-- Service Options Container (collapsible) -->
+          <div id="servicesContainer" class="mt-5 p-5 sm:p-6 md:p-7 lg:p-8 xl:p-8 2xl:p-8">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+              <!-- Single Day -->
+              <!-- <label class="service-option flex items-start gap-3 border-1 border-gray-200 rounded-md p-5 sm:p-6 cursor-pointer transition hover:border-[#2b4f6e] has-[:checked]:border-rose-600 has-[:checked]:bg-red-50/30 has-[:checked]:shadow-sm">
+                <input type="radio" name="service" value="single" data-price="{{ $careService->single_services_price }}" checked class="mt-1 w-5 h-5 accent-rose-600">
+                <div class="w-full">
+                  <div class="flex justify-between items-center">
+                    <span class="font-semibold text-base sm:text-lg">For Single Days</span>
+                    <span class="text-rose-600 font-bold text-lg">৳{{ $careService->single_services_price }}</span>
+                  </div>
+                  <span class="text-xs text-gray-600 mt-1.5 block">Safe & skilled administration at home</span>
+                </div>
+              </label> -->
+               <!-- Single Day -->
             <label
               class="flex items-start gap-3 border-2 border-gray-200 rounded-md p-5 sm:p-6 cursor-pointer transition
                     hover:border-[#2b4f6e]
@@ -59,297 +73,281 @@ Oreder
               </div>
             </label>
 
-
-            <!-- Triple Days -->
-            <label
-              class="flex items-start gap-3 border-2 border-gray-200 rounded-md p-5 sm:p-6 cursor-pointer transition
-                    hover:border-[#2b4f6e]
-                    has-[:checked]:border-rose-600
-                    has-[:checked]:bg-red-50/30
-                    has-[:checked]:shadow-sm">
-              <input
-                type="radio"
-                name="service"
-                value="triple"
-                data-price="{{ $careService->triple_services_price }}"
-                class="mt-1 w-5 h-5 accent-rose-600" />
-
-              <div class="w-full">
-                <div class="flex justify-between items-center">
-                  <span class="font-semibold text-base sm:text-lg">For Triple Days</span>
-                  <span class="text-rose-600 font-bold text-lg">৳{{ $careService->triple_services_price }}</span>
+              <!-- Triple Days -->
+              <label class="service-option flex items-start gap-3 border-2 border-gray-200 rounded-md p-5 sm:p-6 cursor-pointer transition hover:border-[#2b4f6e] has-[:checked]:border-rose-600 has-[:checked]:bg-red-50/30 has-[:checked]:shadow-sm">
+                <input type="radio" name="service" value="triple" data-price="{{ $careService->triple_services_price }}" class="mt-1 w-5 h-5 accent-rose-600">
+                <div class="w-full">
+                  <div class="flex justify-between items-center">
+                    <span class="font-semibold text-base sm:text-lg">For Triple Days</span>
+                    <span class="text-rose-600 font-bold text-lg">৳{{ $careService->triple_services_price }}</span>
+                  </div>
+                  <span class="text-xs text-gray-600 mt-1.5 block">Sterile cleaning & gentle care</span>
                 </div>
+              </label>
 
-                <span class="text-xs text-gray-600 mt-1.5 block">
-                  Sterile cleaning & gentle care
-                </span>
-              </div>
-            </label>
-            <label
-              class="flex items-start gap-3 border-2 border-gray-200 rounded-md p-5 sm:p-6 cursor-pointer transition
-                  hover:border-red-600
-                  has-[:checked]:border-rose-600
-                  has-[:checked]:bg-red-50/30
-                  has-[:checked]:shadow-sm">
-              <!-- Radio Button -->
-              <input
-                type="radio"
-                name="service"
-                value="seven_days"
-                data-price="{{ $careService->seven_services_price }}"
-                class="mt-1 w-5 h-5 accent-rose-600" />
-
-              <!-- Content -->
-              <div class="w-full">
-                <div class="flex justify-between items-center">
-                  <span class="font-semibold text-base sm:text-lg">
-                    For Seven Days
-                  </span>
-                  <span class="text-rose-600 font-bold text-lg">
-                    ৳{{ $careService->seven_services_price }}
-                  </span>
+              <!-- Seven Days -->
+              <label class="service-option flex items-start gap-3 border-2 border-gray-200 rounded-md p-5 sm:p-6 cursor-pointer transition hover:border-[#2b4f6e] has-[:checked]:border-rose-600 has-[:checked]:bg-red-50/30 has-[:checked]:shadow-sm">
+                <input type="radio" name="service" value="seven_days" data-price="{{ $careService->seven_services_price }}" class="mt-1 w-5 h-5 accent-rose-600">
+                <div class="w-full">
+                  <div class="flex justify-between items-center">
+                    <span class="font-semibold text-base sm:text-lg">For Seven Days</span>
+                    <span class="text-rose-600 font-bold text-lg">৳{{ $careService->seven_services_price }}</span>
+                  </div>
+                  <span class="text-xs text-gray-600 mt-1.5 block">Comprehensive care & support</span>
                 </div>
-
-                <span class="text-xs text-gray-600 mt-1.5 block">
-                  Comprehensive care & support
-                </span>
-              </div>
-            </label>
-
-            <!-- Add more service options here if needed -->
+              </label>
+            </div>
           </div>
         </section>
 
+
         <!-- Patient Info -->
-        <div class="bg-white shadow-lg shadow-gray-900/50 rounded-2xl border p-6">
-          <h2 class="text-xl font-bold text-[#2b4f6e] mb-5">
-            Patient Information
-          </h2>
+        <div class="bg-white shadow-lg shadow-gray-900/50 rounded-lg border  border-1 border-blue-200">
+          <!-- Toggle Button -->
+          <button type="button" id="togglePatientInfoBtn" class="w-full flex items-center justify-between bg-blue-50 hover:bg-blue-100 p-4 transition" aria-expanded="true">
+            <h2 class="text-xl font-bold text-[#2b4f6e]">Patient Information</h2>
+            <span id="patientInfoIcon" class="text-2xl font-bold text-[#2b4f6e]">−</span>
+          </button>
+          <div id="patientInfoContainer">
+            <!-- Collapsible Content -->
+            <div id="patientInfoContainer" class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 p-6 sm:p-7 md:p-8 lg:p-8 xl:p-8 2xl:p-8">
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-            <div>
-              @php
-              $user = Auth::user();
-              @endphp
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">
-                Full Name <span class="text-red-600">*</span>
-              </label>
+              <!-- Field 1: Full Name -->
+              <div>
+                @php
+                $user = Auth::user();
+                @endphp
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">
+                  Full Name <span class="text-red-600">*</span>
+                </label>
 
-              <input
-                type="text"
-                name="patient_name"
-                required
-                value="{{ old('patient_name') ?? ($user->name ?? '') }}"
-                class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e] {{ ($user && $user->name) ? 'bg-gray-100 cursor-not-allowed' : '' }}"
-                {{ ($user && $user->name) ? 'readonly' : '' }}
-                placeholder="Patient full name" />
+                <input
+                  type="text"
+                  name="patient_name"
+                  required
+                  value="{{ old('patient_name') ?? ($user->name ?? '') }}"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e] {{ ($user && $user->name) ? 'bg-gray-100 cursor-not-allowed' : '' }}"
+                  {{ ($user && $user->name) ? 'readonly' : '' }}
+                  placeholder="Patient full name" />
                 @error('patient_name')
-                 <span class="text-red-600 text-xs">{{ $message }}</span>
+                <span class="text-red-600 text-xs">{{ $message }}</span>
                 @enderror
-            </div>
+              </div>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Email <span class="text-red-600">*</span></label>
-              <input
-                type="email"
-                name="email"
-                required
-                value="{{ old('email') ?? ($user->email ?? '') }}"
-                class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e]"
-                {{ ($user && $user->email) ? 'readonly' : '' }}
-                placeholder="example@email.com" />
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Email <span class="text-red-600">*</span></label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  value="{{ old('email') ?? ($user->email ?? '') }}"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e]"
+                  {{ ($user && $user->email) ? 'readonly' : '' }}
+                  placeholder="example@email.com" />
                 @error('email')
-                 <span class="text-red-600 text-xs">{{ $message }}</span>
+                <span class="text-red-600 text-xs">{{ $message }}</span>
                 @enderror
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Phone Number <span class="text-red-600">*</span></label>
-              <input
-                type="tel"
-                name="phone"
-                required
-                value="{{ old('phone') ?? ($user->phone ?? '') }}"
-                class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e]"
-                {{ ($user && $user->phone) ? 'readonly' : '' }}
-                placeholder="+880 1X XXX XXXX" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Phone Number <span class="text-red-600">*</span></label>
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  value="{{ old('phone') ?? ($user->phone ?? '') }}"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e]"
+                  {{ ($user && $user->phone) ? 'readonly' : '' }}
+                  placeholder="+880 1X XXX XXXX" />
                 @error('phone')
-                 <span class="text-red-600 text-xs">{{ $message }}</span>
+                <span class="text-red-600 text-xs">{{ $message }}</span>
                 @enderror
-            </div>
+              </div>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Full Address <span class="text-red-600">*</span></label>
-              <textarea
-                name="address"
-                required
-                rows="3"
-                {{ ($user && $user->address) ? 'readonly' : '' }}
-                class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e]"
-                placeholder="House no, road, area, Brahmanbaria">{{ old('address') ?? ($user->address ?? '') }}</textarea>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Full Address <span class="text-red-600">*</span></label>
+                <textarea
+                  name="address"
+                  required
+                  rows="3"
+                  {{ ($user && $user->address) ? 'readonly' : '' }}
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e]"
+                  placeholder="House no, road, area, Brahmanbaria">{{ old('address') ?? ($user->address ?? '') }}</textarea>
                 @error('address')
-                 <span class="text-red-600 text-xs">{{ $message }}</span>
+                <span class="text-red-600 text-xs">{{ $message }}</span>
                 @enderror
-            </div>
+              </div>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Preferred Date</label>
-              <input
-                type="date"
-                name="preferred_date"
-                value="{{ old('preferred_date', date('Y-m-d')) }}"
-                min="{{ date('Y-m-d') }}"
-                class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e]" />
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Preferred Date</label>
+                <input
+                  type="date"
+                  name="preferred_date"
+                  value="{{ old('preferred_date', date('Y-m-d')) }}"
+                  min="{{ date('Y-m-d') }}"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 text-base focus:border-[#2b4f6e]" />
                 @error('preferred_date')
-                 <span class="text-red-600 text-xs">{{ $message }}</span>
+                <span class="text-red-600 text-xs">{{ $message }}</span>
                 @enderror
-            </div>
+              </div>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Preferred Time</label>
-              <select
-                    name="preferred_time"
-                    class="w-full border rounded-lg px-4 py-2 
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Preferred Time</label>
+                <select
+                  name="preferred_time"
+                  class="w-full border rounded-lg px-4 py-2 
                     @error('preferred_time') border-red-500 @enderror">
 
-                    <option value="">Select Time</option>
+                  <option value="">Select Time</option>
 
-                    <option value="Morning (8 AM – 12 PM)"
-                      {{ old('preferred_time') == 'Morning (8 AM – 12 PM)' ? 'selected' : '' }}>
-                      Morning (8 AM – 12 PM)
-                    </option>
+                  <option value="Morning (8 AM – 12 PM)"
+                    {{ old('preferred_time') == 'Morning (8 AM – 12 PM)' ? 'selected' : '' }}>
+                    Morning (8 AM – 12 PM)
+                  </option>
 
-                    <option value="Afternoon (12 PM – 4 PM)"
-                      {{ old('preferred_time') == 'Afternoon (12 PM – 4 PM)' ? 'selected' : '' }}>
-                      Afternoon (12 PM – 4 PM)
-                    </option>
+                  <option value="Afternoon (12 PM – 4 PM)"
+                    {{ old('preferred_time') == 'Afternoon (12 PM – 4 PM)' ? 'selected' : '' }}>
+                    Afternoon (12 PM – 4 PM)
+                  </option>
 
-                    <option value="Evening (4 PM – 8 PM)"
-                      {{ old('preferred_time') == 'Evening (4 PM – 8 PM)' ? 'selected' : '' }}>
-                      Evening (4 PM – 8 PM)
-                    </option>
-                  </select>
+                  <option value="Evening (4 PM – 8 PM)"
+                    {{ old('preferred_time') == 'Evening (4 PM – 8 PM)' ? 'selected' : '' }}>
+                    Evening (4 PM – 8 PM)
+                  </option>
+                </select>
 
-                  @error('preferred_time')
-                  <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                  @enderror
+                @error('preferred_time')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+              </div>
+
             </div>
           </div>
         </div>
 
+
+
         <!-- Upload + Preview -->
-        <div class="bg-white rounded-2xl shadow-xl shadow-gray-900/50 border p-6 space-y-5">
-          <h2 class="text-xl font-bold text-[#2b4f6e]">
-            Prescription / Instructions
-          </h2>
-          <div class="space-y-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Upload Doctor's Prescription
-                <span class="text-red-600 text-xs">(required)</span></label>
-              <label
-                class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl p-3 sm:p-3 cursor-pointer hover:border-[#2b4f6e] bg-gray-50 transition min-h-[40px]">
-                <i
-                  class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
-                <span class="text-gray-600 font-medium text-base sm:text-lg">Tap to upload or drag file here</span>
-                <span class="text-xs sm:text-sm text-gray-500 mt-2">JPG, PNG, PDF • max 5 MB</span>
-                <input
-                  type="file"
-                  name="prescription"
-                  accept="image/*,application/pdf"
-                  class="hidden"
-                  id="prescriptionUpload" />
+        <div class="bg-white rounded-lg border  border-1 border-blue-200 shadow-xl shadow-gray-900/50 space-y-5">
+          <!-- Toggle Button -->
+          <button type="button" id="togglePrescriptionBtn" class="w-full flex items-center justify-between bg-blue-50 hover:bg-blue-100 p-4 transition" aria-expanded="true">
+            <h2 class="text-xl font-bold text-[#2b4f6e]">Upload Prescription</h2>
+            <span id="prescriptionIcon" class="text-2xl font-bold text-[#2b4f6e]">−</span>
+          </button>
+          <div id="prescriptionContainer">
+            <div class="space-y-6 p-6 sm:p-7 md:p-8 lg:p-8 xl:p-8 2xl:p-8">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Upload Doctor's Prescription
+                  <span class="text-red-600 text-xs">(required)</span></label>
+                <label
+                  class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl p-3 sm:p-3 cursor-pointer hover:border-[#2b4f6e] bg-gray-50 transition min-h-[40px]">
+                  <i
+                    class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                  <span class="text-gray-600 font-medium text-base sm:text-lg">Tap to upload or drag file here</span>
+                  <span class="text-xs sm:text-sm text-gray-500 mt-2">JPG, PNG, PDF • max 5 MB</span>
+                  <input
+                    type="file"
+                    name="prescription"
+                    accept="image/*,application/pdf"
+                    class="hidden"
+                    id="prescriptionUpload" />
                   <span>{{ old('prescription') ? 'File uploaded' : '' }}</span>
-                    @error('prescription')
-                      <span class="text-red-600 text-xs">{{ $message }}</span>
-                    @enderror
-              </label>
-            </div>
-
-            <div
-              id="previewArea"
-              class="hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-gray-50 rounded-lg border">
-              <div
-                id="previewThumb"
-                class="w-20 h-20 sm:w-16 sm:h-16 rounded bg-gray-200 flex-shrink-0 overflow-hidden"></div>
-              <div class="flex-1 min-w-0">
-                <p
-                  id="fileDisplayName"
-                  class="font-medium text-base truncate"></p>
-                <p class="text-sm text-gray-500">Uploaded successfully</p>
+                  @error('prescription')
+                  <span class="text-red-600 text-xs">{{ $message }}</span>
+                  @enderror
+                </label>
               </div>
-              <button
-                id="removeFile"
-                class="text-red-600 hover:text-red-800 font-medium whitespace-nowrap mt-3 sm:mt-0">
-                Remove
-              </button>
-            </div>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Additional Notes for Nurse (optional)</label>
-              <textarea
-              name="additional_notes"
-                rows="2"
-                class="w-full border border-slate-300 rounded-lg px-4 py-3.5 text-base focus:border-slate-600"
-                placeholder="Allergies, mobility issues, special instructions, caregiver gender preference, etc..."></textarea>
+              <div
+                id="previewArea"
+                class="hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-gray-50 rounded-lg border">
+                <div
+                  id="previewThumb"
+                  class="w-20 h-20 sm:w-16 sm:h-16 rounded bg-gray-200 flex-shrink-0 overflow-hidden"></div>
+                <div class="flex-1 min-w-0">
+                  <p
+                    id="fileDisplayName"
+                    class="font-medium text-base truncate"></p>
+                  <p class="text-sm text-gray-500">Uploaded successfully</p>
+                </div>
+                <button
+                  id="removeFile"
+                  class="text-red-600 hover:text-red-800 font-medium whitespace-nowrap mt-3 sm:mt-0">
+                  Remove
+                </button>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Additional Notes for Nurse (optional)</label>
+                <textarea
+                  name="additional_notes"
+                  rows="2"
+                  class="w-full border border-slate-300 rounded-lg px-4 py-3.5 text-base focus:border-slate-600"
+                  placeholder="Allergies, mobility issues, special instructions, caregiver gender preference, etc..."></textarea>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- RIGHT: ORDER SUMMARY -->
-      <div class="lg:col-span-1">
-        <div class="bg-white rounded-xl shadow-lg shadow-gray-900/50 border p-6 sticky top-24">
-          <h2 class="text-xl font-bold text-[#2b4f6e] mb-5">Order Summary</h2>
+      <div class="lg:col-span-1 px-6 sm:px-6 md:px-8 lg:px-0 xl:px-0 2xl:px-0">
+        <div class="bg-white rounded-lg shadow-lg shadow-gray-900/50 border  border-1 border-blue-200 sticky top-24">
+          <!-- Toggle Button -->
+          <button type="button" class="w-full flex items-center justify-between bg-blue-50 hover:bg-blue-100 p-4 transition">
+            <h2 class="text-xl font-bold text-[#2b4f6e]">Order Summary</h2>
+          </button>
+          <div class="p-6 sm:p-7 md:p-8 lg:p-8 xl:p-8 2xl:p-8">
+            <!-- Service -->
+            <div class="flex items-center justify-between mb-1">
+              <p class="text-gray-900 font-semibold">Service</p>
+              <span class="font-semibold text-[#2B4F6E]">{{ $careService->care_services_name }}</span>
+            </div>
+            <hr class="mb-3 border-dotted border-t-2 border-gray-300" />
+            <!-- Plan -->
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-gray-900 font-semibold">Plan</span>
+              <span class="font-semibold"><span id="plan_name">Single</span></span>
+            </div>
+            <hr class="mb-3 border-dotted border-t-2 border-gray-300" />
+            <!-- Price -->
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-gray-900 font-semibold">Price</span>
+              <span class="font-semibold">৳<span id="basePrice">00</span></span>
+            </div>
+            <hr class="mb-3 border-dotted border-t-2 border-gray-300" />
 
-          <!-- Service -->
-          <div class="flex items-center justify-between mb-1">
-            <p class="text-gray-900 font-semibold">Service</p>
-            <span class="font-semibold text-[#2B4F6E]">{{ $careService->care_services_name }}</span>
-          </div>
-          <hr class="mb-3 border-dotted border-t-2 border-gray-300" />
-          <!-- Plan -->
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-gray-900 font-semibold">Plan</span>
-            <span class="font-semibold"><span id="plan_name">Single</span></span>
-          </div>
-          <hr class="mb-3 border-dotted border-t-2 border-gray-300" />
-          <!-- Price -->
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-gray-900 font-semibold">Price</span>
-            <span class="font-semibold">৳<span id="basePrice">00</span></span>
-          </div>
-          <hr class="mb-3 border-dotted border-t-2 border-gray-300" />
+            <!-- Discount -->
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-gray-900 font-semibold">Discount</span>
+              <span class="text-green-600 font-semibold">−৳<span id="discount">00</span></span>
+            </div>
+            <hr class="mb-3 border-dotted border-t-2 border-gray-300" />
 
-          <!-- Discount -->
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-gray-900 font-semibold">Discount</span>
-            <span class="text-green-600 font-semibold">−৳<span id="discount">00</span></span>
-          </div>
-          <hr class="mb-3 border-dotted border-t-2 border-gray-300" />
+            <!-- Tax -->
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-gray-900 font-semibold">Tax</span>
+              <span class="text-gray-600 font-semibold">৳<span id="tax">00</span></span>
+            </div>
 
-          <!-- Tax -->
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-gray-900 font-semibold">Tax</span>
-            <span class="text-gray-600 font-semibold">৳<span id="tax">00</span></span>
-          </div>
+            <hr class="mb-5 border-dotted border-t-1 border-gray-500" />
+            <input type="hidden" name="service_id" id="service_id" value="{{ $careService->id }}">
+            <!-- Total -->
+            <div class="flex items-center justify-between text-lg font-bold mb-4">
+              <span>Total</span>
+              <span class="text-[#C63E5A]">৳<span id="totalPrice">0</span></span>
+            </div>
 
-          <hr class="mb-5 border-dotted border-t-1 border-gray-500" />
-          <input type="hidden" name="service_id" id="service_id" value="{{ $careService->id }}">
-          <!-- Total -->
-          <div class="flex items-center justify-between text-lg font-bold mb-4">
-            <span>Total</span>
-            <span class="text-[#C63E5A]">৳<span id="totalPrice">0</span></span>
-          </div>
-
-          <!-- Button -->
-          <!-- <button
+            <!-- Button -->
+            <!-- <button
               class="w-full mt-6 bg-[#2B4F6E] text-white py-3 rounded-xl font-semibold hover:bg-[#1A3B4F] transition"
             >
               Confirm Order
             </button> -->
-          <button type="submit"
-            class="w-full mt-6 bg-[#2B4F6E] text-white py-3 rounded-md font-semibold hover:bg-[#1A3B4F] transition inline-block text-center no-underline">
-            Confirm Order
-          </button>
+            <button type="submit"
+              class="w-full mt-6 bg-[#2B4F6E] text-white py-3 rounded-md font-semibold hover:bg-[#1A3B4F] transition inline-block text-center no-underline">
+              Confirm Order
+            </button>
+          </div>
         </div>
       </div>
 
@@ -621,7 +619,7 @@ Oreder
     // const TAX_PERCENT = 5;
     const DISCOUNT_PERCENT = 0;
     const TAX_PERCENT = 0;
-    
+
 
     function formatPlanName(value) {
       switch (value) {
@@ -662,5 +660,124 @@ Oreder
     // Initial load
     updateSummary();
   });
+
+  // ===============================================================
+
+  (function() {
+    // ---------- Collapsible functionality ----------
+    const toggleBtn = document.getElementById('toggleServicesBtn');
+    const servicesContainer = document.getElementById('servicesContainer');
+    const toggleIcon = document.getElementById('toggleIcon');
+
+    // Initially open (you can change to false if you want closed by default)
+    let isOpen = true;
+
+    function toggleSection() {
+      if (isOpen) {
+        // Collapse
+        servicesContainer.style.display = 'none';
+        toggleIcon.textContent = '+';
+      } else {
+        // Expand
+        servicesContainer.style.display = 'block';
+        toggleIcon.textContent = '−';
+      }
+      isOpen = !isOpen;
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', toggleSection);
+    }
+
+    // ---------- Radio change handling (optional: update global price) ----------
+    const radioButtons = document.querySelectorAll('input[name="service"]');
+
+    function handleServiceChange(event) {
+      const selectedRadio = event.target;
+      const price = selectedRadio.getAttribute('data-price');
+      // You can update a separate total price element here
+      // For example: document.getElementById('totalPrice').innerText = price;
+      console.log(`Selected service: ${selectedRadio.value}, Price: ${price}`);
+
+      // Optional: remove previous active styles and add to the parent label
+      // The CSS `has-[:checked]` already handles styling, but we can also trigger a custom event
+    }
+
+    radioButtons.forEach(radio => {
+      radio.addEventListener('change', handleServiceChange);
+    });
+
+    // If you need to trigger the initial selected price (the one with 'checked')
+    const checkedRadio = document.querySelector('input[name="service"]:checked');
+    if (checkedRadio) {
+      // Optionally call handler
+      handleServiceChange({
+        target: checkedRadio
+      });
+    }
+  })();
+
+  // ===========================================================================
+  // Pure JavaScript toggle for Patient Information section
+  (function() {
+    const toggleBtn = document.getElementById('togglePatientInfoBtn');
+    const container = document.getElementById('patientInfoContainer');
+    const iconSpan = document.getElementById('patientInfoIcon');
+
+    let isOpen = true; // initially open (since it's visible)
+
+    function toggleSection() {
+      if (isOpen) {
+        // Close
+        container.style.display = 'none';
+        iconSpan.textContent = '+';
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        // Open
+        container.style.display = 'block';
+        iconSpan.textContent = '−';
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+      isOpen = !isOpen;
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', toggleSection);
+    }
+
+    // Optional: If you prefer the section to be hidden by default, set isOpen = false and call toggleSection() once after page load.
+  })();
+
+
+  // ===========================================================================
+  // Pure JavaScript toggle for Patient Information section
+  (function() {
+    const toggleBtn = document.getElementById('togglePrescriptionBtn');
+    const container = document.getElementById('prescriptionContainer');
+    const iconSpan = document.getElementById('prescriptionIcon');
+
+    let isOpen = true; // initially open (since it's visible)
+
+    function toggleSection() {
+      if (isOpen) {
+        // Close
+        container.style.display = 'none';
+        iconSpan.textContent = '+';
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        // Open
+        container.style.display = 'block';
+        iconSpan.textContent = '−';
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+      isOpen = !isOpen;
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', toggleSection);
+    }
+
+    // Optional: If you prefer the section to be hidden by default, set isOpen = false and call toggleSection() once after page load.
+  })();
 </script>
 @endpush

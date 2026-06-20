@@ -43,17 +43,14 @@
                 <thead class="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700">
                     <tr>
                         <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">SI</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Order ID</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Service Name</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Preferred Date</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Preferred Time</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Patient Name</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Patient Phone</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Patient Address</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Prescription</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Price</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Status</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Created</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">User Name</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">User Phone</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">User Address</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Total</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Pandding</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Completed</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">User Status</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Joing Date</th>
                         <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
@@ -67,18 +64,6 @@
 
                         <!-- Order ID -->
                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
-                            <span class="font-medium">ID#_00-{{ $order->id }}</span>
-                        </td>
-                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
-                            <span class="font-medium">{{ $order->careService->care_services_name ?? 'No Service' }}</span>
-                        </td>
-                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
-                            <span class="font-medium">{{ \Carbon\Carbon::parse($order->preferred_date)->format('d M Y') }}</span>
-                        </td>
-                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
-                            <span class="font-medium">{{ $order->preferred_time }}</span>
-                        </td>
-                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ $order->user_name }}</span>
                         </td>
                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
@@ -87,25 +72,23 @@
                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
                             <span class="font-medium">{{ $order->user_address }}</span>
                         </td>
-                        <td class="px-4 py-3 whitespace-nowrap">
-                            @if($order->prescription)
-                            <img src="{{ asset($order->prescription) }}"
-                                alt="Prescription for Order #{{ $order->id }}"
-                                class="h-10 w-12 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
-                            @else
-                            <span class="text-xs text-gray-400">No image</span>
-                            @endif
-                        </td>
 
                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
-                            <span class="font-medium">{{ $order->total_price }}</span>
+                            <span class="font-medium">{{ $stats->total}}</span>
                         </td>
                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
-                            <span class="font-medium">{{ $order->status }}</span>
+                            <span class="font-medium">{{ $stats->pending }}</span>
                         </td>
                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
-                            <span class="font-medium">{{ \Carbon\Carbon::parse($order->created_at)->format('d M Y, h:i A') }}</span>
+                            <span class="font-medium">{{ $stats->completed }}</span>
                         </td>
+                         <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                            <span class="font-medium">{{ $order->user->status }}</span>
+                        </td>
+                            <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                                <span class="font-medium">{{ $order->created_at->format('d M Y') }}</span>
+                            </td>
+
 
 
 

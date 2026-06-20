@@ -129,14 +129,68 @@
             </table>
         </div>
 
-        <!-- Optional footer / pagination placeholder -->
-        <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800 text-sm text-gray-500 dark:text-gray-400 flex justify-between items-center">
-            <span>Showing 1–10 of 48 orders</span>
-            <div class="flex gap-2">
-                <button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50" disabled>Previous</button>
-                <button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-800">Next</button>
+        <!-- Footer with Pagination -->
+        @if($permissions->hasPages())
+        <div class="px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-gray-200 dark:border-gray-700">
+            <!-- Showing Results Info -->
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                Showing
+                <span class="font-medium text-gray-800 dark:text-gray-200">{{ $permissions->firstItem() }}</span>
+                to
+                <span class="font-medium text-gray-800 dark:text-gray-200">{{ $permissions->lastItem() }}</span>
+                of
+                <span class="font-medium text-gray-800 dark:text-gray-200">{{ $permissions->total() }}</span>
+                results
+            </p>
+
+            <!-- Pagination Links -->
+            <div class="flex items-center gap-2">
+                <!-- Previous Page -->
+                @if($permissions->onFirstPage())
+                <span class="px-3 py-2 rounded-sm text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </span>
+                @else
+                <a href="{{ $permissions->previousPageUrl() }}"
+                    class="px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </a>
+                @endif
+
+                <!-- Page Numbers (responsive - show limited on mobile) -->
+                <div class="hidden sm:flex items-center gap-1">
+                    @foreach($permissions->getUrlRange(max(1, $permissions->currentPage() - 2), min($permissions->lastPage(), $permissions->currentPage() + 2)) as $page => $url)
+                    @if($page == $permissions->currentPage())
+                    <span class="px-3 py-2 rounded-sm text-sm font-medium bg-emerald-600 text-white">{{ $page }}</span>
+                    @else
+                    <a href="{{ $url }}"
+                        class="px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        {{ $page }}
+                    </a>
+                    @endif
+                    @endforeach
+                </div>
+
+                <!-- Mobile Page Indicator -->
+                <div class="sm:hidden px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-300">
+                    Page {{ $permissions->currentPage() }} of {{ $permissions->lastPage() }}
+                </div>
+
+                <!-- Next Page -->
+                @if($permissions->hasMorePages())
+                <a href="{{ $permissions->nextPageUrl() }}"
+                    class="px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </a>
+                @else
+                <span class="px-3 py-2 rounded-sm text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </span>
+                @endif
             </div>
         </div>
+        @endif
+        <!-- Optional footer / pagination placeholder -->
     </div>
 
 </main>

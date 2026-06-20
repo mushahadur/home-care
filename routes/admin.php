@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\Pages\CareServiceController;
 use App\Http\Controllers\Backend\Pages\OrderConteroller as BackendOrderController;
 use App\Http\Controllers\Backend\Pages\NotificationController;
 use App\Http\Controllers\Backend\Pages\PackagesController;
+use App\Http\Controllers\Backend\Pages\OrderProcessController;
 
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')
@@ -20,13 +21,15 @@ Route::middleware(['auth', 'verified'])
             ->name('dashboard');
 
         Route::middleware('route_permission')->group(function () {
-
+//
             Route::resource('roles', RoleController::class);
             Route::resource('permissions', PermissionController::class);
             Route::resource('users', UserController::class);
             Route::resource('products', ProductController::class);
             Route::resource('care-services', CareServiceController::class);
             Route::resource('packages', PackagesController::class);
+            Route::resource('process', OrderProcessController::class);
+
 
             Route::get('orders', [BackendOrderController::class, 'index'])
                 ->name('orders.index')

@@ -84,9 +84,8 @@ class OtpVerificationController extends Controller
             Auth::login($user);
 
             // Assign default role safely
-            if (!$user->hasRole('user')) {
-                $user->assignRole('user');
-            }
+            $user->assignRole('user');
+
 
             // Notify all super-admins
             $superAdmins = \App\Models\User::role('super-admin')->get();
@@ -121,7 +120,7 @@ class OtpVerificationController extends Controller
             'otp' => $hashedOtp,
             'otp_expires_at' => now()->addMinutes(5),
         ]);
-// dd($user);
+        // dd($user);
         $user->notify(new \App\Notifications\SendOtpNotification($otp));
 
         // return back()->with('success', 'New OTP Sended।');
