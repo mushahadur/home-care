@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Apex Dashboard - Dark/Light Toggle</title>
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-   <script src="{{ asset('assets/backend/js/tailwindcss.js') }}"></script>
+  <script src="{{ asset('assets/backend/js/tailwindcss.js') }}"></script>
   <!-- Chart.js for the graph -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script> -->
   <script src="{{asset('/')}}assets/backend/js/chart.umd.min.js"></script>
@@ -51,14 +51,15 @@
       });
     });
   </script>
-<style>
-  .nav-link.active {
-    @apply bg-emerald-700 text-white font-semibold;
-  }
-  .dark .nav-link.active {
-    @apply bg-emerald-800 text-white;
-  }
-</style>
+  <style>
+    .nav-link.active {
+      @apply bg-emerald-700 text-white font-semibold;
+    }
+
+    .dark .nav-link.active {
+      @apply bg-emerald-800 text-white;
+    }
+  </style>
 </head>
 
 <body
@@ -80,50 +81,81 @@
       @include('backend.layouts.includes.header')
 
       <!-- Main content area -->
-         <!-- Content -->
-  <!-- [ Main Content ] start -->
-  @yield('content')
-  
+      <!-- Content -->
+      <!-- [ Main Content ] start -->
+      @yield('content')
 
-  <!-- End Content -->
-    
+
+      <!-- End Content -->
+
+      <!-- =============  Show Status Message ========================= -->
+      @if(session('success'))
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: "{{ session('success') }}",
+            timer: 2000,
+            showConfirmButton: false
+          });
+        });
+      </script>
+      @endif
+
+      @if(session('error'))
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: "{{ session('error') }}",
+            timer: 2000,
+            showConfirmButton: false
+          });
+        });
+      </script>
+      @endif
+
     </div>
   </div>
 
-     <!-- Global JS -->
+  <!-- Global JS -->
   <script src="{{asset('/')}}assets/backend/js/chart.umd.min.js"></script>
   <script src="{{ asset('assets/backend/js/chart.js') }}"></script>
   <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
 
-   <!-- Stack for Page-wise Scripts -->
-    @stack('scripts')
+  <!-- Stack for Page-wise Scripts -->
+  @stack('scripts')
 
 
-<script>
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const btn = document.getElementById('usersDropdownBtn');
-        const menu = document.getElementById('usersDropdownMenu');
-        const arrow = btn?.querySelector('.dropdown-arrow');
+      const btn = document.getElementById('usersDropdownBtn');
+      const menu = document.getElementById('usersDropdownMenu');
+      const arrow = btn?.querySelector('.dropdown-arrow');
 
-        if (btn && menu) {
-            function toggleDropdown(event) {
-                event.stopPropagation();
-                menu.classList.toggle('hidden');
-                arrow?.classList.toggle('rotate-180');
-            }
-
-            btn.addEventListener('click', toggleDropdown);
-
-            // Close when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!btn.contains(event.target) && !menu.contains(event.target)) {
-                    menu.classList.add('hidden');
-                    arrow?.classList.remove('rotate-180');
-                }
-            });
+      if (btn && menu) {
+        function toggleDropdown(event) {
+          event.stopPropagation();
+          menu.classList.toggle('hidden');
+          arrow?.classList.toggle('rotate-180');
         }
+
+        btn.addEventListener('click', toggleDropdown);
+
+        // Close when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!btn.contains(event.target) && !menu.contains(event.target)) {
+            menu.classList.add('hidden');
+            arrow?.classList.remove('rotate-180');
+          }
+        });
+      }
     });
-</script>
+  </script>
 
 
 </body>

@@ -8,7 +8,7 @@
  <main class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <!-- Profile Header -->
       <div
-        class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8"
+        class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-8"
       >
         <div
           class="h-32 sm:h-40 bg-gradient-to-r from-[#2B4F6E] to-[#3a6a8f]"
@@ -48,7 +48,7 @@
                 </div>
               </div>
               <button
-                class="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition shadow-sm"
+                class="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-500 text-white rounded-sm hover:bg-rose-600 transition shadow-sm"
               >
                 <i class="fas fa-sign-out-alt"></i> Logout
               </button>
@@ -59,7 +59,7 @@
 
       <!-- Tabs Navigation -->
       <div
-        class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden"
+        class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
       >
         <div class="border-b border-gray-200">
           <div class="flex overflow-x-auto scrollbar-hide px-2 sm:px-6">
@@ -131,7 +131,7 @@
             </div>
             <div class="mt-10">
               <button
-                class="inline-flex items-center gap-2 px-6 py-3 bg-[var(--primary)] text-white rounded-lg hover:bg-[#1e3a54] transition"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-[var(--primary)] text-white rounded-md hover:bg-[#1e3a54] transition"
               >
                 <i class="fas fa-edit"></i> Edit Information
               </button>
@@ -147,7 +147,7 @@
             <div class="space-y-5">
               <!-- Order item -->
               <div
-                class="border border-gray-200 rounded-xl p-5 hover:shadow-sm transition"
+                class="border border-gray-200 rounded-lg p-5 hover:shadow-sm transition"
               >
                 <div
                   class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
@@ -215,14 +215,14 @@
                 Saved Addresses
               </h2>
               <button
-                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--primary)] text-white rounded-lg hover:bg-[#1e3a54] transition text-sm"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--primary)] text-white rounded-md hover:bg-[#1e3a54] transition text-sm"
               >
                 <i class="fas fa-plus"></i> Add New Address
               </button>
             </div>
 
             <div class="space-y-5">
-              <div class="border border-gray-200 rounded-xl p-5">
+              <div class="border border-gray-200 rounded-lg p-5">
                 <div class="flex justify-between items-start">
                   <div>
                     <p class="font-medium">Home</p>
@@ -247,7 +247,7 @@
                 >
               </div>
 
-              <div class="border border-gray-200 rounded-xl p-5">
+              <div class="border border-gray-200 rounded-lg p-5">
                 <div class="flex justify-between items-start">
                   <div>
                     <p class="font-medium">Office / Relative</p>
@@ -282,7 +282,7 @@
                 >
                 <input
                   type="password"
-                  class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+                  class="w-full max-w-md border border-gray-300 rounded-md px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
                   placeholder="••••••••"
                 />
               </div>
@@ -293,7 +293,7 @@
                 >
                 <input
                   type="password"
-                  class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+                  class="w-full max-w-md border border-gray-300 rounded-md px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
                   placeholder="New password"
                 />
               </div>
@@ -304,14 +304,14 @@
                 >
                 <input
                   type="password"
-                  class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+                  class="w-full max-w-md border border-gray-300 rounded-md px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
                   placeholder="Confirm new password"
                 />
               </div>
 
               <div class="pt-4">
                 <button
-                  class="px-6 py-3 bg-[var(--primary)] text-white rounded-lg hover:bg-[#1e3a54] transition"
+                  class="px-6 py-3 bg-[var(--primary)] text-white rounded-md hover:bg-[#1e3a54] transition"
                 >
                   Update Password
                 </button>
@@ -325,7 +325,7 @@
                   Protect your account with an extra layer of security.
                 </p>
                 <button
-                  class="px-6 py-2.5 border border-[var(--primary)] text-[var(--primary)] rounded-lg hover:bg-[var(--light)] transition"
+                  class="px-6 py-2.5 border border-[var(--primary)] text-[var(--primary)] rounded-md hover:bg-[var(--light)] transition"
                 >
                   Enable 2FA
                 </button>

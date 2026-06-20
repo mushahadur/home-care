@@ -44,10 +44,10 @@
            @else
            <a
              href="{{route('login')}}"
-             class="ml-2 flex items-center gap-2 bg-[#E6F2FC] px-4 py-2 rounded-full text-[#2B4F6E] font-medium border border-[#B8D9F5] hover:bg-[#FCE4E4] hover:border-[#F9B0B0] transition"
+             class="ml-2 flex items-center gap-2 bg-[#E6F2FC] px-4 py-2 rounded-md text-[#2B4F6E] font-medium border border-[#B8D9F5] hover:bg-[#FCE4E4] hover:border-[#F9B0B0] transition"
            >
              <i class="fas fa-user-lock text-[#C63E5A]"></i>
-             <span>Register</span>
+             <span>Login</span>
            </a>
            @endif
         </div>

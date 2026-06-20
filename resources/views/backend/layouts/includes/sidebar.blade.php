@@ -119,22 +119,21 @@
               class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors
               {{ request()->routeIs('admin.orders.*') ? $activeClass : $inactiveClass }}">
                <i class="fa-solid fa-hand-holding-heart"></i>
-                <span class="text-sm font-medium">Order List</span>
+                <span class="text-sm font-medium">Order By Users</span>
             </a>
           @endcan
 
-        
 
-             @can('users-manage')
-              <a href="{{ route('admin.users.manage.index') }}"
-                class="nav-link flex items-center gap-3 px-4 py-3 rounded-md  transition-colors
-                {{ request()->routeIs('admin.users.manage.*') ? $activeClass : $inactiveClass }}">
-                
-                  <i class="fa-solid fa-users w-5"></i>
-                  <span class="text-sm font-medium">Order Users</span>
-              </a>
+
+
+              @can('process-list')
+            <a href="{{ route('admin.process.index') }}"
+              class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors
+              {{ request()->routeIs('admin.process.*') ? $activeClass : $inactiveClass }}">
+                <i class="fa-solid fa-chart-pie w-5"></i>
+                <span class="text-sm font-medium">Process Order</span>
+            </a>
           @endcan
-
 
             @can('packages-list')
             <a href="{{ route('admin.packages.index') }}"
@@ -144,6 +143,8 @@
                 <span class="text-sm font-medium">Package</span>
             </a>
           @endcan
+
+        
 
             <a
             href="#"

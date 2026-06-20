@@ -77,8 +77,8 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $user->created_at->format('M j, Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                           <button 
-                                onclick="window.location.href='{{ route('admin.users.edit', $user->id) }}'" 
+                            <button
+                                onclick="window.location.href='{{ route('admin.users.edit', $user->id) }}'"
                                 class="text-blue-500 hover:text-blue-700 transition-colors">
                                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
@@ -106,19 +106,73 @@
             </table>
         </div>
 
-        <!-- Optional footer / pagination placeholder -->
-        <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800 text-sm text-gray-500 dark:text-gray-400 flex justify-between items-center">
-            <span>Showing 1–10 of 48 orders</span>
-            <div class="flex gap-2">
-                <button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50" disabled>Previous</button>
-                <button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-800">Next</button>
+        <!-- Footer with Pagination -->
+        @if($users->hasPages())
+        <div class="px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-gray-200 dark:border-gray-700">
+            <!-- Showing Results Info -->
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                Showing
+                <span class="font-medium text-gray-800 dark:text-gray-200">{{ $users->firstItem() }}</span>
+                to
+                <span class="font-medium text-gray-800 dark:text-gray-200">{{ $users->lastItem() }}</span>
+                of
+                <span class="font-medium text-gray-800 dark:text-gray-200">{{ $users->total() }}</span>
+                results
+            </p>
+
+            <!-- Pagination Links -->
+            <div class="flex items-center gap-2">
+                <!-- Previous Page -->
+                @if($users->onFirstPage())
+                <span class="px-3 py-2 rounded-sm text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </span>
+                @else
+                <a href="{{ $users->previousPageUrl() }}"
+                    class="px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </a>
+                @endif
+
+                <!-- Page Numbers (responsive - show limited on mobile) -->
+                <div class="hidden sm:flex items-center gap-1">
+                    @foreach($users->getUrlRange(max(1, $users->currentPage() - 2), min($users->lastPage(), $users->currentPage() + 2)) as $page => $url)
+                    @if($page == $users->currentPage())
+                    <span class="px-3 py-2 rounded-sm text-sm font-medium bg-emerald-600 text-white">{{ $page }}</span>
+                    @else
+                    <a href="{{ $url }}"
+                        class="px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        {{ $page }}
+                    </a>
+                    @endif
+                    @endforeach
+                </div>
+
+                <!-- Mobile Page Indicator -->
+                <div class="sm:hidden px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-300">
+                    Page {{ $users->currentPage() }} of {{ $users->lastPage() }}
+                </div>
+
+                <!-- Next Page -->
+                @if($users->hasMorePages())
+                <a href="{{ $users->nextPageUrl() }}"
+                    class="px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </a>
+                @else
+                <span class="px-3 py-2 rounded-sm text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </span>
+                @endif
             </div>
         </div>
+        @endif
+        <!-- Optional footer / pagination placeholder -->
     </div>
 
 </main>
 
-<!-- ... rest of the layout ... -->
+
 
 @endsection
 
@@ -147,7 +201,7 @@
         });
     }
 
-     // Table search functionality
+    // Table search functionality
     document.addEventListener('DOMContentLoaded', () => {
         const searchInput = document.getElementById('table-search');
         const table = document.getElementById('users-table');

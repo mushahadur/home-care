@@ -9,7 +9,7 @@ Oreder
     <main class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <!-- Profile Header -->
       <div
-        class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8"
+        class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-8"
       >
         <div
           class="h-32 sm:h-40 bg-gradient-to-r from-[#2B4F6E] to-[#3a6a8f]"
@@ -52,7 +52,7 @@ Oreder
                 <form method="POST" action="{{ route('logout') }}" class="block">
                                 @csrf
                <button
-                class="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition shadow-sm"
+                class="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-500 text-white rounded-md hover:bg-rose-600 transition shadow-sm"
               >
                 <i class="fas fa-sign-out-alt"></i> Logout
               </button>
@@ -65,7 +65,7 @@ Oreder
      
       <!-- Tabs Navigation -->
       <div
-        class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8"
+        class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-8"
       >
         <div class="border-b border-gray-200">
           <div class="flex overflow-x-auto scrollbar-hide px-2 sm:px-6">
@@ -105,7 +105,7 @@ Oreder
                 Recent Orders
               </h2>
               <a href="{{ route('user.orders') }}"
-              class="inline-flex items-center gap-2 px-4 py-2 bg-[#2B4F6E] text-white text-sm rounded-lg hover:bg-[#1e3a54] transition"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-[#2B4F6E] text-white text-sm rounded-md hover:bg-[#1e3a54] transition"
               >
                 <i class="fas fa-eye"></i> Show Details
               </a>
@@ -114,7 +114,7 @@ Oreder
             <div class="space-y-5">
               <!-- Order item -->
               @forelse($order_inf as $order)
-                <div class="border border-gray-200 rounded-xl p-5 hover:shadow-sm transition">
+                <div class="border border-gray-200 rounded-lg p-5 hover:shadow-sm transition">
                     
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         
@@ -214,7 +214,7 @@ Oreder
             </div>
             <div class="mt-10">
               <button
-                class="inline-flex items-center gap-2 px-6 py-3 bg-[#2B4F6E] text-white rounded-lg hover:bg-[#1e3a54] transition"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-[#2B4F6E] text-white rounded-md hover:bg-[#1e3a54] transition"
               >
                 <i class="fas fa-edit"></i> Edit Information
               </button>
@@ -232,14 +232,14 @@ Oreder
                 Saved Addresses
               </h2>
               <button
-                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2B4F6E] text-white rounded-lg hover:bg-[#1e3a54] transition text-sm"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2B4F6E] text-white rounded-md hover:bg-[#1e3a54] transition text-sm"
               >
                 <i class="fas fa-plus"></i> Add New Address
               </button>
             </div>
 
             <div class="space-y-5">
-              <div class="border border-gray-200 rounded-xl p-5">
+              <div class="border border-gray-200 rounded-lg  p-5">
                 <div class="flex justify-between items-start">
                   <div>
                     <p class="font-medium">Home</p>
@@ -279,7 +279,7 @@ Oreder
                 >
                 <input
                   type="password"
-                  class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+                  class="w-full max-w-md border border-gray-300 rounded-md px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
                   placeholder="••••••••"
                 />
               </div>
@@ -290,7 +290,7 @@ Oreder
                 >
                 <input
                   type="password"
-                  class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+                  class="w-full max-w-md border border-gray-300 rounded-md px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
                   placeholder="New password"
                 />
               </div>
@@ -301,14 +301,14 @@ Oreder
                 >
                 <input
                   type="password"
-                  class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+                  class="w-full max-w-md border border-gray-300 rounded-md px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
                   placeholder="Confirm new password"
                 />
               </div>
 
               <div class="pt-4">
                 <button
-                  class="px-6 py-3 bg-[#2B4F6E] text-white rounded-lg hover:bg-[#1e3a54] transition"
+                  class="px-6 py-3 bg-[#2B4F6E] text-white rounded-md hover:bg-[#1e3a54] transition"
                 >
                   Update Password
                 </button>
@@ -322,7 +322,7 @@ Oreder
                   Protect your account with an extra layer of security.
                 </p>
                 <button
-                  class="px-6 py-2.5 border border-[var(--primary)] text-[var(--primary)] rounded-lg hover:bg-[var(--light)] transition"
+                  class="px-6 py-2.5 border border-[var(--primary)] text-[var(--primary)] rounded-md hover:bg-[var(--light)] transition"
                 >
                   Enable 2FA
                 </button>
@@ -370,7 +370,7 @@ Oreder
                             </p>
                         </div>
                     `,
-                    timer: 20000,
+                    timer: 2000,
                     timerProgressBar: true,
                     showConfirmButton: false,
                     allowOutsideClick: false,
