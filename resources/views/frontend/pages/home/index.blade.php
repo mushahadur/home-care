@@ -54,7 +54,7 @@ Home
           <!-- Slide 1 -->
           <div class="slide absolute inset-0 active">
             <img
-              src="https://images.unsplash.com/photo-1584515933487-779824d29309"
+              src="{{asset('assets/frontend/images/sliders/s1.jpeg')}}"
               alt="Product 1"
               class="w-full h-full object-cover" />
             <div class="slider-overlay absolute inset-0"></div>
@@ -63,7 +63,7 @@ Home
           <!-- Slide 2 -->
           <div class="slide absolute inset-0">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyDWiXIIXuAstBF0vfU2kbBDEorRAmmm-kB1vhP0VereFDEG1h6dyQVWENSiw4gwk_KNJof-_VyT6IqIUn7Cnqn3ou0BFHpMSlFEEQ0qg&s=10"
+              src="{{asset('assets/frontend/images/sliders/s2.webp')}}"
               alt="Product 2"
               class="w-full h-full object-cover" />
             <div class="slider-overlay absolute inset-0"></div>
@@ -72,7 +72,7 @@ Home
           <!-- Slide 3 -->
           <div class="slide absolute inset-0">
             <img
-              src="https://doctorshomecarebd.com/wp-content/uploads/2024/09/White-and-Blue-Illustrative-Senior-Home-Care-Health-and-Wellness-Service-Instagram-Post-1587-x-1000-px.png.webp"
+              src="{{asset('assets/frontend/images/sliders/s3.webp')}}"
               alt="Product 3"
               class="w-full h-full object-cover" />
             <div class="slider-overlay absolute inset-0"></div>
@@ -242,7 +242,7 @@ Home
         <!-- Image -->
         <div class="rounded-2xl overflow-hidden shadow-md">
           <img
-            src="https://kiwialiwarga.com/wp-content/uploads/2021/02/layanan-layanan-yang-disediakan-medical-home-care.jpg"
+            src="{{ asset('assets/frontend/images/about/about.webp') }}"
             alt="Home nursing care"
             class="w-full h-full object-cover" />
         </div>
@@ -351,7 +351,7 @@ Home
         <div
           class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#E6F2FC]">
           <img
-            src="https://images.unsplash.com/photo-1582750433449-648ed127bb54"
+            src="{{asset('assets/frontend/images/nurses/n1.jpeg')}}"
             class="w-full h-full object-cover" />
         </div>
 
@@ -385,7 +385,7 @@ Home
         <div
           class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#E6F2FC]">
           <img
-            src="https://images.unsplash.com/photo-1607746882042-944635dfe10e"
+            src="{{asset('assets/frontend/images/nurses/n2.jpeg')}}"
             class="w-full h-full object-cover" />
         </div>
         <h3 class="font-bold text-[#1A3B4F] text-lg mt-4">Senior Nurse</h3>
@@ -411,7 +411,7 @@ Home
         <div
           class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#E6F2FC]">
           <img
-            src="https://images.unsplash.com/photo-1594824476967-48c8b964273f"
+            src="{{asset('assets/frontend/images/nurses/n3.jpeg')}}"
             class="w-full h-full object-cover" />
         </div>
         <h3 class="font-bold text-[#1A3B4F] text-lg mt-4">Care Nurse</h3>
@@ -437,7 +437,7 @@ Home
         <div
           class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#E6F2FC]">
           <img
-            src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289"
+            src="{{asset('assets/frontend/images/nurses/n4.jpeg')}}"
             class="w-full h-full object-cover" />
         </div>
         <h3 class="font-bold text-[#1A3B4F] text-lg mt-4">

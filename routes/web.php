@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Auth\OtpVerificationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('lang/{lang}',[LanguageController::class, 'switchLang'])->name('lang.switch');
 
 Route::get('/order/{id}', [OrderController::class, 'getOrder'])
     ->whereNumber('id')
