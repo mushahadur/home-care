@@ -27,7 +27,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'route_permission' => \App\Http\Middleware\CheckRoutePermission::class,
             'verified' => \App\Http\Middleware\EnsureUserIsVerified::class,
+            // 'locale' => \App\Http\Middleware\Language::class,
         ]);
+        $middleware->web(append: [
+        \App\Http\Middleware\Language::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -79,6 +79,7 @@ class OtpVerificationController extends Controller
                 'otp' => null,
                 'otp_expires_at' => null,
                 'is_verified' => true,
+                'email_verified_at' => now(),
             ]);
 
             Auth::login($user);

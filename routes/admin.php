@@ -35,6 +35,10 @@ Route::middleware(['auth', 'verified'])
                 ->name('orders.index')
                 ->middleware('permission:orders-list');
 
+                Route::get('orders/{id}', [BackendOrderController::class, 'show'])
+                ->name('orders.show')
+                ->middleware('permission:orders-show');
+
             Route::get('users/orders', [BackendOrderController::class, 'orderUsers'])
                 ->name('users.manage.index')
                 ->middleware('permission:users-manage');

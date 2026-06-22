@@ -35,17 +35,7 @@ Oreder
           <!-- Service Options Container (collapsible) -->
           <div id="servicesContainer" class="mt-5 p-5 sm:p-6 md:p-7 lg:p-8 xl:p-8 2xl:p-8">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-              <!-- Single Day -->
-              <!-- <label class="service-option flex items-start gap-3 border-1 border-gray-200 rounded-md p-5 sm:p-6 cursor-pointer transition hover:border-[#2b4f6e] has-[:checked]:border-rose-600 has-[:checked]:bg-red-50/30 has-[:checked]:shadow-sm">
-                <input type="radio" name="service" value="single" data-price="{{ $careService->single_services_price }}" checked class="mt-1 w-5 h-5 accent-rose-600">
-                <div class="w-full">
-                  <div class="flex justify-between items-center">
-                    <span class="font-semibold text-base sm:text-lg">For Single Days</span>
-                    <span class="text-rose-600 font-bold text-lg">৳{{ $careService->single_services_price }}</span>
-                  </div>
-                  <span class="text-xs text-gray-600 mt-1.5 block">Safe & skilled administration at home</span>
-                </div>
-              </label> -->
+          
                <!-- Single Day -->
             <label
               class="flex items-start gap-3 border-2 border-gray-200 rounded-md p-5 sm:p-6 cursor-pointer transition
@@ -337,12 +327,6 @@ Oreder
               <span class="text-[#C63E5A]">৳<span id="totalPrice">0</span></span>
             </div>
 
-            <!-- Button -->
-            <!-- <button
-              class="w-full mt-6 bg-[#2B4F6E] text-white py-3 rounded-xl font-semibold hover:bg-[#1A3B4F] transition"
-            >
-              Confirm Order
-            </button> -->
             <button type="submit"
               class="w-full mt-6 bg-[#2B4F6E] text-white py-3 rounded-md font-semibold hover:bg-[#1A3B4F] transition inline-block text-center no-underline">
               Confirm Order
