@@ -63,10 +63,9 @@ Login - NurseNextDoor
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        padding-left: 30px;
-        padding-right: 30px;"
-    class="pt-12 sm:pt-12 md:pt-24 lg:pt-32 xl:pt-20 pb-16  sm:pb-12 md:pb-24 lg:pb-32 xl:pb-40 sm:px-4 flex items-center justify-center">
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;"
+
+    class="pt-12 md:pt-24 lg:pt-32 xl:pt-20 pb-16  sm:pb-12 md:pb-24 lg:pb-32 xl:pb-40 px-4 md:px-8 flex items-center justify-center">
     <!-- main glass card container -->
     <div class="w-full max-w-md glass-card rounded-lg overflow-hidden shadow-2xl border border-white/40 text-[#1e3a5f]">
 
@@ -81,8 +80,8 @@ Login - NurseNextDoor
 
             <!-- === LOGIN / REGISTER TOGGLE (two tabs) === -->
             <div class="flex rounded-lg bg-[#f0f5fa] p-1 mb-8">
-                <button id="tabLoginBtn" class="auth-toggle-transition flex-1 py-3 text-sm font-bold rounded-md bg-white shadow-sm text-[#2B4F6E] transition-all">Login</button>
-                <button id="tabRegisterBtn" class="auth-toggle-transition flex-1 py-3 text-sm font-bold rounded-md text-[#4a627a] hover:text-[#2B4F6E] transition-all">Register</button>
+                <button id="tabLoginBtn" class="auth-toggle-transition flex-1 py-1 md:py-3 lg:py-3 xl:py-3 text-sm md:text-base lg:text-base xl:text-base font-bold rounded-md bg-white shadow-sm text-[#2B4F6E] transition-all">{{__('auth.login')}}</button>
+                <button id="tabRegisterBtn" class="auth-toggle-transition flex-1 py-1 md:py-3 lg:py-3 xl:py-3 text-sm md:text-base lg:text-base xl:text-base font-bold rounded-md text-[#4a627a] hover:text-[#2B4F6E] transition-all">{{__('auth.register')}}</button>
             </div>
 
             <!-- === LOGIN FORM (Laravel Blade optimized) === -->
@@ -106,15 +105,15 @@ Login - NurseNextDoor
                     <!-- email / phone (using Laravel old() helper) -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                            <i class="far fa-envelope mr-2 text-[#C63E5A]"></i>Email or phone
+                            <i class="far fa-envelope mr-2 text-[#C63E5A]"></i>{{__('auth.email')}}
                         </label>
                         <input
                             type="text"
                             name="email"
                             id="email"
                             value="{{ old('email') }}"
-                            placeholder="you@example.com / +8801XXXXXXXXX"
-                            class="w-full px-5 py-3 rounded-lg border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('email') border-red-500 @enderror"
+                            placeholder="you@example.com "
+                            class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 rounded-md border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('email') border-red-500 @enderror"
                             autofocus
                             autocomplete="off"
                             required>
@@ -126,7 +125,7 @@ Login - NurseNextDoor
                     <!-- password -->
                     <div class="relative">
                         <label for="password" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                            <i class="fas fa-lock mr-2 text-[#C63E5A]"></i>Password
+                            <i class="fas fa-lock mr-2 text-[#C63E5A]"></i>{{__('auth.password')}}
                         </label>
                         <div class="relative">
                             <input
@@ -135,7 +134,7 @@ Login - NurseNextDoor
                                 id="password"
                                 placeholder="••••••••"
                                 autocomplete="off"
-                                class="w-full px-5 py-3 pr-12 rounded-lg border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('password') border-red-500 @enderror"
+                                class="w-full px-5 pr-12 py-1.5 md:py-2 lg:py-2.5 rounded-md border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('password') border-red-500 @enderror"
                                 required />
                             <!-- Toggle button -->
                             <button
@@ -160,29 +159,29 @@ Login - NurseNextDoor
                                 name="remember"
                                 id="remember"
                                 {{ old('remember') ? 'checked' : '' }}
-                                class="rounded border-[#b8d1e5] text-[#C63E5A] focus:ring-[#F9B0B0]">
-                            <span>Remember me</span>
+                                class="rounded border-[#b8d1e5] text:green-900 focus:ring-[#F9B0B0]">
+                            <span>{{__('auth.remember')}}</span>
                         </label>
                         <a href="{{ route('password.request') }}" class="text-[#C63E5A] hover:underline">
-                            Forgot password?
+                            {{__('auth.forgot_password')}}
                         </a>
                     </div>
 
                     <!-- submit button -->
                     <button
                         type="submit"
-                        class="w-full bg-[#2B4F6E] hover:bg-[#1f3a50] text-white font-bold py-3.5 rounded-lg shadow-md transition flex items-center justify-center gap-2">
-                        <i class="fas fa-sign-in-alt"></i> Sign in
+                        class="w-full bg-[#2B4F6E] hover:bg-[#1f3a50] text-white font-bold py-1.5 md:py-2 lg:py-2.5 rounded-md shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fas fa-sign-in-alt"></i> {{__('auth.login_btn')}}
                     </button>
                 </form>
                 <!-- divider with "or" (optional, if you have social login) -->
 
 
                 <!-- switch to register hint (mobile friendly) -->
-                <p class="text-center text-sm text-[#3b5d7a] mt-4 md:hidden">
-                    Don't have an account?
+                <p class="text-center text-sm text-[#3b5d7a] mt-4">
+                    {{__('auth.have_not')}}
                     <a href="{{ route('register') }}" class="text-[#C63E5A] font-semibold hover:underline">
-                        Register
+                       {{__('auth.register')}}
                     </a>
                 </p>
             </div>
@@ -207,7 +206,7 @@ Login - NurseNextDoor
                     <!-- Full name -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                            <i class="far fa-user mr-2 text-[#C63E5A]"></i>Full name
+                            <i class="far fa-user mr-2 text-[#C63E5A]"></i>{{__('auth.name')}}
                         </label>
                         <input
                             type="text"
@@ -215,7 +214,7 @@ Login - NurseNextDoor
                             id="name"
                             value="{{ old('name') }}"
                             placeholder="Dr. Mrinal Kanti"
-                            class="w-full px-5 py-3 rounded-lg border transition text-sm outline-none
+                            class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 rounded-md border transition text-sm outline-none
                                 @error('name') 
                                     border-red-500 focus:ring-red-200 
                                 @else 
@@ -232,7 +231,7 @@ Login - NurseNextDoor
                     <!-- Email address -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                            <i class="far fa-envelope mr-2 text-[#C63E5A]"></i>Email address
+                            <i class="far fa-envelope mr-2 text-[#C63E5A]"></i>{{__('auth.email')}}
                         </label>
                         <input
                             type="email"
@@ -240,7 +239,7 @@ Login - NurseNextDoor
                             id="email"
                             value="{{ old('email') }}"
                             placeholder="name@example.com"
-                            class="w-full px-5 py-3 rounded-lg border transition text-sm outline-none
+                            class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 rounded-md border transition text-sm outline-none
                                 @error('email') 
                                     border-red-500 focus:ring-red-200 
                                 @else 
@@ -258,7 +257,7 @@ Login - NurseNextDoor
                         <!-- Password -->
                         <div>
                             <label for="password_register" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                                <i class="fas fa-lock mr-2 text-[#C63E5A]"></i>Password
+                                <i class="fas fa-lock mr-2 text-[#C63E5A]"></i>{{__('auth.password')}}
                             </label>
                             <div class="relative">
                                 <input
@@ -266,7 +265,7 @@ Login - NurseNextDoor
                                     name="password"
                                     id="password_register"
                                     placeholder="min. 8 chars"
-                                    class="w-full px-5 py-3 pr-12 rounded-lg border transition text-sm outline-none
+                                    class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 pr-12 rounded-md border transition text-sm outline-none
                     @error('password') 
                         border-red-500 focus:ring-red-200 
                     @else 
@@ -291,7 +290,7 @@ Login - NurseNextDoor
                         <!-- Confirm Password -->
                         <div>
                             <label for="password_confirmation" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                                <i class="fas fa-check-circle mr-2 text-[#C63E5A]"></i>Confirm
+                                <i class="fas fa-check-circle mr-2 text-[#C63E5A]"></i>{{__('auth.confirm_password')}}
                             </label>
                             <div class="relative">
                                 <input
@@ -299,7 +298,7 @@ Login - NurseNextDoor
                                     name="password_confirmation"
                                     id="password_confirmation"
                                     placeholder="re-enter"
-                                    class="w-full px-5 py-3 pr-12 rounded-lg border transition text-sm outline-none
+                                    class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 pr-12 rounded-md border transition text-sm outline-none
                     @error('password') 
                         border-red-500 focus:ring-red-200 
                     @else 
@@ -329,7 +328,7 @@ Login - NurseNextDoor
                             class="mt-1 rounded border-[#b8d1e5] text-[#C63E5A] focus:ring-[#F9B0B0]
                                 @error('terms') border-red-500 @enderror"
                             required>
-                        <span>I agree to the <a href="#" class="text-[#C63E5A] underline">Terms</a> and privacy policy.</span>
+                        <span>{{__('auth.agree')}}</span>
                     </label>
                     @error('terms')
                     <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
@@ -338,13 +337,13 @@ Login - NurseNextDoor
                     <!-- Register button -->
                     <button
                         type="submit"
-                        class="w-full bg-[#C63E5A] hover:bg-[#b12e4a] text-white font-bold py-3.5 rounded-lg shadow-md transition flex items-center justify-center gap-2">
-                        <i class="fas fa-user-plus"></i> Create account
+                        class="w-full bg-[#C63E5A] hover:bg-[#b12e4a] text-white font-bold py-1.5 md:py-2 lg:py-2.5 rounded-md shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fas fa-user-plus"></i> {{__('auth.register_btn')}}
                     </button>
                 </form>
                 <!-- hint to go back to login (mobile) -->
-                <p class="text-center text-sm text-[#3b5d7a] mt-2 md:hidden">
-                    Already have an account? <button id="mobileLoginTrigger" class="text-[#C63E5A] font-semibold">Login</button>
+                <p class="text-center text-sm text-[#3b5d7a] mt-2">
+                    {{__('auth.have')}} <button id="mobileLoginTrigger" class="text-[#C63E5A] font-semibold">{{__('auth.login')}}</button>
                 </p>
             </div>
         </div>

@@ -1,9 +1,9 @@
 <?php
 return[
-    'menu' => 'Menu',
-    'dashboard' => 'Dashboard',
-    'company_module' => 'Company Module',
-    'company_manage' => 'Manage Company',
+    'home' => 'Home',
+    'services' => 'Services',
+    'login' => 'Login',
+    'register' => 'Register',
     'company_add' => 'Add Company',
     'employee_module' => 'Employee Module ',
     'employee_add' => 'Add Employee',

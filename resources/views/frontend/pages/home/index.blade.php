@@ -9,23 +9,21 @@ Home
 <!-- Hero Section -->
 <section
   class="relative sm:py-3 md:py-6 lg:py-16 xl:py-20 flex items-center bg-gradient-to-br from-white to-[#E6F2FC] overflow-hidden">
-  <div class="container mx-auto px-6 lg:px-12 py-16 lg:py-0">
+  <div class="container mx-auto px-6 lg:px-12 py-6 md:py-6 lg:py-2 xl:py-2">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <!-- LEFT – Text Content -->
 
       <div
         class="flex-1 text-center max-w-xl order-2 lg:order-1 text-center lg:text-left">
         <!-- bilingual headline: Bangla & English -->
-        <p class="text-2xl md:text-3xl font-medium text-[#2B4F6E] mb-2">
-          নির্ভরযোগ্য হোম কেয়ার
-        </p>
+        <p class="text-xl md:text-3xl lg:text-4xl xl:text-4xl font-medium text-[#2B4F6E] mb-2">{{ __('hero.subtitle') }}</p>
         <h1
-          class="text-4xl md:text-5xl font-bold text-[#1A3B4F] leading-tight">
-          <span class="text-[#C63E5A]">Reliable</span> Home Care
+          class="text-3xl md:text-5xl font-bold text-[#1A3B4F] leading-tight">
+          <span class="text-[#C63E5A]">{{ __('hero.title_1') }}</span> {{ __('hero.title_2') }}
         </h1>
-        <p class="text-lg text-gray-600 mt-4 max-w-lg mx-auto md:mx-0">
-          professional nursing, right in the comfort of your home —
-          Brahmanbaria’s trusted choice.
+        <p class="text-md md:text-lg text-gray-600 mt-4 max-w-lg mx-auto md:mx-0">
+          {{ __('hero.description_1') }} 
+          {{ __('hero.description_2') }}
         </p>
         <!-- CTA buttons (soft blue & pink) -->
         <div class="flex flex-wrap gap-4 mt-8 justify-center md:justify-start items-center">
@@ -33,15 +31,15 @@ Home
           <div class="flex flex-col items-center md:items-start gap-1">
             <a href="tel:+8801812345678"
               class="bg-[#2B4F6E] text-white px-7 py-3 rounded-md shadow-md hover:bg-[#1f3a50] transition text-center">
-              আজই যোগাযোগ করুন
+              {{ __('hero.contact_btn') }}
             </a>
-            <p class="text-sm text-center font-medium text-gray-600 px-1">+88 01812345678</p>
+            <!-- <p class="text-sm text-center font-medium text-gray-600 px-1">+88 01812345678</p> -->
           </div>
 
           <!-- Services Button -->
           <a href="{{route('home')}}#service"
             class="bg-white border border-[#B8D9F5] text-[#2B4F6E] font-bold px-7 py-3 rounded-md shadow-sm hover:border-[#F9B0B0] hover:bg-[#FCE4E4] transition self-start">
-            See services
+            {{ __('hero.service_btn') }}
           </a>
         </div>
       </div>
@@ -95,15 +93,14 @@ Home
 <section
   id="service"
   class="flex items-center bg-gradient-to-br from-white to-[#e4f6d1] overflow-hidden">
-  <div class="container mx-auto px-6 lg:px-12 py-16 lg:py-10">
+  <div class="container mx-auto px-6 lg:px-12 py-6 md:py-10 lg:py-10 xl:py-10">
     <div class="text-center mb-12">
-      <span class="text-[#C63E5A] font-semibold tracking-wider text-sm">PROFESSIONAL SERVICES</span>
-      <h2 class="text-3xl md:text-4xl font-bold text-[#1A3B4F] mt-2">
-        Home nursing, <span class="text-[#2B4F6E]">on your terms</span>
+      <span class="text-[#C63E5A] font-semibold tracking-wider text-sm">{{ __('service.subtitle') }}</span>
+      <h2 class="text-2xl md:text-4xl font-bold text-[#1A3B4F] mt-2">
+        {{ __('service.title') }}
       </h2>
-      <p class="text-gray-500 max-w-2xl mx-auto mt-3">
-        choose a single visit or a full week — transparent pricing, no
-        surprises.
+      <p class="text-xs md:text-lg lg:text-lg xl:text-lg text-gray-500 max-w-2xl mx-auto mt-3 ">
+        {{ __('service.description') }}
       </p>
     </div>
 
@@ -138,19 +135,19 @@ Home
           <div class="flex flex-wrap items-center gap-2 mt-3">
             <!-- Single -->
             <div class="bg-[#FCE4E4] px-3 py-1 rounded-full font-semibold">
-              <span class="text-xs font-medium text-gray-700">Single</span>
+              <span class="text-xs font-medium text-gray-700"> {{ __('service.single') }}</span>
               <span class="text-xs font-bold text-rose-700">৳{{ $careService->single_services_price }}</span>
             </div>
 
             <!-- 3 Day -->
             <div class="bg-[#E6F2FC] px-3 py-1 rounded-full font-semibold">
-              <span class="text-xs font-medium text-gray-700">3-Day</span>
+              <span class="text-xs font-medium text-gray-700"> {{ __('service.three') }}</span>
               <span class="text-xs font-bold text-blue-700">৳{{ $careService->triple_services_price }}</span>
             </div>
 
             <!-- 7 Day -->
             <div class="bg-[#e0fff6] px-3 py-1 rounded-full font-semibold">
-              <span class="text-xs font-medium text-gray-700">7-Day</span>
+              <span class="text-xs font-medium text-gray-700"> {{ __('service.seven') }}</span>
               <span class="text-xs font-bold text-cyan-600">৳{{ $careService->seven_services_price }}</span>
             </div>
           </div>
@@ -163,7 +160,7 @@ Home
           <!-- Original Button (with an ID for JavaScript) -->
           <a href="{{ route('order.show', $careService->id) }}"
             class="orderServiceBtn mt-4 bg-[#1A3B4F] text-white px-5 py-2 rounded-lg text-sm hover:bg-[#163344] w-full md:w-fit text-center no-underline inline-block" data-auth="{{ auth()->check() ? '1' : '0' }}">
-            Order Service
+             {{ __('service.order_btn') }}
           </a>
         </div>
       </div>
@@ -205,100 +202,70 @@ Home
 <!-- IMPORTANT NOTE (prominent, high‑visibility requirement) -->
 <section class="max-w-5xl mx-auto px-6 my-14">
   <div
-    class="required-badge bg-[#FCE4E4] border-l-[10px] border-[#F9B0B0] rounded-r-2xl p-7 shadow-md flex flex-col md:flex-row items-start md:items-center gap-6">
+    class="required-badge bg-[#FCE4E4] border-l-[10px] border-[#F9B0B0] rounded-r-2xl p-4 md:p-7 lg:p-7 xl:p-7 shadow-md flex flex-col md:flex-row items-start md:items-center gap-6">
     <div class="bg-white p-4 rounded-full shadow-sm">
       <i class="fas fa-exclamation-triangle text-4xl text-[#C63E5A]"></i>
     </div>
     <div class="flex-1">
-      <h3 class="text-2xl font-bold text-[#1A3B4F] flex items-center gap-2">
+      <p class="pb-6 text-red-900 font-mono text-xs md:text-sm lg:text-base xl:text-md"> {{ __('notice.subtitle') }}</p>
+      <h3 class="text-xl md:text-4xl font-bold text-[#1A3B4F] flex items-center gap-2">
         <span class="bg-[#F9B0B0] w-4 h-4 rounded-full inline-block"></span>
-        গুরুত্বপূর্ণ নির্দেশনা / Important Notice
+        {{ __('notice.title') }}
       </h3>
-      <p class="text-lg font-medium text-[#2B4F6E] mt-2">
-        <span class="bg-white/60 px-2 py-1 rounded">📄 ডাক্তারের প্রেসক্রিপশন বাধ্যতামূলক</span>
-        —
-        <span class="bg-white/60 px-2 py-1 rounded">✍️ signed consent mandatory</span>
-      </p>
-      <p class="text-[#C63E5A] font-semibold mt-1 text-base">
-        A valid doctor’s prescription and signed patient consent are
-        required before any service.
+     <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-sm md:text-base lg:text-lg font-medium text-[#2B4F6E] mt-6">
+        <p class="bg-white/60 px-2 py-1 rounded">📄 {{ __('notice.warning_1') }}</p>
+        <span class="hidden md:inline text-gray-400">—</span>
+        <p class="bg-white/60 px-2 py-1 rounded">✍️ {{ __('notice.warning_2') }}</p>
+      </div>
+
+      <p class="text-[#C63E5A] font-semibold mt-1 text-sm md:text-md lg:text-base xl:text-base">
+        {{ __('notice.warning_3') }}
       </p>
       <div class="flex gap-3 mt-3 text-sm text-gray-600 flex-wrap">
-        <span class="bg-white px-4 py-1 rounded-full shadow-sm"><i class="far fa-file-pdf text-[#C63E5A] mr-1"></i> prescription
-          upload</span>
-        <span class="bg-white px-4 py-1 rounded-full shadow-sm"><i class="far fa-check-circle text-[#2B4F6E] mr-1"></i> consent
-          form</span>
+        <span class="bg-white px-4 py-1 rounded-full shadow-sm"><i class="far fa-file-pdf text-[#C63E5A] mr-1"></i> {{ __('notice.warning_4') }}</span>
+        <span class="bg-white px-4 py-1 rounded-full shadow-sm"><i class="far fa-check-circle text-[#2B4F6E] mr-1"></i> {{ __('notice.warning_5') }}</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT SECTION -->
-<section id="about" class="flex items-center bg-gray-100">
-  <div class="container mx-auto px-6 lg:px-12 py-16 lg:py-10">
-    <div class="space-y-12">
+<section id="about" class="flex bg-gray-100">
+  <div class="container mx-auto px-6 lg:px-12 py-6 lg:py-10">
+    <div class="space-y-6">
       <!-- ROW 1: Image + About -->
-      <div class="grid md:grid-cols-2 gap-8 items-center">
+       <p class="text-center text-4xl font-bold text-[#1A3B4F]">{{ __('about.section') }}</p>
+      <div class="grid md:grid-cols-2 gap-8">
         <!-- Image -->
         <div class="rounded-2xl overflow-hidden shadow-md">
           <img
             src="{{ asset('assets/frontend/images/about/about.webp') }}"
             alt="Home nursing care"
-            class="w-full h-full object-cover" />
+            class="w-full h-64 md:h-[455px] object-cover" />
         </div>
 
         <!-- About Text -->
         <div>
-          <h2 class="text-2xl md:text-3xl font-bold text-[#1A3B4F]">
-            About Nurse Next Door
-          </h2>
+          <h2 class="text-xl md:text-3xl font-bold text-[#1A3B4F]">{{__('about.title')}}</h2>
 
-          <p class="mt-4 text-slate-800 leading-relaxed">
-            Nurse Next Door প্রবীণ, অসুস্থতা থেকে সেরে ওঠা এবং দীর্ঘমেয়াদি
-            রোগে আক্রান্ত রোগীদের জন্য সহানুভূতিশীল, নির্ভরযোগ্য ও পেশাদার
-            মানের ঘরে বসেই নার্সিং সেবা প্রদান করে। আমাদের প্রশিক্ষিত ও
-            অভিজ্ঞ নার্সরা রোগীর বাড়িতেই নিরাপদভাবে চিকিৎসা সহায়তা পৌঁছে
-            দেন, যাতে রোগী তার পরিচিত পরিবেশে স্বাচ্ছন্দ্য, মর্যাদা ও
-            ব্যক্তিগত যত্নের সাথে সেবা পেতে পারেন। আমরা বিশ্বাস করি, সুস্থতা
-            ও আরোগ্যের জন্য নিজের ঘরের পরিচিত পরিবেশ সবচেয়ে সহায়ক। তাই
-            আমাদের সেবায় অন্তর্ভুক্ত রয়েছে চিকিৎসকের পরামর্শ অনুযায়ী ওষুধ
-            প্রয়োগ, ইনজেকশন ও স্যালাইন প্রদান, ক্ষত ও ড্রেসিং পরিচর্যা,
-            ভিটাল সাইন পর্যবেক্ষণ, অপারেশন-পরবর্তী সেবা, দীর্ঘমেয়াদি রোগীর
-            নিয়মিত পরিচর্যা এবং চলাফেরা ও দৈনন্দিন কাজে সহায়তা। প্রতিটি
-            সেবা জীবাণুমুক্ত (স্টেরাইল) পদ্ধতি অনুসরণ করে এবং আন্তর্জাতিক
-            মানের নিরাপত্তা নীতিমালা মেনে প্রদান করা হয়।
-          </p>
+          <p class="text-slate-800 leading-relaxed md:leading-8 mt-4 text-sm md:text-md lg:text-lg xl:text-lg">{{__('about.description_1')}}</p>
 
-          <p class="mt-3 text-slate-800 leading-relaxed">
-            আমরা জীবাণুমুক্ত (স্টেরাইল) চিকিৎসা পদ্ধতি, চিকিৎসকের নির্দেশনা
-            অনুযায়ী সেবা এবং মানবিক যত্নকে সর্বোচ্চ গুরুত্ব দিয়ে থাকি।
-            আমাদের লক্ষ্য হলো রোগীদের দ্রুত আরোগ্য লাভে সহায়তা করা এবং
-            পরিবারকে নিশ্চিন্ত ও সহায়ক পরিবেশ প্রদান করা, যাতে তারা নিজেদের
-            ঘরেই মানসম্মত চিকিৎসা ও সেবার অভিজ্ঞতা পান।
-          </p>
+          <p class="mt-3 text-slate-800 leading-relaxed md:leading-8 text-sm md:text-md lg:text-lg xl:text-lg">{{__('about.description_2')}}</p>
         </div>
       </div>
 
       <!-- ROW 2: Mission + Vision -->
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid md:grid-cols-2 gap-6 pt-4">
         <!-- Mission -->
         <div class="bg-[#F8FBFF] border border-[#D9ECFF] rounded-2xl p-6">
           <div class="flex items-center gap-3">
             <span
               class="bg-[#E6F2FC] text-[#1A3B4F] px-4 py-1 rounded-full text-sm font-semibold border border-[#B8D9F5]">
-              Mission
+              {{__('about.mission_name')}}
             </span>
           </div>
 
-          <p class="mt-4 text-slate-800 leading-relaxed">
-            আমাদের মিশন হলো রোগী, প্রবীণ ও দীর্ঘমেয়াদি অসুস্থতায় আক্রান্ত
-            ব্যক্তিদের জন্য নিরাপদ, সহানুভূতিশীল এবং উচ্চমানের ঘরে বসে
-            নার্সিং সেবা প্রদান করা, যাতে তারা নিজেদের বাড়ির স্বাচ্ছন্দ্য ও
-            পরিচিত পরিবেশে থেকেই প্রয়োজনীয় চিকিৎসা ও পরিচর্যা লাভ করতে
-            পারেন। প্রবীণদের সুস্থতা, পুনর্বাসন-পরবর্তী পরিচর্যা এবং
-            দীর্ঘমেয়াদি চিকিৎসা সহায়তার ক্ষেত্রে পরিবারকে সহায়ক ও
-            নির্ভরযোগ্য অংশীদার হিসেবে পাশে থাকা আমাদের অঙ্গীকার।
-          </p>
+          <p class="mt-4 text-slate-800  leading-relaxed md:leading-8 text-sm md:text-md lg:text-lg xl:text-lg">{{__('about.mission_description')}}</p>
         </div>
 
         <!-- Vision -->
@@ -306,19 +273,11 @@ Home
           <div class="flex items-center gap-3">
             <span
               class="bg-[#FCE4E4] text-[#C63E5A] px-4 py-1 rounded-full text-sm font-semibold">
-              Vision
+              {{__('about.vision_name')}}
             </span>
           </div>
 
-          <p class="mt-4 text-slate-800 leading-relaxed">
-            আমাদের ভিশন হলো ঘরে বসে নার্সিং সেবার ক্ষেত্রে একটি বিশ্বস্ত,
-            মানবিক ও মানসম্মত সেবাপ্রতিষ্ঠান হিসেবে প্রতিষ্ঠিত হওয়া, যেখানে
-            প্রতিটি রোগী ও প্রবীণ ব্যক্তি নিরাপদ, সম্মানজনক এবং
-            ব্যক্তিকেন্দ্রিক পরিচর্যা লাভ করতে পারেন। আমরা এমন একটি
-            সেবাব্যবস্থা গড়ে তুলতে চাই, যা হাসপাতাল-পরবর্তী সেবা,
-            দীর্ঘমেয়াদি পরিচর্যা এবং প্রবীণদের সুস্থ জীবনযাপনকে ঘরের
-            পরিবেশেই সহজলভ্য ও নির্ভরযোগ্য করে তোলে।
-          </p>
+          <p class="mt-4 text-slate-800  leading-relaxed md:leading-8 text-sm md:text-md lg:text-lg xl:text-lg">{{__('about.vision_description')}}</p>
         </div>
       </div>
     </div>
