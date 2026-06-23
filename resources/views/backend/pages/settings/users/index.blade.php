@@ -77,26 +77,67 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $user->created_at->format('M j, Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                            <button
-                                onclick="window.location.href='{{ route('admin.users.edit', $user->id) }}'"
-                                class="text-blue-500 hover:text-blue-700 transition-colors">
-                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                                </svg>
-                            </button>
-                            <button class="text-red-500 hover:text-red-700 ml-2" onclick="confirmDelete('{{ $user->id }}')">
-                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7h6m-3-3v3" />
-                                </svg>
-                            </button>
-                            <!-- Hidden Form -->
-                            <form id="delete-user-form-{{ $user->id }}" method="POST" action="{{ route('admin.users.destroy', $user->id) }}" style="display: none;">
-                                @csrf
-                                @method('DELETE')
-                            </form>
+                            <div class="flex items-center gap-3">
 
+                                {{-- Edit Button --}}
+                                <a href="{{ route('admin.users.edit', $user->id) }}"
+                                    class="inline-flex items-center justify-center w-9 h-9 rounded-md 
+                  bg-blue-50 text-blue-600 
+                  hover:bg-blue-600 hover:text-white 
+                  transition-all duration-200"
+                                    title="Edit User">
+
+                                    <svg class="w-6 h-6"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2">
+
+                                        <path stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                    </svg>
+
+                                </a>
+
+
+                                {{-- Delete Button --}}
+                                <button type="button"
+                                    onclick="confirmDelete({{ $user->id }})"
+                                    class="inline-flex items-center justify-center w-9 h-9 rounded-md
+                       bg-red-50 text-red-600
+                       hover:bg-red-600 hover:text-white
+                       transition-all duration-200"
+                                    title="Delete User">
+
+                                    <svg class="w-6 h-6"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2">
+
+                                        <path stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7h6m-3-3v3" />
+                                    </svg>
+
+                                </button>
+
+
+                                {{-- Hidden Delete Form --}}
+                                <form id="delete-user-form-{{ $user->id }}"
+                                    method="POST"
+                                    action="{{ route('admin.users.destroy', $user->id) }}"
+                                    class="hidden">
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                </form>
+
+                            </div>
                         </td>
                     </tr>
                     @endforeach
