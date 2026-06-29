@@ -178,11 +178,9 @@ Login - NurseNextDoor
 
 
                 <!-- switch to register hint (mobile friendly) -->
-                <p class="text-center text-sm text-[#3b5d7a] mt-4">
-                    {{__('auth.have_not')}}
-                    <a href="{{ route('register') }}" class="text-[#C63E5A] font-semibold hover:underline">
-                       {{__('auth.register')}}
-                    </a>
+                    <!-- hint to go back to login (mobile) -->
+                <p class="text-center text-sm text-[#3b5d7a] mt-2">
+                    {{__('auth.have_not')}} <button id="mobileRegisterTrigger" class="text-[#C63E5A] font-semibold">{{__('auth.register')}}</button>
                 </p>
             </div>
 

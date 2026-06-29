@@ -8,7 +8,7 @@
 
     <!-- Breadcrumb -->
     <h3 class="text-sm font-bold pb-3">
-        <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
+        <a href="/admin/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
         <span class="text-gray-700 dark:text-gray-300">Users Order list</span>
     </h3>
@@ -283,16 +283,16 @@
             </div>
 
             <div class="flex-none px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3">
-                 <button
-                            type="button"
-                            id="closeModalBtn"
-                            class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600
+                <button
+                    type="button"
+                    id="closeModalBtn"
+                    class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600
                            text-gray-700 dark:text-gray-300
                            hover:bg-gray-100 dark:hover:bg-gray-800 transition">
 
-                            Cancel
+                    Cancel
 
-                        </button>
+                </button>
                 <button type="submit" form="statusForm" class="px-5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium">Update Status</button>
             </div>
         </div>

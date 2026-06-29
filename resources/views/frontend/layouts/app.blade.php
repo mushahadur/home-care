@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', 'Home Nursing Care & Healthcare Staffing in Dhaka, Bangladesh') | Nurse Next Door</title>
+  <!-- Website Logo / Favicon -->
+  <link rel="icon" type="image/png" href="{{ asset('assets/frontend/images/logo/l1.png') }}">
   <meta name="description" content="Nurse Next Door provides professional home nursing care, elderly support, and healthcare services with trusted and compassionate nurses. Book quality care services today.">
   <meta name="keywords" content="home nursing care Dhaka, healthcare staffing Bangladesh, nurse agency Dhaka, elderly care Bangladesh, caregiver services Dhaka">
   <meta property="og:title" content="Nurse Next Door - Home Nursing Care in Dhaka">

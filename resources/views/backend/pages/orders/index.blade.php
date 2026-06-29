@@ -8,7 +8,7 @@
 
     <!-- Breadcrumb -->
     <h3 class="text-sm font-bold pb-3">
-        <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
+        <a href="/admin/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
         <span class="text-gray-700 dark:text-gray-300">Users Order list</span>
     </h3>
@@ -191,28 +191,28 @@
 
 
 
-   <!-- Order Details Modal -->
-<div id="orderDetailsModal" class="fixed inset-0 z-50 hidden overflow-y-auto">>
-    <div class="fixed inset-0 bg-black/60 dark:bg-black/80 closeModal backdrop-blur-xs"></div>
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="fixed inset-0 z-50 hidden overflow-y-auto">>
+        <div class="fixed inset-0 bg-black/60 dark:bg-black/80 closeModal backdrop-blur-xs"></div>
 
-    <!-- Modal Content Box Wrapper -->
-    <div class="relative min-h-screen flex items-center justify-center p-4">
-        <!-- Main Modal Container Box -->
-        <div class="relative bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg shadow-2xl max-w-4xl w-full p-6 dynamic-modal-content transition-all duration-300">
-            
-            <!-- Loading Spinner  -->
-            <div id="modalLoading" class="flex flex-col justify-center items-center py-16 space-y-4">
-                <div class="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 dark:border-gray-700 border-t-blue-600 dark:border-t-blue-500"></div>
-                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 animate-pulse">Loading details...</p>
-            </div>
+        <!-- Modal Content Box Wrapper -->
+        <div class="relative min-h-screen flex items-center justify-center p-4">
+            <!-- Main Modal Container Box -->
+            <div class="relative bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg shadow-2xl max-w-4xl w-full p-6 dynamic-modal-content transition-all duration-300">
 
-            <!-- Dynamic Response Container  -->
-            <div id="modalBody" class="hidden text-gray-900 dark:text-gray-100">
+                <!-- Loading Spinner  -->
+                <div id="modalLoading" class="flex flex-col justify-center items-center py-16 space-y-4">
+                    <div class="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 dark:border-gray-700 border-t-blue-600 dark:border-t-blue-500"></div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400 animate-pulse">Loading details...</p>
+                </div>
+
+                <!-- Dynamic Response Container  -->
+                <div id="modalBody" class="hidden text-gray-900 dark:text-gray-100">
+                </div>
+
             </div>
-            
         </div>
     </div>
-</div>
 
 
 
@@ -254,12 +254,12 @@
         });
 
 
-            modal.addEventListener('click', function (event) {
-                //if the clicked element has the class 'closeModal' or is a child of an element with that class, close the modal
-                if (event.target.classList.contains('closeModal') || event.target.closest('.closeModal')) {
-                    modal.classList.add('hidden');
-                }
-            });
+        modal.addEventListener('click', function(event) {
+            //if the clicked element has the class 'closeModal' or is a child of an element with that class, close the modal
+            if (event.target.classList.contains('closeModal') || event.target.closest('.closeModal')) {
+                modal.classList.add('hidden');
+            }
+        });
 
         // Close modal on pressing the Escape key
         const searchInput = document.getElementById('table-search');

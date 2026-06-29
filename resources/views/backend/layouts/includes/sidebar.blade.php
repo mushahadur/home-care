@@ -9,7 +9,7 @@
         <div class="flex items-center gap-3">
           <div
             class="w-8 h-8 rounded-sm bg-emerald-600 flex items-center justify-center text-white font-bold text-xl">
-            CL
+            <img src="{{ asset('assets/frontend/images/logo/l1.png') }}" alt="Company_Logo">
           </div>
           <span
             class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Company LOGO</span>
@@ -302,27 +302,29 @@
 
       <!-- ===== USER PROFILE - Fixed at bottom ===== -->
       <div
-        class="p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex-shrink-0">
-        <div class="flex items-center">
+        class="p-2 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex-shrink-0">
+        <div class="flex items-center justify-center">
           <img
             src="https://randomuser.me/api/portraits/men/32.jpg"
             alt="Admin"
             class="w-10 h-10 rounded-full ring-2 ring-emerald-500 ring-offset-2 dark:ring-offset-gray-900" />
           <div class="ml-3 flex-1">
             <p class="text-sm font-semibold text-gray-900 dark:text-white">
-              Admin User
+              {{ Auth::user()->name }}
             </p>
             <p class="text-xs text-gray-500 dark:text-gray-400 truncate">
-              admin@jobpilot.com
+              {{ Auth::user()->email }}
             </p>
           </div>
-          <!-- Logout button -->
-           <form method="POST" action="{{ route('logout') }}" class="block">
-                                @csrf
-          <button type="submit" class="p-2 text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          </button>
-           </form>
+          <div class="mt-6">
+            <!-- Logout button -->
+             <form method="POST" action="{{ route('logout') }}" class="block">
+                                  @csrf
+            <button type="submit" class="text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 text-xl transition-colors">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+             </form>
+          </div>
         </div>
       </div>
     </aside>

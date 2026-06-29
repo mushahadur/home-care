@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Login - NurseNextDoor')
+@section('title', 'Verify OTP - NurseNextDoor')
 
 @section('content')
 <style>

@@ -310,7 +310,7 @@ Home
         <div
           class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#E6F2FC]">
           <img
-            src="{{asset('assets/frontend/images/nurses/n1.jpeg')}}"
+            src="{{asset('assets/frontend/images/team/t1.jpeg')}}"
             class="w-full h-full object-cover" />
         </div>
 
@@ -344,7 +344,7 @@ Home
         <div
           class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#E6F2FC]">
           <img
-            src="{{asset('assets/frontend/images/nurses/n2.jpeg')}}"
+            src="{{asset('assets/frontend/images/team/t2.jpeg')}}"
             class="w-full h-full object-cover" />
         </div>
         <h3 class="font-bold text-[#1A3B4F] text-lg mt-4">Senior Nurse</h3>
@@ -370,7 +370,7 @@ Home
         <div
           class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#E6F2FC]">
           <img
-            src="{{asset('assets/frontend/images/nurses/n3.jpeg')}}"
+            src="{{asset('assets/frontend/images/team/t3.jpeg')}}"
             class="w-full h-full object-cover" />
         </div>
         <h3 class="font-bold text-[#1A3B4F] text-lg mt-4">Care Nurse</h3>
@@ -396,7 +396,7 @@ Home
         <div
           class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#E6F2FC]">
           <img
-            src="{{asset('assets/frontend/images/nurses/n4.jpeg')}}"
+            src="{{asset('assets/frontend/images/team/t4.jpg')}}"
             class="w-full h-full object-cover" />
         </div>
         <h3 class="font-bold text-[#1A3B4F] text-lg mt-4">

@@ -8,7 +8,7 @@
 
     <!-- Breadcrumb -->
     <h3 class="text-sm font-bold pb-3">
-        <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
+        <a href="/admin/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
         <span class="text-gray-700 dark:text-gray-300">Care Services</span>
     </h3>
