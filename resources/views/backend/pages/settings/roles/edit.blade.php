@@ -8,7 +8,7 @@
 
     <!-- Breadcrumb -->
     <h3 class="text-sm font-bold pb-3">
-        <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
+        <a href="/admin/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
         <span><a href="{{ route('admin.roles.index') }}" class="hover:underline text-blue-600">Roles</a></span>
         <span class="mx-2"> / </span>
@@ -17,13 +17,12 @@
 
     <!-- Role Form Card -->
     <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded shadow-sm dark:shadow-none overflow-hidden">
-        
+
         <div class="p-6 md:p-8">
             <h4 class="flex justify-between items-center text-lg font-semibold text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
                 <span><i class="fas fa-edit mr-2 text-emerald-500"></i> Edit Role: {{ $role->name }}</span>
-                <a href="{{ route('admin.roles.index') }}" 
-                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm"
-                >
+                <a href="{{ route('admin.roles.index') }}"
+                    class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded transition flex items-center gap-2 border border-gray-300 dark:border-gray-600 text-sm">
                     <i class="fas fa-arrow-left"></i> Back
                 </a>
             </h4>
@@ -37,20 +36,19 @@
                     <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <i class="fas fa-tag mr-2 text-emerald-500"></i>Role Name
                     </label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        id="name" 
-                        value="{{ old('name', $role->name) }}" 
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        value="{{ old('name', $role->name) }}"
                         placeholder="Enter role name (e.g., Admin, Editor, Viewer)"
                         class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition @error('name') border-red-500 dark:border-red-500 @enderror"
                         required
-                        autofocus
-                    >
+                        autofocus>
                     @error('name')
-                        <span class="text-red-600 dark:text-red-400 text-sm flex items-center gap-1 mt-1">
-                            <i class="fas fa-exclamation-circle"></i> {{ $message }}
-                        </span>
+                    <span class="text-red-600 dark:text-red-400 text-sm flex items-center gap-1 mt-1">
+                        <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                    </span>
                     @enderror
                 </div>
 
@@ -59,7 +57,7 @@
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <i class="fas fa-key mr-2 text-emerald-500"></i>Permissions
                     </label>
-                    
+
                     <div class="space-y-6">
                         @foreach($groupedPermissions as $group => $permissions)
                         <!-- Permission Group Card -->
@@ -75,20 +73,19 @@
                                     <span class="text-gray-700 dark:text-gray-300">Select All</span>
                                 </label>
                             </div>
-                            
+
                             <!-- Permissions List -->
                             <div class="p-4">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                                     @foreach($permissions as $permission)
                                     <label class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 p-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition cursor-pointer">
-                                        <input 
+                                        <input
                                             type="checkbox"
                                             name="permissions[]"
                                             value="{{ $permission->id }}"
                                             class="child-checkbox h-4 w-4 text-emerald-600 border-gray-300 rounded focus:ring-2 focus:ring-emerald-500"
                                             data-group="{{ $group }}"
-                                            {{ in_array($permission->id, old('permissions', $rolePermissions)) ? 'checked' : '' }}
-                                        >
+                                            {{ in_array($permission->id, old('permissions', $rolePermissions)) ? 'checked' : '' }}>
                                         <span class="truncate">{{ ucwords(str_replace('-', ' ', $permission->name)) }}</span>
                                     </label>
                                     @endforeach
@@ -97,34 +94,32 @@
                         </div>
                         @endforeach
                     </div>
-                    
+
                     @error('permissions')
-                        <span class="text-red-600 dark:text-red-400 text-sm flex items-center gap-1 mt-1">
-                            <i class="fas fa-exclamation-circle"></i> {{ $message }}
-                        </span>
+                    <span class="text-red-600 dark:text-red-400 text-sm flex items-center gap-1 mt-1">
+                        <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                    </span>
                     @enderror
-                    
+
                     @error('permissions.*')
-                        <span class="text-red-600 dark:text-red-400 text-sm flex items-center gap-1 mt-1">
-                            <i class="fas fa-exclamation-circle"></i> {{ $message }}
-                        </span>
+                    <span class="text-red-600 dark:text-red-400 text-sm flex items-center gap-1 mt-1">
+                        <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                    </span>
                     @enderror
                 </div>
 
                 <!-- Form Actions -->
                 <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <button 
-                        type="submit" 
-                        class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-6 rounded transition flex items-center justify-center gap-2 shadow-sm"
-                    >
+                    <button
+                        type="submit"
+                        class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-6 rounded transition flex items-center justify-center gap-2 shadow-sm">
                         <i class="fas fa-save"></i>
                         Update Role
                     </button>
-                    
-                    <a 
-                        href="{{ route('admin.roles.index') }}" 
-                        class="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2.5 px-6 rounded transition flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600"
-                    >
+
+                    <a
+                        href="{{ route('admin.roles.index') }}"
+                        class="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2.5 px-6 rounded transition flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600">
                         <i class="fas fa-times"></i>
                         Cancel
                     </a>
@@ -157,15 +152,15 @@
             <div>
                 <h5 class="font-medium text-gray-700 dark:text-gray-300">Role Information</h5>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    Role ID: <span class="font-mono">{{ $role->id }}</span> | 
-                    Created: {{ $role->created_at ? $role->created_at->format('M d, Y') : 'N/A' }} | 
+                    Role ID: <span class="font-mono">{{ $role->id }}</span> |
+                    Created: {{ $role->created_at ? $role->created_at->format('M d, Y') : 'N/A' }} |
                     Last Updated: {{ $role->updated_at ? $role->updated_at->format('M d, Y') : 'N/A' }}
                 </p>
                 @if($role->users && $role->users->count() > 0)
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                        <i class="fas fa-users mr-1"></i> 
-                        This role is currently assigned to {{ $role->users->count() }} user(s).
-                    </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                    <i class="fas fa-users mr-1"></i>
+                    This role is currently assigned to {{ $role->users->count() }} user(s).
+                </p>
                 @endif
             </div>
         </div>
@@ -180,7 +175,7 @@
         // Group select all functionality
         const groupCheckboxes = document.querySelectorAll('.group-checkbox');
         const childCheckboxes = document.querySelectorAll('.child-checkbox');
-        
+
         // Handle group checkbox click
         groupCheckboxes.forEach(function(groupCheckbox) {
             groupCheckbox.addEventListener('change', function() {
@@ -191,20 +186,20 @@
                 });
             });
         });
-        
+
         // Handle individual checkbox clicks
         childCheckboxes.forEach(function(child) {
             child.addEventListener('change', function() {
                 const group = this.dataset.group;
                 const children = document.querySelectorAll('.child-checkbox[data-group="' + group + '"]');
                 const groupCheckbox = document.querySelector('.group-checkbox[data-group="' + group + '"]');
-                
+
                 // Check if all children are checked
                 const allChecked = Array.from(children).every(c => c.checked);
                 groupCheckbox.checked = allChecked;
             });
         });
-        
+
         // Initialize: check group checkboxes if all children are pre-checked
         const groups = [...new Set(Array.from(childCheckboxes).map(cb => cb.dataset.group))];
         groups.forEach(function(group) {
@@ -215,18 +210,18 @@
                 groupCheckbox.checked = allChecked;
             }
         });
-        
+
         // Optional: Add confirmation before leaving if changes are made
         let formChanged = false;
         const form = document.querySelector('form');
         const inputs = form.querySelectorAll('input, select, textarea');
-        
+
         inputs.forEach(input => {
             input.addEventListener('change', function() {
                 formChanged = true;
             });
         });
-        
+
         // Warn before leaving if changes are unsaved
         window.addEventListener('beforeunload', function(e) {
             if (formChanged) {
@@ -235,12 +230,12 @@
                 return e.returnValue;
             }
         });
-        
+
         // Reset formChanged flag on form submit
         form.addEventListener('submit', function() {
             formChanged = false;
         });
-        
+
         // Optional: Add keyboard navigation support
         const roleNameInput = document.getElementById('name');
         if (roleNameInput) {

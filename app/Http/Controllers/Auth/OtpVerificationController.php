@@ -29,40 +29,8 @@ class OtpVerificationController extends Controller
     }
 
 
-    // public function verify(Request $request): RedirectResponse
-    // {
-    //     $request->validate([
-    //         'otp' => ['required', 'string', 'size:6'],
-    //     ]);
-
-    //     $user = Auth::user();
-    //     // dd($user);Hash::check($inputOtp, $user->otp);
-
-    //     if (Hash::check($request->otp, $user->otp) && $user->otp_expires_at > now()) {
-    //         $user->update([
-    //             'otp' => null,
-    //             'otp_expires_at' => null,
-    //             'is_verified' => true,
-    //         ]);
-
-    //         // Defult user role
-    //         $user->assignRole('user');
-
-    //         // Send Notification for Supper Admin
-    //         $superAdmins = \App\Models\User::role('super-admin')->get();
-    //         foreach ($superAdmins as $admin) {
-    //             $admin->notify(new \App\Notifications\NewUserVerifiedNotification($user));
-    //         }
-
-    //         return redirect()->route('dashboard')->with('success', 'successfully verified your email!');
-    //     }
-
-    //     return back()->withErrors(['otp' => 'Invalid or Expired OTP.']);
-    // }
-
     public function verify(Request $request): RedirectResponse
     {
-        // dd($request->all());
         // Validate input
         $request->validate([
             'otp' => ['required', 'string', 'size:6'],

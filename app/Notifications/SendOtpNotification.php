@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendOtpNotification extends Notification
+class SendOtpNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -16,9 +16,9 @@ class SendOtpNotification extends Notification
      */
 
 
-    protected $otp;
+    protected string $otp;
 
-    public function __construct($otp)
+    public function __construct( string $otp)
     {
         $this->otp = $otp;
     }
@@ -36,15 +36,14 @@ class SendOtpNotification extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+   public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-        ->subject('Your OTP Code')
-        ->line('Please use the following OTP code to verify your registration:')
-        ->line('**OTP: ' . $this->otp . '**')
-        ->line('This OTP is valid for 5 minutes.')
-        ->line('If you did not request this, please ignore this email.');
-
+            ->subject('Your OTP Code')
+            ->view('auth.emails.otp', [
+                'otp'  => $this->otp,
+                'name' => $notifiable->name 
+            ]);
     }
 
     /**

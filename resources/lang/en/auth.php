@@ -7,7 +7,7 @@ return[
     'name' => 'Enter Full Name',
     'email' => 'Enter Email Address ',
     'password' => 'Enter Password',
-    'confirm_password' => 'Enter Confirm Password',
+    'confirm_password' => 'Confirm Password',
     'agree' => 'I agree to the Terms and privacy policy.',
     'remember' => 'Remember me',
     'forgot_password' => 'Forgot password ?',

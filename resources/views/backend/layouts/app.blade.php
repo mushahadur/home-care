@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apex Dashboard - Dark/Light Toggle</title>
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+   <title>@yield('title', 'Home Nursing Care & Healthcare Staffing in Dhaka, Bangladesh') | Nurse Next Door</title>
+  <!-- Website Logo / Favicon -->
+  <link rel="icon" type="image/png" href="{{ asset('assets/frontend/images/logo/l1.png') }}">
   <script src="{{ asset('assets/backend/js/tailwindcss.js') }}"></script>
   <!-- Chart.js for the graph -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script> -->
