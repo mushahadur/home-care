@@ -2,7 +2,7 @@
 
 return [
 
-    'section' => 'about',
+    'section' => 'About',
     'title' => 'About Nurse Next Door ',
 
     'description_1' => 'Nurse Next Door provides compassionate, reliable, and professional home nursing care for seniors, individuals recovering from illness, and those managing chronic conditions. Our trained and experienced nurses safely deliver medical support directly to the patient’s home, ensuring they receive personalized care with comfort, dignity, and peace of mind in a familiar environment. We believe that a person’s own home is the best place for health and healing. Therefore, our services include administering medication according to doctor’s prescriptions, injections and IV fluids, wound care and dressing, vital signs monitoring, post-operative care, long-term chronic patient management, and assistance with mobility and daily activities. Every service strictly follows sterile techniques and international safety protocols.',

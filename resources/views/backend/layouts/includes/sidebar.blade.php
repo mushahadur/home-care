@@ -12,7 +12,7 @@
             <img src="{{ asset('assets/frontend/images/logo/l1.png') }}" alt="Company_Logo">
           </div>
           <span
-            class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Company LOGO</span>
+            class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Home Care</span>
         </div>
         <button
           id="close-sidebar"

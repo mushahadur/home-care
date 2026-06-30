@@ -54,6 +54,42 @@
            </svg>contact@.com</a>
        </div>
      </div>
+
+     <button
+        id="scrollToTopProgress"
+        class="fixed bottom-6 right-4 z-50 w-10 h-10 rounded-full bg-[#2B4F6E] shadow-xl border border-teal-600 flex items-center justify-center group hover:border-[var(--accent)] transition-all duration-300 opacity-0 scale-90 pointer-events-none"
+        aria-label="Scroll to top"
+      >
+        <div class="relative w-8 h-8">
+          <svg class="w-full h-full -rotate-90" viewBox="0 0 24 24">
+            <circle
+              class="text-gray-200"
+              cx="18"
+              cy="18"
+              r="16"
+              fill="none"
+              stroke-width="2.5"
+            ></circle>
+            <circle
+              id="progressCircle"
+              class="text-[var(--accent)] transition-all duration-500"
+              cx="18"
+              cy="18"
+              r="16"
+              fill="none"
+              stroke-width="2.5"
+              stroke-dasharray="100.53"
+              stroke-dashoffset="100.53"
+            ></circle>
+          </svg>
+          <div
+            class="absolute inset-0 flex items-center justify-center"
+          >
+            <i class="fas fa-arrow-up text-xl"></i>
+          </div>
+        </div>
+      </button>
+
      <div class="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row items-center justify-between text-gray-500 text-sm">
        <div class="text-center md:text-left w-full md:w-auto mb-4 md:mb-0">© 2017–2026 Design and develop - <a href="https://mushahadur.github.io/Portfolio-Website" class="text-red-700 italic"> MRK Pulock.</a> </div>
        <div class="flex justify-center md:justify-end items-center space-x-4 w-full md:w-auto"><img src="{{ asset('assets/frontend/images/logo/secure.webp')}}" alt="Secure Payment" class="h-6"><span class="text-gray-500 text-ml">Secure Payment</span><img src="https://www.mastercard.com/content/dam/public/brandcenter/assets/images/logos/mclogo-for-footer.svg" alt="MasterCard" class="h-3"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="h-4"></div>
