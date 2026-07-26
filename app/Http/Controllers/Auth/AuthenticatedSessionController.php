@@ -22,15 +22,6 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    // public function store(LoginRequest $request): RedirectResponse
-    // {
-    //     $request->authenticate();
-
-    //     $request->session()->regenerate();
-
-    //     return redirect()->intended(route('dashboard', absolute: false));
-    // }
-
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
@@ -38,16 +29,28 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
-        
-        if ($user->default_role === 'user' && $user->is_verified) {
-            return redirect()->intended(route('user.dashboard'));
-        }
-        if ($user->hasRole('super-admin') || $user->is_verified) {
-            return redirect()->intended(route('admin.dashboard'));
+
+        // dd($user->roles->pluck('name'));
+
+        if (!$user->is_verified) {
+            return redirect()->route('otp.verify');
         }
 
-        //Unverifyed user for OTP page redirect
-        return redirect()->route('otp.verify');
+        if ($user->is_verified) {
+
+            if ($user->hasAnyRole(['super-admin', 'admin', 'nurse', 'user'])) {
+                $route = match (true) {
+                    $user->hasRole('super-admin') => 'admin.dashboard',
+                    $user->hasRole('admin')       => 'admin.dashboard',
+                    $user->hasRole('nurse')       => 'admin.dashboard',
+                    $user->hasRole('user')        => 'user.profile',
+                };
+
+                return redirect()->intended(route($route));
+            }
+        }
+
+        return redirect()->intended(route('user.profile', absolute: false));
     }
 
     /**
@@ -63,5 +66,4 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
-    
 }

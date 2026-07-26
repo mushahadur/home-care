@@ -63,9 +63,11 @@ Login - NurseNextDoor
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;" class="pt-12 sm:pt-12 md:pt-24 lg:pt-32 xl:pt-20 pb-16  sm:pb-12 md:pb-24 lg:pb-32 xl:pb-40 flex items-center justify-center">
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;"
+
+    class="pt-12 md:pt-24 lg:pt-32 xl:pt-20 pb-16  sm:pb-12 md:pb-24 lg:pb-32 xl:pb-40 px-4 md:px-8 flex items-center justify-center">
     <!-- main glass card container -->
-    <div class="w-full max-w-md glass-card rounded-3xl overflow-hidden shadow-2xl border border-white/40 text-[#1e3a5f]">
+    <div class="w-full max-w-md glass-card rounded-lg overflow-hidden shadow-2xl border border-white/40 text-[#1e3a5f]">
 
         <!-- decorative top bar with soft blue & pink accent -->
         <div class="h-2 w-full flex">
@@ -77,9 +79,9 @@ Login - NurseNextDoor
         <div class="px-6 py-8 md:px-8">
 
             <!-- === LOGIN / REGISTER TOGGLE (two tabs) === -->
-            <div class="flex rounded-full bg-[#f0f5fa] p-1 mb-8">
-                <button id="tabLoginBtn" class="auth-toggle-transition flex-1 py-3 text-sm font-semibold rounded-full bg-white shadow-sm text-[#2B4F6E] transition-all">Login</button>
-                <button id="tabRegisterBtn" class="auth-toggle-transition flex-1 py-3 text-sm font-semibold rounded-full text-[#4a627a] hover:text-[#2B4F6E] transition-all">Register</button>
+            <div class="flex rounded-lg bg-[#f0f5fa] p-1 mb-8">
+                <button id="tabLoginBtn" class="auth-toggle-transition flex-1 py-1 md:py-3 lg:py-3 xl:py-3 text-sm md:text-base lg:text-base xl:text-base font-bold rounded-md bg-white shadow-sm text-[#2B4F6E] transition-all">{{__('auth.login')}}</button>
+                <button id="tabRegisterBtn" class="auth-toggle-transition flex-1 py-1 md:py-3 lg:py-3 xl:py-3 text-sm md:text-base lg:text-base xl:text-base font-bold rounded-md text-[#4a627a] hover:text-[#2B4F6E] transition-all">{{__('auth.register')}}</button>
             </div>
 
             <!-- === LOGIN FORM (Laravel Blade optimized) === -->
@@ -89,7 +91,7 @@ Login - NurseNextDoor
 
                 <!-- display validation errors if any (optional, but good practice) -->
                 @if ($errors->any())
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-2xl text-sm mb-4">
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md text-sm mb-4">
                     <ul class="list-disc pl-5">
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -98,21 +100,22 @@ Login - NurseNextDoor
                 </div>
                 @endif
 
-                <form method="POST" action="{{ route('login') }}" class="space-y-5">
+                <form method="POST" action="{{ route('login') }}" class="space-y-5" autocomplete="off" novalidate>
                     @csrf
                     <!-- email / phone (using Laravel old() helper) -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                            <i class="far fa-envelope mr-2 text-[#C63E5A]"></i>Email or phone
+                            <i class="far fa-envelope mr-2 text-[#C63E5A]"></i>{{__('auth.email')}}
                         </label>
                         <input
                             type="text"
                             name="email"
                             id="email"
                             value="{{ old('email') }}"
-                            placeholder="you@example.com / +8801XXXXXXXXX"
-                            class="w-full px-5 py-3 rounded-2xl border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('email') border-red-500 @enderror"
+                            placeholder="you@example.com "
+                            class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 rounded-md border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('email') border-red-500 @enderror"
                             autofocus
+                            autocomplete="off"
                             required>
                         @error('email')
                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
@@ -120,17 +123,29 @@ Login - NurseNextDoor
                     </div>
 
                     <!-- password -->
-                    <div>
+                    <div class="relative">
                         <label for="password" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                            <i class="fas fa-lock mr-2 text-[#C63E5A]"></i>Password
+                            <i class="fas fa-lock mr-2 text-[#C63E5A]"></i>{{__('auth.password')}}
                         </label>
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="••••••••"
-                            class="w-full px-5 py-3 rounded-2xl border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('password') border-red-500 @enderror"
-                            required>
+                        <div class="relative">
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="••••••••"
+                                autocomplete="off"
+                                class="w-full px-5 pr-12 py-1.5 md:py-2 lg:py-2.5 rounded-md border border-[#d3e4f0] bg-white/80 focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent outline-none transition text-sm @error('password') border-red-500 @enderror"
+                                required />
+                            <!-- Toggle button -->
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-[#C63E5A] transition"
+                                aria-label="Toggle password visibility"
+                                tabindex="-1">
+                                <i id="passwordIcon" class="fas fa-eye text-lg"></i>
+                            </button>
+                        </div>
                         @error('password')
                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                         @enderror
@@ -144,62 +159,60 @@ Login - NurseNextDoor
                                 name="remember"
                                 id="remember"
                                 {{ old('remember') ? 'checked' : '' }}
-                                class="rounded border-[#b8d1e5] text-[#C63E5A] focus:ring-[#F9B0B0]">
-                            <span>Remember me</span>
+                                class="rounded border-[#b8d1e5] text:green-900 focus:ring-[#F9B0B0]">
+                            <span>{{__('auth.remember')}}</span>
                         </label>
                         <a href="{{ route('password.request') }}" class="text-[#C63E5A] hover:underline">
-                            Forgot password?
+                            {{__('auth.forgot_password')}}
                         </a>
                     </div>
 
                     <!-- submit button -->
                     <button
                         type="submit"
-                        class="w-full bg-[#2B4F6E] hover:bg-[#1f3a50] text-white font-bold py-3.5 rounded-2xl shadow-md transition flex items-center justify-center gap-2">
-                        <i class="fas fa-sign-in-alt"></i> Sign in
+                        class="w-full bg-[#2B4F6E] hover:bg-[#1f3a50] text-white font-bold py-1.5 md:py-2 lg:py-2.5 rounded-md shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fas fa-sign-in-alt"></i> {{__('auth.login_btn')}}
                     </button>
                 </form>
                 <!-- divider with "or" (optional, if you have social login) -->
 
 
                 <!-- switch to register hint (mobile friendly) -->
-                <p class="text-center text-sm text-[#3b5d7a] mt-4 md:hidden">
-                    Don't have an account?
-                    <a href="{{ route('register') }}" class="text-[#C63E5A] font-semibold hover:underline">
-                        Register
-                    </a>
+                    <!-- hint to go back to login (mobile) -->
+                <p class="text-center text-sm text-[#3b5d7a] mt-2">
+                    {{__('auth.have_not')}} <button id="mobileRegisterTrigger" class="text-[#C63E5A] font-semibold">{{__('auth.register')}}</button>
                 </p>
             </div>
 
             <!-- === REGISTER FORM (hidden by default) === -->
             <div id="registerForm" class="space-y-5 hidden transition-opacity duration-200">
                 <!-- full name -->
-                <form method="POST" action="{{ route('register') }}" class="space-y-5">
+                <form method="POST" action="{{ route('register') }}" class="space-y-5" autocomplete="off">
                     @csrf
-                    
+
                     <!-- Display validation errors if any -->
                     @if ($errors->any())
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-2xl text-sm mb-4">
-                            <ul class="list-disc pl-5">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-2xl text-sm mb-4">
+                        <ul class="list-disc pl-5">
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
 
                     <!-- Full name -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                            <i class="far fa-user mr-2 text-[#C63E5A]"></i>Full name
+                            <i class="far fa-user mr-2 text-[#C63E5A]"></i>{{__('auth.name')}}
                         </label>
-                        <input 
-                            type="text" 
-                            name="name" 
-                            id="name" 
-                            value="{{ old('name') }}" 
-                            placeholder="Dr. Mrinal Kanti" 
-                            class="w-full px-5 py-3 rounded-2xl border transition text-sm outline-none
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            value="{{ old('name') }}"
+                            placeholder="Dr. Mrinal Kanti"
+                            class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 rounded-md border transition text-sm outline-none
                                 @error('name') 
                                     border-red-500 focus:ring-red-200 
                                 @else 
@@ -207,35 +220,33 @@ Login - NurseNextDoor
                                 @enderror
                                 bg-white/80"
                             required
-                            autofocus
-                        >
+                            autofocus>
                         @error('name')
-                            <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <!-- Email address -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                            <i class="far fa-envelope mr-2 text-[#C63E5A]"></i>Email address
+                            <i class="far fa-envelope mr-2 text-[#C63E5A]"></i>{{__('auth.email')}}
                         </label>
-                        <input 
-                            type="email" 
-                            name="email" 
-                            id="email" 
-                            value="{{ old('email') }}" 
-                            placeholder="name@example.com" 
-                            class="w-full px-5 py-3 rounded-2xl border transition text-sm outline-none
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            value="{{ old('email') }}"
+                            placeholder="name@example.com"
+                            class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 rounded-md border transition text-sm outline-none
                                 @error('email') 
                                     border-red-500 focus:ring-red-200 
                                 @else 
                                     border-[#d3e4f0] focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent 
                                 @enderror
                                 bg-white/80"
-                            required
-                        >
+                            required>
                         @error('email')
-                            <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -243,78 +254,94 @@ Login - NurseNextDoor
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <!-- Password -->
                         <div>
-                            <label for="password" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                                <i class="fas fa-lock mr-2 text-[#C63E5A]"></i>Password
+                            <label for="password_register" class="block text-sm font-medium text-[#1A3B4F] mb-1">
+                                <i class="fas fa-lock mr-2 text-[#C63E5A]"></i>{{__('auth.password')}}
                             </label>
-                            <input 
-                                type="password" 
-                                name="password" 
-                                id="password" 
-                                placeholder="min. 8 chars" 
-                                class="w-full px-5 py-3 rounded-2xl border transition text-sm outline-none
-                                    @error('password') 
-                                        border-red-500 focus:ring-red-200 
-                                    @else 
-                                        border-[#d3e4f0] focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent 
-                                    @enderror
-                                    bg-white/80"
-                                required
-                            >
+                            <div class="relative">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="password_register"
+                                    placeholder="min. 8 chars"
+                                    class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 pr-12 rounded-md border transition text-sm outline-none
+                    @error('password') 
+                        border-red-500 focus:ring-red-200 
+                    @else 
+                        border-[#d3e4f0] focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent 
+                    @enderror
+                    bg-white/80"
+                                    required>
+                                <button
+                                    type="button"
+                                    id="togglePasswordRegister"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-[#C63E5A] transition"
+                                    aria-label="Toggle password visibility"
+                                    tabindex="-1">
+                                    <i id="passwordIconRegister" class="fas fa-eye text-lg"></i>
+                                </button>
+                            </div>
                             @error('password')
-                                <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                            <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <!-- Confirm Password -->
                         <div>
                             <label for="password_confirmation" class="block text-sm font-medium text-[#1A3B4F] mb-1">
-                                <i class="fas fa-check-circle mr-2 text-[#C63E5A]"></i>Confirm
+                                <i class="fas fa-check-circle mr-2 text-[#C63E5A]"></i>{{__('auth.confirm_password')}}
                             </label>
-                            <input 
-                                type="password" 
-                                name="password_confirmation" 
-                                id="password_confirmation" 
-                                placeholder="re-enter" 
-                                class="w-full px-5 py-3 rounded-2xl border transition text-sm outline-none
-                                    @error('password') 
-                                        border-red-500 focus:ring-red-200 
-                                    @else 
-                                        border-[#d3e4f0] focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent 
-                                    @enderror
-                                    bg-white/80"
-                                required
-                            >
+                            <div class="relative">
+                                <input
+                                    type="password"
+                                    name="password_confirmation"
+                                    id="password_confirmation"
+                                    placeholder="re-enter"
+                                    class="w-full px-5 py-1.5 md:py-2 lg:py-2.5 pr-12 rounded-md border transition text-sm outline-none
+                    @error('password') 
+                        border-red-500 focus:ring-red-200 
+                    @else 
+                        border-[#d3e4f0] focus:ring-2 focus:ring-[#F9B0B0] focus:border-transparent 
+                    @enderror
+                    bg-white/80"
+                                    required>
+                                <button
+                                    type="button"
+                                    id="toggleConfirmPassword"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-[#C63E5A] transition"
+                                    aria-label="Toggle confirm password visibility"
+                                    tabindex="-1">
+                                    <i id="confirmPasswordIcon" class="fas fa-eye text-lg"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Terms checkbox -->
                     <label for="terms" class="flex items-start gap-3 text-sm text-[#2B4F6E] cursor-pointer">
-                        <input 
-                            type="checkbox" 
-                            name="terms" 
-                            id="terms" 
+                        <input
+                            type="checkbox"
+                            name="terms"
+                            id="terms"
                             {{ old('terms') ? 'checked' : '' }}
                             class="mt-1 rounded border-[#b8d1e5] text-[#C63E5A] focus:ring-[#F9B0B0]
                                 @error('terms') border-red-500 @enderror"
-                            required
-                        >
-                        <span>I agree to the <a href="#" class="text-[#C63E5A] underline">Terms</a> and privacy policy.</span>
+                            required>
+                        <span>{{__('auth.agree')}}</span>
                     </label>
                     @error('terms')
-                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                    <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                     @enderror
 
                     <!-- Register button -->
-                    <button 
-                        type="submit" 
-                        class="w-full bg-[#C63E5A] hover:bg-[#b12e4a] text-white font-bold py-3.5 rounded-2xl shadow-md transition flex items-center justify-center gap-2"
-                    >
-                        <i class="fas fa-user-plus"></i> Create account
+                    <button
+                        type="submit"
+                        class="w-full bg-[#C63E5A] hover:bg-[#b12e4a] text-white font-bold py-1.5 md:py-2 lg:py-2.5 rounded-md shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fas fa-user-plus"></i> {{__('auth.register_btn')}}
                     </button>
                 </form>
                 <!-- hint to go back to login (mobile) -->
-                <p class="text-center text-sm text-[#3b5d7a] mt-2 md:hidden">
-                    Already have an account? <button id="mobileLoginTrigger" class="text-[#C63E5A] font-semibold">Login</button>
+                <p class="text-center text-sm text-[#3b5d7a] mt-2">
+                    {{__('auth.have')}} <button id="mobileLoginTrigger" class="text-[#C63E5A] font-semibold">{{__('auth.login')}}</button>
                 </p>
             </div>
         </div>
@@ -334,18 +361,18 @@ Login - NurseNextDoor
         function setActiveTab(isLogin) {
             if (isLogin) {
                 // login active
-                tabLogin.classList.add('bg-white', 'shadow-sm', 'text-[#2B4F6E]');
+                tabLogin.classList.add('bg-gray-200', 'shadow-sm', 'text-[#2B4F6E]');
                 tabLogin.classList.remove('text-[#4a627a]', 'hover:text-[#2B4F6E]');
-                tabRegister.classList.remove('bg-white', 'shadow-sm', 'text-[#2B4F6E]');
+                tabRegister.classList.remove('bg-gray-200', 'shadow-sm', 'text-[#2B4F6E]');
                 tabRegister.classList.add('text-[#4a627a]', 'hover:text-[#2B4F6E]');
                 // show login, hide register
                 loginForm.classList.remove('hidden');
                 registerForm.classList.add('hidden');
             } else {
                 // register active
-                tabRegister.classList.add('bg-white', 'shadow-sm', 'text-[#2B4F6E]');
+                tabRegister.classList.add('bg-gray-200', 'shadow-sm', 'text-[#2B4F6E]');
                 tabRegister.classList.remove('text-[#4a627a]', 'hover:text-[#2B4F6E]');
-                tabLogin.classList.remove('bg-white', 'shadow-sm', 'text-[#2B4F6E]');
+                tabLogin.classList.remove('bg-gray-200', 'shadow-sm', 'text-[#2B4F6E]');
                 tabLogin.classList.add('text-[#4a627a]', 'hover:text-[#2B4F6E]');
                 registerForm.classList.remove('hidden');
                 loginForm.classList.add('hidden');
@@ -378,6 +405,54 @@ Login - NurseNextDoor
         setActiveTab(true);
     })();
 </script>
+
+
+<script>
+    (function() {
+        // Password toggle
+        const passwordInput = document.getElementById('password');
+        const toggleBtn = document.getElementById('togglePassword');
+        const icon = document.getElementById('passwordIcon');
+
+        if (passwordInput && toggleBtn && icon) {
+            toggleBtn.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
+        }
+
+        // Password Register toggle
+        const passwordInputR = document.getElementById('password_register');
+        const toggleBtnR = document.getElementById('togglePasswordRegister');
+        const iconR = document.getElementById('passwordIconRegister');
+
+        if (passwordInputR && toggleBtnR && iconR) {
+            toggleBtnR.addEventListener('click', function() {
+                const type = passwordInputR.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInputR.setAttribute('type', type);
+                iconR.classList.toggle('fa-eye');
+                iconR.classList.toggle('fa-eye-slash');
+            });
+        }
+
+        // Confirm Password toggle
+        const confirmInput = document.getElementById('password_confirmation');
+        const confirmToggle = document.getElementById('toggleConfirmPassword');
+        const confirmIcon = document.getElementById('confirmPasswordIcon');
+
+        if (confirmInput && confirmToggle && confirmIcon) {
+            confirmToggle.addEventListener('click', function() {
+                const type = confirmInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmInput.setAttribute('type', type);
+                confirmIcon.classList.toggle('fa-eye');
+                confirmIcon.classList.toggle('fa-eye-slash');
+            });
+        }
+    })();
+</script>
+
 
 
 @endsection

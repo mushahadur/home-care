@@ -12,7 +12,7 @@
   <div class="mb-6 md:mb-8">
     <h2
       class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-      Welcome back, Aigars
+      Welcome back, {{ Auth::user()->name }}
     </h2>
     <p
       class="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-1">
@@ -24,7 +24,7 @@
   <div
     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
     <div
-      class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm dark:shadow-none">
+      class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md p-6 shadow-sm dark:shadow-none">
       <p class="text-sm text-gray-500 dark:text-gray-400">
         Total Revenue
       </p>
@@ -39,7 +39,7 @@
     </div>
 
     <div
-      class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm dark:shadow-none">
+      class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md p-6 shadow-sm dark:shadow-none">
       <p class="text-sm text-gray-500 dark:text-gray-400">
         Active Users
       </p>
@@ -51,7 +51,7 @@
     </div>
 
     <div
-      class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm dark:shadow-none">
+      class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md p-6 shadow-sm dark:shadow-none">
       <p class="text-sm text-gray-500 dark:text-gray-400">
         Total Orders
       </p>
@@ -63,7 +63,7 @@
     </div>
 
     <div
-      class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm dark:shadow-none">
+      class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md p-6 shadow-sm dark:shadow-none">
       <p class="text-sm text-gray-500 dark:text-gray-400">Page Views</p>
       <p class="text-2xl font-bold mt-1">284K</p>
       <div class="mt-4 text-sm">
@@ -78,10 +78,10 @@
     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
     <!-- Total Revenue Card -->
     <div
-      class="stat-card bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+      class="stat-card bg-white dark:bg-gray-800 rounded-md p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
       <div class="flex items-center justify-between mb-3">
         <div
-          class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+          class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-md flex items-center justify-center">
           <i
             class="fas fa-dollar-sign text-green-600 dark:text-green-400"></i>
         </div>
@@ -103,10 +103,10 @@
 
     <!-- Active Users Card -->
     <div
-      class="stat-card bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+      class="stat-card bg-white dark:bg-gray-800 rounded-md p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
       <div class="flex items-center justify-between mb-3">
         <div
-          class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+          class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-md flex items-center justify-center">
           <i class="fas fa-users text-blue-600 dark:text-blue-400"></i>
         </div>
         <span
@@ -127,10 +127,10 @@
 
     <!-- Total Orders Card -->
     <div
-      class="stat-card bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+      class="stat-card bg-white dark:bg-gray-800 rounded-md p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
       <div class="flex items-center justify-between mb-3">
         <div
-          class="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+          class="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-md flex items-center justify-center">
           <i
             class="fas fa-shopping-cart text-purple-600 dark:text-purple-400"></i>
         </div>
@@ -152,10 +152,10 @@
 
     <!-- Page Views Card -->
     <div
-      class="stat-card bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+      class="stat-card bg-white dark:bg-gray-800 rounded-md p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
       <div class="flex items-center justify-between mb-3">
         <div
-          class="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
+          class="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-md flex items-center justify-center">
           <i
             class="fas fa-eye text-orange-600 dark:text-orange-400"></i>
         </div>
@@ -182,7 +182,7 @@
     <div class="lg:col-span-2 space-y-6">
       <!-- Overview Card with Chart -->
       <div
-        class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        class="bg-white dark:bg-gray-800 rounded-md p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
         <!-- Header -->
         <div
           class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
@@ -225,7 +225,7 @@
 
       <!-- Traffic Sources Card (visible on mobile) -->
       <div
-        class="block lg:hidden bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        class="block lg:hidden bg-white dark:bg-gray-800 rounded-md p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
         <h2
           class="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-4">
           Traffic Sources
@@ -318,7 +318,7 @@
     <div class="space-y-6">
       <!-- Traffic Sources Card (desktop) -->
       <div
-        class="hidden lg:block bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        class="hidden lg:block bg-white dark:bg-gray-800 rounded-md p-5 md:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
         <h2
           class="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-4">
           Traffic Sources

@@ -6,8 +6,17 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
-    ->withRouting(
-        web: __DIR__.'/../routes/web.php',
+    // ->withRouting(
+    //     web: __DIR__.'/../routes/web.php',
+    //     commands: __DIR__.'/../routes/console.php',
+    //     health: '/up',
+    // )
+      ->withRouting(
+        using: function () {
+            Route::middleware('web')->group(base_path('routes/web.php'));
+            Route::middleware('web')->group(base_path('routes/admin.php'));
+            Route::middleware('web')->group(base_path('routes/auth.php'));
+        },
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
@@ -18,7 +27,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'route_permission' => \App\Http\Middleware\CheckRoutePermission::class,
             'verified' => \App\Http\Middleware\EnsureUserIsVerified::class,
+            // 'locale' => \App\Http\Middleware\Language::class,
         ]);
+        $middleware->web(append: [
+        \App\Http\Middleware\Language::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

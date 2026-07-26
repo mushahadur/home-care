@@ -9,7 +9,7 @@
 <main class="flex-1 overflow-y-auto p-5 md:p-8 bg-gray-50 dark:bg-gray-950 transition-colors">
 
     <h3 class="text-sm font-bold pb-3">
-        <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
+        <a href="/admin/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
         <span>Users</span>
     </h3>
@@ -39,7 +39,7 @@
                 </div>
 
                 <!-- Create User Button -->
-                <a href="{{ route('users.create') }}"
+                <a href="{{ route('admin.users.create') }}"
                     class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 min-w-[140px]">
                     <i class="fa-solid fa-plus text-base"></i>
                     Create User
@@ -77,8 +77,8 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $user->created_at->format('M j, Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                           <button 
-                                onclick="window.location.href='{{ route('users.edit', $user->id) }}'" 
+                            <button
+                                onclick="window.location.href='{{ route('users.edit', $user->id) }}'"
                                 class="text-blue-500 hover:text-blue-700 transition-colors">
                                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
@@ -147,7 +147,7 @@
         });
     }
 
-     // Table search functionality
+    // Table search functionality
     document.addEventListener('DOMContentLoaded', () => {
         const searchInput = document.getElementById('table-search');
         const table = document.getElementById('users-table');

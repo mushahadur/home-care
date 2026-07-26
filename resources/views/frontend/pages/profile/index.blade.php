@@ -9,7 +9,7 @@ Oreder
     <main class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <!-- Profile Header -->
       <div
-        class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8"
+        class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-8"
       >
         <div
           class="h-32 sm:h-40 bg-gradient-to-r from-[#2B4F6E] to-[#3a6a8f]"
@@ -38,11 +38,11 @@ Oreder
                   {{$user->phone}} • {{$user->email}}
                 </p>
                 <div class="flex items-center gap-4 mt-3 flex-wrap">
-                  <span
-                    class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800"
-                  >
-                    <i class="fas fa-check-circle mr-1.5"></i> Verified
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm {{ $user->is_verified ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                    <i class="fas {{ $user->is_verified ? 'fa-check-circle' : 'fa-times-circle' }} mr-1.5"></i> 
+                    {{ $user->is_verified ? 'Verified' : 'Not Verified' }}
                   </span>
+
                   <span class="text-sm text-gray-500"
                     >{{$user->created_at->format('F Y')}}</span
                   >
@@ -52,7 +52,7 @@ Oreder
                 <form method="POST" action="{{ route('logout') }}" class="block">
                                 @csrf
                <button
-                class="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition shadow-sm"
+                class="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-500 text-white rounded-md hover:bg-rose-600 transition shadow-sm"
               >
                 <i class="fas fa-sign-out-alt"></i> Logout
               </button>
@@ -65,7 +65,7 @@ Oreder
      
       <!-- Tabs Navigation -->
       <div
-        class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8"
+        class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-8"
       >
         <div class="border-b border-gray-200">
           <div class="flex overflow-x-auto scrollbar-hide px-2 sm:px-6">
@@ -105,7 +105,7 @@ Oreder
                 Recent Orders
               </h2>
               <a href="{{ route('user.orders') }}"
-              class="inline-flex items-center gap-2 px-4 py-2 bg-[#2B4F6E] text-white text-sm rounded-lg hover:bg-[#1e3a54] transition"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-[#2B4F6E] text-white text-sm rounded-md hover:bg-[#1e3a54] transition"
               >
                 <i class="fas fa-eye"></i> Show Details
               </a>
@@ -114,7 +114,7 @@ Oreder
             <div class="space-y-5">
               <!-- Order item -->
               @forelse($order_inf as $order)
-                <div class="border border-gray-200 rounded-xl p-5 hover:shadow-sm transition">
+                <div class="border border-gray-200 rounded-lg p-5 hover:shadow-sm transition">
                     
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         
@@ -214,7 +214,7 @@ Oreder
             </div>
             <div class="mt-10">
               <button
-                class="inline-flex items-center gap-2 px-6 py-3 bg-[#2B4F6E] text-white rounded-lg hover:bg-[#1e3a54] transition"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-[#2B4F6E] text-white rounded-md hover:bg-[#1e3a54] transition"
               >
                 <i class="fas fa-edit"></i> Edit Information
               </button>
@@ -232,21 +232,19 @@ Oreder
                 Saved Addresses
               </h2>
               <button
-                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2B4F6E] text-white rounded-lg hover:bg-[#1e3a54] transition text-sm"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2B4F6E] text-white rounded-md hover:bg-[#1e3a54] transition text-sm"
               >
                 <i class="fas fa-plus"></i> Add New Address
               </button>
             </div>
 
             <div class="space-y-5">
-              <div class="border border-gray-200 rounded-xl p-5">
+              <div class="border border-gray-200 rounded-lg  p-5">
                 <div class="flex justify-between items-start">
                   <div>
-                    <p class="font-medium">Home</p>
+                    <p class="font-medium">Address</p>
                     <p class="text-sm text-gray-600 mt-1">
-                      House #12, Road #3, Kandipara<br />
-                      Brahmanbaria Sadar, Brahmanbaria<br />
-                      +880 1712-345678
+                      {{$user->address}}<br />{{$user->phone}}
                     </p>
                   </div>
                   <div class="flex gap-3">
@@ -273,46 +271,84 @@ Oreder
             </h2>
 
             <div class="space-y-6">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2"
-                  >Current Password</label
-                >
-                <input
-                  type="password"
-                  class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
-                  placeholder="••••••••"
-                />
-              </div>
+              <form action="{{ route('password.update') }}" method="POST" class="space-y-6">
+                    @csrf
+                    @method('PUT')
 
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2"
-                  >New Password</label
-                >
-                <input
-                  type="password"
-                  class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
-                  placeholder="New password"
-                />
-              </div>
+                    <!-- Current Password -->
+                    <div>
+                        <label for="current_password" class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+                        <div class="relative w-full max-w-md">
+                            <input
+                                id="current_password"
+                                name="current_password"
+                                type="password"
+                                value="{{ $user->phone}}"
+                                class="password-input w-full border border-gray-300 rounded-md pl-4 pr-10 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+                                placeholder="••••••••"
+                                required
+                            />
+                            <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        @error('current_password') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+                    </div>
 
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2"
-                  >Confirm New Password</label
-                >
-                <input
-                  type="password"
-                  class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
-                  placeholder="Confirm new password"
-                />
-              </div>
+                    <!-- New Password -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                        <div class="relative w-full max-w-md">
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                value="{{ old('password') }}"
+                                class="password-input w-full border border-gray-300 rounded-md pl-4 pr-10 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+                                placeholder="New password"
+                                required
+                            />
+                            <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        @error('password') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+                    </div>
 
-              <div class="pt-4">
-                <button
-                  class="px-6 py-3 bg-[#2B4F6E] text-white rounded-lg hover:bg-[#1e3a54] transition"
-                >
-                  Update Password
-                </button>
-              </div>
+                    <!-- Confirm New Password -->
+                    <div>
+                        <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+                        <div class="relative w-full max-w-md">
+                            <input
+                                id="password_confirmation"
+                                name="password_confirmation"
+                                type="password"
+                                value="{{ old('password_confirmation') }}"
+                                class="password-input w-full border border-gray-300 rounded-md pl-4 pr-10 py-2.5 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]"
+                                placeholder="Confirm new password"
+                                required
+                            />
+                            <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button (With Spatie Role/Permission Protection) -->
+                    <div class="pt-4">
+                        @can('edit passwords')
+                            <button type="submit" class="px-6 py-3 bg-[#2B4F6E] text-white rounded-md hover:bg-[#1e3a54] transition">
+                                Update Password
+                            </button>
+                        @else
+                            <button type="button" disabled class="px-6 py-3 bg-gray-400 text-white rounded-md cursor-not-allowed opacity-60">
+                                Update Password (Unauthorized)
+                            </button>
+                            <p class="text-red-500 text-xs mt-1">You do not have permission to change passwords.</p>
+                        @endcan
+                    </div>
+                </form>
+
 
               <div class="pt-6 border-t border-gray-200">
                 <h3 class="text-lg font-semibold mb-3">
@@ -322,7 +358,7 @@ Oreder
                   Protect your account with an extra layer of security.
                 </p>
                 <button
-                  class="px-6 py-2.5 border border-[var(--primary)] text-[var(--primary)] rounded-lg hover:bg-[var(--light)] transition"
+                  class="px-6 py-2.5 border border-[var(--primary)] text-[var(--primary)] rounded-md hover:bg-[var(--light)] transition"
                 >
                   Enable 2FA
                 </button>
@@ -370,7 +406,7 @@ Oreder
                             </p>
                         </div>
                     `,
-                    timer: 20000,
+                    timer: 2000,
                     timerProgressBar: true,
                     showConfirmButton: false,
                     allowOutsideClick: false,
@@ -420,6 +456,29 @@ Oreder
             document.getElementById(tabId).classList.add("active");
           });
         });
+
+
+        const toggleButtons = document.querySelectorAll('.toggle-password');
+
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Find the input field relative to the clicked button wrapper
+                    const input = this.parentElement.querySelector('.password-input');
+                    const icon = this.querySelector('i');
+
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+        
       });
+      
     </script>
 @endpush

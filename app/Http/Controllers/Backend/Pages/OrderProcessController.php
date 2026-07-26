@@ -1,0 +1,89 @@
+<?php
+
+namespace App\Http\Controllers\Backend\Pages;
+
+use App\Http\Controllers\Controller;
+use App\Models\cr;
+use Illuminate\Http\Request;
+use App\Models\Order;
+
+class OrderProcessController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {
+        $orders = Order::with('careService')->latest()->paginate(5);
+        return view('backend.pages.process-order.index', compact('orders'))->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(cr $cr)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(cr $cr)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Order $process)
+    {
+        // dd($request->all());
+        $request->validate([
+            'status' => 'required|in:pending,processing,completed,cancelled',
+        ]);
+
+        $process->update([
+            'status' => $request->status,
+        ]);
+        // dd($process);
+
+        return redirect()->back()->with(
+            'success',
+            'Order status updated successfully.'
+        );
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(cr $cr)
+    {
+        //
+    }
+
+    public function orderByUsers(Request $request)
+    {
+        $orders = Order::with('careService', 'user')->latest()->paginate(5);
+        return view('backend.pages.process-order.order-by-users.index', compact('orders'))->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+}

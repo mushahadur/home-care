@@ -34,7 +34,7 @@
                 <i class="fas fa-home"></i>
                 Back to Home
             </a>
-            <a href="{{ route('care-services.index') }}" 
+            <a href="{{ route('admin.care-services.index') }}" 
                class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium rounded-lg border border-gray-300 dark:border-gray-600 transition">
                 <i class="fas fa-hand-holding-heart"></i>
                 Browse Services

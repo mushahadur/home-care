@@ -9,7 +9,7 @@
     <!-- Breadcrumb -->
     <div class="mb-6">
         <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-            <a href="/dashboard" class="hover:text-emerald-600 transition flex items-center gap-1">
+            <a href="/admin/dashboard" class="hover:text-emerald-600 transition flex items-center gap-1">
                 <i class="fas fa-home text-xs"></i>
                 <span>Dashboard</span>
             </a>
@@ -78,7 +78,7 @@
 
     <!-- Package Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-        
+
         <!-- Package Card 1 - Basic Care -->
         <div class="group bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div class="relative">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="p-5 pt-8">
                 <div class="flex items-start justify-between mb-2">
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Basic Care Package</h3>
@@ -104,7 +104,7 @@
                     <span class="text-2xl font-bold text-gray-900 dark:text-white">৳ ২,৫০০</span>
                     <span class="text-gray-500 dark:text-gray-400 text-sm">/month</span>
                 </div>
-                
+
                 <div class="space-y-2 mb-5">
                     <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                         <i class="fas fa-check-circle text-emerald-500 text-xs w-4"></i>
@@ -119,7 +119,7 @@
                         <span>24/7 Phone Support</span>
                     </div>
                 </div>
-                
+
                 <div class="flex gap-2">
                     <button class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-medium transition flex items-center justify-center gap-1">
                         <i class="fas fa-edit"></i> Edit
@@ -143,16 +143,16 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="p-5 pt-8">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Elder Care Package</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">Comprehensive care and services for elderly caregivers</p>
-                
+
                 <div class="flex items-baseline gap-1 mb-4">
                     <span class="text-2xl font-bold text-gray-900 dark:text-white">৳ ৪,৫০০</span>
                     <span class="text-gray-500 dark:text-gray-400 text-sm">/month</span>
                 </div>
-                
+
                 <div class="space-y-2 mb-5">
                     <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                         <i class="fas fa-check-circle text-emerald-500 text-xs w-4"></i>
@@ -167,7 +167,7 @@
                         <span>Personal Care Services</span>
                     </div>
                 </div>
-                
+
                 <div class="flex gap-2">
                     <button class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-medium transition">Edit</button>
                     <button class="px-4 py-2.5 border border-gray-300 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
@@ -189,16 +189,16 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="p-5 pt-8">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Post-Operative Care</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">Specialized nursing and rehabilitation services after surgery</p>
-                
+
                 <div class="flex items-baseline gap-1 mb-4">
                     <span class="text-2xl font-bold text-gray-900 dark:text-white">৳ ৫,৮০০</span>
                     <span class="text-gray-500 dark:text-gray-400 text-sm">/month</span>
                 </div>
-                
+
                 <div class="space-y-2 mb-5">
                     <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                         <i class="fas fa-check-circle text-emerald-500 text-xs w-4"></i>
@@ -213,7 +213,7 @@
                         <span>Physiotherapy Sessions</span>
                     </div>
                 </div>
-                
+
                 <div class="flex gap-2">
                     <button class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-medium transition">Edit</button>
                     <button class="px-4 py-2.5 border border-gray-300 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
@@ -235,7 +235,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="p-5 pt-8">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Baby Care Services</h3>
                 <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">Specialized nursing care for newborns and infants</p>
@@ -244,7 +244,7 @@
                     <span class="text-2xl font-bold text-gray-900 dark:text-white">৳ ৩,২০০</span>
                     <span class="text-gray-500 dark:text-gray-400 text-sm">/month</span>
                 </div>
-                
+
                 <div class="space-y-2 mb-5">
                     <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                         <i class="fas fa-check-circle text-emerald-500 text-xs w-4"></i>
@@ -259,7 +259,7 @@
                         <span>Vaccination Assistance</span>
                     </div>
                 </div>
-                
+
                 <div class="flex gap-2">
                     <button class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-medium transition">Edit</button>
                     <button class="px-4 py-2.5 border border-gray-300 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
@@ -277,7 +277,7 @@
                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
                     <i class="fas fa-table-list mr-2 text-emerald-500"></i>All Packages
                 </h2>
-                
+
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
                     <!-- Search -->
                     <div class="relative w-full sm:w-72 min-w-[220px]">
@@ -290,15 +290,15 @@
                             <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
                         </div>
                     </div>
-                    
-                    <a href="{{ route('package.create') }}" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition shadow-sm">
+
+                    <a href="{{ route('admin.packages.create') }}" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition shadow-sm">
                         <i class="fas fa-plus"></i>
                         New Package
                     </a>
                 </div>
             </div>
         </div>
-        
+
         <!-- Table Container with Horizontal Scroll for Mobile -->
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
@@ -369,7 +369,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Pagination -->
         <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -398,14 +398,14 @@
     // Table search functionality
     document.addEventListener('DOMContentLoaded', () => {
         const searchInput = document.getElementById('table-search');
-        
+
         if (searchInput) {
             const table = document.querySelector('table');
             const rows = table?.querySelectorAll('tbody tr');
-            
+
             searchInput.addEventListener('input', (e) => {
                 const query = e.target.value.toLowerCase().trim();
-                
+
                 rows?.forEach(row => {
                     const text = row.textContent.toLowerCase();
                     row.style.display = text.includes(query) ? '' : 'none';
@@ -424,7 +424,7 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
-    
+
     @media (max-width: 640px) {
         .table-responsive {
             display: block;

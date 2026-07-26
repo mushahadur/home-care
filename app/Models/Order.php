@@ -65,4 +65,23 @@ class Order extends Model
     {
         return '৳' . number_format($this->total_price, 2);
     }
+
+    //Order Model Event
+    protected static function booted()
+    {
+        static::creating(function ($order) {
+
+            $user = User::find($order->user_id);
+
+            if (!$user->phone && $order->user_phone) {
+                $user->phone = $order->user_phone;
+            }
+
+            if (!$user->address && $order->user_address) {
+                $user->address = $order->user_address;
+            }
+
+            $user->save();
+        });
+    }
 }

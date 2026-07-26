@@ -30,37 +30,6 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    // public function store(Request $request): RedirectResponse
-    // {
-    //     $request->validate([
-    //         'name' => ['required', 'string', 'max:255'],
-    //         'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-    //         'password' => ['required', 'confirmed', Rules\Password::defaults()],
-    //     ]);
-
-    //     // OTP Generate
-    //     $otp = Str::random(6);
-    //     $otpExpiresAt = now()->addMinutes(5);
-
-    //     $user = User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //         'otp' => $otp,
-    //         'otp_expires_at' => $otpExpiresAt,
-    //         'is_verified' => false,
-    //     ]);
-
-    //     // event(new Registered($user));
-    //     //__ Send OTP
-    //     $user->notify(new SendOtpNotification($otp));
-
-    //     Auth::login($user);
-
-    //     // return redirect(route('dashboard', absolute: false));
-    //     return redirect()->route('otp.verify');
-    // }
-
     public function store(Request $request): RedirectResponse
     {
         $request->validate([

@@ -79,13 +79,13 @@ Oreder
 
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm mb-5">
               <div>
-                <p class="text-gray-500">Date</p>
+                <p class="text-gray-500">Preferred Date</p>
                 <p class="font-medium">
                   {{ $order->preferred_date}}
                 </p>
               </div>
               <div>
-                <p class="text-gray-500">Time</p>
+                <p class="text-gray-500">Time Duration</p>
                 <p class="font-medium">{{ $order->preferred_time }}</p>
               </div>
               <div>
@@ -95,13 +95,11 @@ Oreder
             </div>
 
             <div class="text-sm text-gray-600 mb-5">
-              <p><strong>Patient:</strong> {{ $order->user_name }}</p>
-              <p><strong>Address:</strong> {{ $order->user_address }}</p>
               <p class="mt-2"><strong>Note:</strong> {{ $order->notes ?? 'No notes available' }}</p>
             </div>
 
             <!-- Actions -->
-            <div class="flex flex-wrap gap-3 mt-auto">
+              <div class="flex flex-wrap gap-3 mt-auto hidden sm:flex"style="display: none;">
               <a href="#"
                 class="inline-flex items-center px-5 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm font-medium">
                 <i class="fas fa-eye mr-2"></i> View Details

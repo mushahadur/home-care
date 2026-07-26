@@ -9,12 +9,12 @@
 <main class="flex-1 overflow-y-auto p-5 md:p-8 bg-gray-50 dark:bg-gray-950 transition-colors">
 
     <h3 class="text-sm font-bold pb-3">
-        <a href="/dashboard" class="hover:underline text-blue-600">Dashboard</a>
+        <a href="/admin/dashboard" class="hover:underline text-blue-600">Dashboard</a>
         <span class="mx-2"> / </span>
         <span>Users</span>
     </h3>
     <!-- New: Users / Customers Data Table -->
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm dark:shadow-none overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md shadow-sm dark:shadow-none overflow-hidden">
 
         <!-- Header + Search -->
         <!-- Header + Search + Create Button -->
@@ -32,15 +32,15 @@
                         id="table-search"
                         type="text"
                         placeholder="Search orders..."
-                        class="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
+                        class="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
                     </div>
                 </div>
 
                 <!-- Create User Button -->
-                <a href="{{ route('users.create') }}"
-                    class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 min-w-[140px]">
+                <a href="{{ route('admin.users.create') }}"
+                    class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-medium rounded-md flex items-center justify-center gap-2 transition shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 min-w-[140px]">
                     <i class="fa-solid fa-plus text-base"></i>
                     Create User
                 </a>
@@ -77,26 +77,67 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $user->created_at->format('M j, Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                           <button 
-                                onclick="window.location.href='{{ route('users.edit', $user->id) }}'" 
-                                class="text-blue-500 hover:text-blue-700 transition-colors">
-                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                                </svg>
-                            </button>
-                            <button class="text-red-500 hover:text-red-700 ml-2" onclick="confirmDelete('{{ $user->id }}')">
-                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7h6m-3-3v3" />
-                                </svg>
-                            </button>
-                            <!-- Hidden Form -->
-                            <form id="delete-user-form-{{ $user->id }}" method="POST" action="{{ route('users.destroy', $user->id) }}" style="display: none;">
-                                @csrf
-                                @method('DELETE')
-                            </form>
+                            <div class="flex items-center gap-3">
 
+                                {{-- Edit Button --}}
+                                <a href="{{ route('admin.users.edit', $user->id) }}"
+                                    class="inline-flex items-center justify-center w-9 h-9 rounded-md 
+                  bg-blue-50 text-blue-600 
+                  hover:bg-blue-600 hover:text-white 
+                  transition-all duration-200"
+                                    title="Edit User">
+
+                                    <svg class="w-6 h-6"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2">
+
+                                        <path stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                    </svg>
+
+                                </a>
+
+
+                                {{-- Delete Button --}}
+                                <button type="button"
+                                    onclick="confirmDelete({{ $user->id }})"
+                                    class="inline-flex items-center justify-center w-9 h-9 rounded-md
+                       bg-red-50 text-red-600
+                       hover:bg-red-600 hover:text-white
+                       transition-all duration-200"
+                                    title="Delete User">
+
+                                    <svg class="w-6 h-6"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2">
+
+                                        <path stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7h6m-3-3v3" />
+                                    </svg>
+
+                                </button>
+
+
+                                {{-- Hidden Delete Form --}}
+                                <form id="delete-user-form-{{ $user->id }}"
+                                    method="POST"
+                                    action="{{ route('admin.users.destroy', $user->id) }}"
+                                    class="hidden">
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                </form>
+
+                            </div>
                         </td>
                     </tr>
                     @endforeach
@@ -106,26 +147,80 @@
             </table>
         </div>
 
-        <!-- Optional footer / pagination placeholder -->
-        <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800 text-sm text-gray-500 dark:text-gray-400 flex justify-between items-center">
-            <span>Showing 1–10 of 48 orders</span>
-            <div class="flex gap-2">
-                <button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50" disabled>Previous</button>
-                <button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-800">Next</button>
+        <!-- Footer with Pagination -->
+        @if($users->hasPages())
+        <div class="px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-gray-200 dark:border-gray-700">
+            <!-- Showing Results Info -->
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                Showing
+                <span class="font-medium text-gray-800 dark:text-gray-200">{{ $users->firstItem() }}</span>
+                to
+                <span class="font-medium text-gray-800 dark:text-gray-200">{{ $users->lastItem() }}</span>
+                of
+                <span class="font-medium text-gray-800 dark:text-gray-200">{{ $users->total() }}</span>
+                results
+            </p>
+
+            <!-- Pagination Links -->
+            <div class="flex items-center gap-2">
+                <!-- Previous Page -->
+                @if($users->onFirstPage())
+                <span class="px-3 py-2 rounded-sm text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </span>
+                @else
+                <a href="{{ $users->previousPageUrl() }}"
+                    class="px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </a>
+                @endif
+
+                <!-- Page Numbers (responsive - show limited on mobile) -->
+                <div class="hidden sm:flex items-center gap-1">
+                    @foreach($users->getUrlRange(max(1, $users->currentPage() - 2), min($users->lastPage(), $users->currentPage() + 2)) as $page => $url)
+                    @if($page == $users->currentPage())
+                    <span class="px-3 py-2 rounded-sm text-sm font-medium bg-emerald-600 text-white">{{ $page }}</span>
+                    @else
+                    <a href="{{ $url }}"
+                        class="px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        {{ $page }}
+                    </a>
+                    @endif
+                    @endforeach
+                </div>
+
+                <!-- Mobile Page Indicator -->
+                <div class="sm:hidden px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-300">
+                    Page {{ $users->currentPage() }} of {{ $users->lastPage() }}
+                </div>
+
+                <!-- Next Page -->
+                @if($users->hasMorePages())
+                <a href="{{ $users->nextPageUrl() }}"
+                    class="px-3 py-2 rounded-sm text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </a>
+                @else
+                <span class="px-3 py-2 rounded-sm text-sm font-medium text-gray-400 bg-gray-100 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </span>
+                @endif
             </div>
         </div>
+        @endif
+        <!-- Optional footer / pagination placeholder -->
     </div>
 
 </main>
 
-<!-- ... rest of the layout ... -->
+
 
 @endsection
 
 @push('scripts')
 <script src="{{ asset('assets/backend/js/sweetalert2@11.js') }}"></script>
 <script>
-    function confirmDelete(productId) {
+    function confirmDelete(userId) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -137,17 +232,17 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // User Confiremed
-                const form = document.getElementById('delete-product-form-' + productId);
+                const form = document.getElementById('delete-user-form-' + userId);
                 if (form) {
                     form.submit();
                 } else {
-                    console.error('Delete form not found for product:', productId);
+                    console.error('Delete form not found for user:', userId);
                 }
             }
         });
     }
 
-     // Table search functionality
+    // Table search functionality
     document.addEventListener('DOMContentLoaded', () => {
         const searchInput = document.getElementById('table-search');
         const table = document.getElementById('users-table');

@@ -53,68 +53,68 @@
     });
 
 
-      document.addEventListener("DOMContentLoaded", function() {
-      // Get elements
-      const dropdownToggle = document.getElementById("dropdownToggle");
-      const dropdownMenu = document.getElementById("dropdownMenu");
-      let isOpen = false;
+    //   document.addEventListener("DOMContentLoaded", function() {
+    //   // Get elements
+    //   const dropdownToggle = document.getElementById("dropdownToggle");
+    //   const dropdownMenu = document.getElementById("dropdownMenu");
+    //   let isOpen = false;
 
-      // Toggle dropdown function
-      function toggleDropdown(show) {
-        if (show) {
-          dropdownMenu.classList.remove(
-            "opacity-0",
-            "scale-95",
-            "pointer-events-none",
-          );
-          dropdownMenu.classList.add(
-            "opacity-100",
-            "scale-100",
-            "pointer-events-auto",
-          );
-          dropdownToggle.setAttribute("aria-expanded", "true");
-          isOpen = true;
-        } else {
-          dropdownMenu.classList.add(
-            "opacity-0",
-            "scale-95",
-            "pointer-events-none",
-          );
-          dropdownMenu.classList.remove(
-            "opacity-100",
-            "scale-100",
-            "pointer-events-auto",
-          );
-          dropdownToggle.setAttribute("aria-expanded", "false");
-          isOpen = false;
-        }
-      }
+    //   // Toggle dropdown function
+    //   function toggleDropdown(show) {
+    //     if (show) {
+    //       dropdownMenu.classList.remove(
+    //         "opacity-0",
+    //         "scale-95",
+    //         "pointer-events-none",
+    //       );
+    //       dropdownMenu.classList.add(
+    //         "opacity-100",
+    //         "scale-100",
+    //         "pointer-events-auto",
+    //       );
+    //       dropdownToggle.setAttribute("aria-expanded", "true");
+    //       isOpen = true;
+    //     } else {
+    //       dropdownMenu.classList.add(
+    //         "opacity-0",
+    //         "scale-95",
+    //         "pointer-events-none",
+    //       );
+    //       dropdownMenu.classList.remove(
+    //         "opacity-100",
+    //         "scale-100",
+    //         "pointer-events-auto",
+    //       );
+    //       dropdownToggle.setAttribute("aria-expanded", "false");
+    //       isOpen = false;
+    //     }
+    //   }
 
-      // Click toggle button
-      dropdownToggle.addEventListener("click", function(e) {
-        e.stopPropagation();
-        toggleDropdown(!isOpen);
-      });
+    //   // Click toggle button
+    //   dropdownToggle.addEventListener("click", function(e) {
+    //     e.stopPropagation();
+    //     toggleDropdown(!isOpen);
+    //   });
 
-      // Click outside to close
-      document.addEventListener("click", function(event) {
-        const container = document.getElementById("userDropdownContainer");
-        if (!container.contains(event.target) && isOpen) {
-          toggleDropdown(false);
-        }
-      });
+    //   // Click outside to close
+    //   document.addEventListener("click", function(event) {
+    //     const container = document.getElementById("userDropdownContainer");
+    //     if (!container.contains(event.target) && isOpen) {
+    //       toggleDropdown(false);
+    //     }
+    //   });
 
-      // Close on escape key
-      document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape" && isOpen) {
-          toggleDropdown(false);
-        }
-      });
+    //   // Close on escape key
+    //   document.addEventListener("keydown", function(e) {
+    //     if (e.key === "Escape" && isOpen) {
+    //       toggleDropdown(false);
+    //     }
+    //   });
 
-      // Handle window resize - close dropdown on resize for better UX
-      window.addEventListener("resize", function() {
-        if (isOpen) {
-          toggleDropdown(false);
-        }
-      });
-    });
+    //   // Handle window resize - close dropdown on resize for better UX
+    //   window.addEventListener("resize", function() {
+    //     if (isOpen) {
+    //       toggleDropdown(false);
+    //     }
+    //   });
+    // });
