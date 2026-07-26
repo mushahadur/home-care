@@ -11,4 +11,9 @@ class DashboardController extends Controller
     {
          return view('backend.dashboard.index');
     }
+
+    public function showAnalytics()
+    {
+        return view('backend.pages.analytics.index');
+    }
 }

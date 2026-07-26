@@ -38,14 +38,15 @@
             </a>
 
 
-          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          <a href="{{ route('admin.analytics.index') }}"
+            class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors {{ request()->routeIs('admin.analytics.index') ? $activeClass : $inactiveClass }}">
             <i class="fa-solid fa-chart-line w-5"></i>
             <span class="text-sm font-medium">Analytics</span>
           </a>
 
           <a
-            href="#"
-            class="flex items-center gap-3 px-4 py-3 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            href="{{  route('admin.profile.index') }}"
+            class="nav-link flex items-center gap-3 px-4 py-3 rounded-md transition-colors {{ request()->routeIs('admin.profile.index') ? $activeClass : $inactiveClass }}">
             <i class="fa-solid fa-address-book w-5"></i>
             <span class="text-sm font-medium">Profile</span>
           </a>
