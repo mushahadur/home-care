@@ -55,6 +55,9 @@
        </div>
      </div>
 
+      <!-- ========== CHATBOT FLOATING BUTTON ========== -->
+      @include('frontend.layouts.includes.chatbot')
+
      <button
         id="scrollToTopProgress"
         class="fixed bottom-6 right-4 z-50 w-10 h-10 rounded-full bg-[#2B4F6E] shadow-xl border border-teal-600 flex items-center justify-center group hover:border-[var(--accent)] transition-all duration-300 opacity-0 scale-90 pointer-events-none"

@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Auth\OtpVerificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\ChatbotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,10 +63,17 @@ Route::post('resend-otp', [OtpVerificationController::class, 'resend'])->name('o
 
 /*
 |--------------------------------------------------------------------------
-| Include Other Route Files
+| Chatbot Routes
 |--------------------------------------------------------------------------
 */
+Route::get('/chatbot', [ChatbotController::class, 'index'])->name('chatbot.index');
+Route::post('/chatbot/message', [ChatbotController::class, 'chat'])->name('chatbot.message');
 
+/*
+|--------------------------------------------------------------------------
+| Include Other Route Files
+|--------------------------------------------------------------------------
+*/  
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 
