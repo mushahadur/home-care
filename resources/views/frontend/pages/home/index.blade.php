@@ -239,7 +239,7 @@ Home
         <!-- Image -->
         <div class="rounded-2xl overflow-hidden shadow-md">
           <img
-            src="{{ asset('assets/frontend/images/about/about.webp') }}"
+            src="{{ asset('assets/frontend/images/about/about.png') }}"
             alt="Home nursing care"
             class="w-full h-64 md:h-[455px] object-cover" />
         </div>
@@ -427,14 +427,14 @@ Home
 </section>
 
 <section
-  class="flex items-center bg-gradient-to-br from-white to-[#c8ecff] overflow-hidden">
+  class="flex items-center bg-gradient-to-br from-white to-[#000000] overflow-hidden">
   <div class="container mx-auto px-6 lg:px-12 py-16 lg:py-10">
     <!-- Heading -->
     <div class="text-center mb-10">
       <h2 class="text-2xl md:text-3xl font-bold text-[#1A3B4F]">
         What Our Customers Say
       </h2>
-      <p class="text-gray-500 text-sm mt-2">
+      <p class="text-gray-50 text-sm mt-2">
         Real experiences from our satisfied patients
       </p>
     </div>
@@ -566,7 +566,7 @@ Home
 
 <!-- FAQ & Video Section - Fully Responsive -->
 <section
-  class="flex items-center bg-gradient-to-br from-white to-[#fff7e8] overflow-hidden">
+  class="flex items-center bg-gradient-to-br from-white to-[#00180f] overflow-hidden">
   <div class="container mx-auto px-6 lg:px-12 py-16 lg:py-10">
 
     <!-- <section class="py-12 md:py-20 bg-gradient-to-b from-white to-[#f8fafc] overflow-hidden">
@@ -593,7 +593,7 @@ Home
       <div class="w-full lg:w-1/2 space-y-4 md:space-y-6">
 
         <!-- Main Video Player - Mobile Optimized -->
-        <div class="relative group rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg md:shadow-xl bg-[#115c7e] aspect-video">
+        <div class="relative group rounded-md md:rounded-md lg:rounded-md overflow-hidden shadow-lg md:shadow-xl bg-[#115c7e] aspect-video">
           <!-- Video Thumbnail -->
           <img src="https://shojonsheba.com/wp-content/uploads/2023/09/343404682_1366211944230060_285782814863529458_n.jpg"
             alt="Home Nursing Care"
@@ -630,7 +630,7 @@ Home
         <!-- Video Gallery Thumbnails - Horizontal scroll on mobile -->
         <div class="grid grid-cols-3 gap-2 md:gap-3">
           <!-- Thumbnail 1 -->
-          <div class="relative rounded-lg md:rounded-xl overflow-hidden cursor-pointer group aspect-video">
+          <div class="relative rounded-md overflow-hidden cursor-pointer group aspect-video">
             <img src="https://images.pexels.com/photos/7551645/pexels-photo-7551645.jpeg?auto=compress&cs=tinysrgb&w=400"
               alt="Elderly Care"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
@@ -641,7 +641,7 @@ Home
           </div>
 
           <!-- Thumbnail 2 -->
-          <div class="relative rounded-lg md:rounded-xl overflow-hidden cursor-pointer group aspect-video">
+          <div class="relative rounded-md overflow-hidden cursor-pointer group aspect-video">
             <img src="https://images.pexels.com/photos/7659568/pexels-photo-7659568.jpeg?auto=compress&cs=tinysrgb&w=400"
               alt="Nurse with Patient"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
@@ -652,7 +652,7 @@ Home
           </div>
 
           <!-- Thumbnail 3 -->
-          <div class="relative rounded-lg md:rounded-xl overflow-hidden cursor-pointer group aspect-video">
+          <div class="relative rounded-md overflow-hidden cursor-pointer group aspect-video">
             <img src="https://images.pexels.com/photos/6647009/pexels-photo-6647009.jpeg?auto=compress&cs=tinysrgb&w=400"
               alt="Medical Care"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
@@ -664,7 +664,7 @@ Home
         </div>
 
         <!-- Video Stats - Mobile compact -->
-        <div class="flex items-center justify-between bg-white rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm">
+        <div class="flex items-center justify-between bg-white rounded-md p-3 md:p-4 shadow-sm">
           <div class="flex items-center gap-2 md:gap-4">
             <div class="flex -space-x-2">
               <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white">
@@ -693,7 +693,7 @@ Home
 
       <!-- RIGHT SIDE: FAQ Section - Full width on mobile -->
       <div class="w-full lg:w-1/2 mt-6 lg:mt-0">
-        <div class="bg-white rounded-xl md:rounded-2xl lg:rounded-3xl shadow-md p-4 md:p-6 lg:p-8">
+        <div class="bg-white rounded-md shadow-md p-4 md:p-6 lg:p-8">
 
           <!-- FAQ Header - Mobile optimized -->
           <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-6 pb-3 md:pb-4 border-b border-gray-100">
@@ -714,7 +714,7 @@ Home
           <div class="space-y-2 md:space-y-3" x-data="{selected:null}">
 
             <!-- FAQ Item 1 -->
-            <div class="border border-gray-100 rounded-lg md:rounded-xl overflow-hidden hover:border-[#dd88a0] transition">
+            <div class="border border-gray-100 rounded-md overflow-hidden hover:border-[#dd88a0] transition">
               <button @click="selected !== 1 ? selected = 1 : selected = null"
                 class="w-full flex items-center justify-between p-3 md:p-4 text-left bg-white hover:bg-gray-50 transition">
                 <div class="flex items-center gap-2 md:gap-3 flex-1 pr-2">
@@ -735,7 +735,7 @@ Home
             </div>
 
             <!-- FAQ Item 2 -->
-            <div class="border border-gray-100 rounded-lg md:rounded-xl overflow-hidden hover:border-[#dd88a0] transition">
+            <div class="border border-gray-100 rounded-md overflow-hidden hover:border-[#dd88a0] transition">
               <button @click="selected !== 2 ? selected = 2 : selected = null"
                 class="w-full flex items-center justify-between p-3 md:p-4 text-left bg-white hover:bg-gray-50 transition">
                 <div class="flex items-center gap-2 md:gap-3 flex-1 pr-2">
@@ -760,7 +760,7 @@ Home
             </div>
 
             <!-- FAQ Item 3 -->
-            <div class="border border-gray-100 rounded-lg md:rounded-xl overflow-hidden hover:border-[#dd88a0] transition">
+            <div class="border border-gray-100 rounded-md overflow-hidden hover:border-[#dd88a0] transition">
               <button @click="selected !== 3 ? selected = 3 : selected = null"
                 class="w-full flex items-center justify-between p-3 md:p-4 text-left bg-white hover:bg-gray-50 transition">
                 <div class="flex items-center gap-2 md:gap-3 flex-1 pr-2">
@@ -781,7 +781,7 @@ Home
             </div>
 
             <!-- FAQ Item 4 -->
-            <div class="border border-gray-100 rounded-lg md:rounded-xl overflow-hidden hover:border-[#dd88a0] transition">
+            <div class="border border-gray-100 rounded-md overflow-hidden hover:border-[#dd88a0] transition">
               <button @click="selected !== 4 ? selected = 4 : selected = null"
                 class="w-full flex items-center justify-between p-3 md:p-4 text-left bg-white hover:bg-gray-50 transition">
                 <div class="flex items-center gap-2 md:gap-3 flex-1 pr-2">
@@ -840,19 +840,19 @@ Home
 
     <!-- Trust Badges - Responsive grid -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mt-8 md:mt-12">
-      <div class="bg-white rounded-lg md:rounded-xl p-2 md:p-4 text-center shadow-sm hover:shadow transition">
+      <div class="bg-white rounded-md p-2 md:p-4 text-center shadow-sm hover:shadow transition">
         <i class="fas fa-user-md text-lg md:text-2xl lg:text-3xl text-[#115c7e] mb-1 md:mb-2"></i>
         <p class="font-semibold text-[10px] md:text-sm bn-only">১০০+ নার্স</p>
       </div>
-      <div class="bg-white rounded-lg md:rounded-xl p-2 md:p-4 text-center shadow-sm hover:shadow transition">
+      <div class="bg-white rounded-md p-2 md:p-4 text-center shadow-sm hover:shadow transition">
         <i class="fas fa-clock text-lg md:text-2xl lg:text-3xl text-[#dd88a0] mb-1 md:mb-2"></i>
         <p class="font-semibold text-[10px] md:text-sm bn-only">২৪/৭ সেবা</p>
       </div>
-      <div class="bg-white rounded-lg md:rounded-xl p-2 md:p-4 text-center shadow-sm hover:shadow transition">
+      <div class="bg-white rounded-md p-2 md:p-4 text-center shadow-sm hover:shadow transition">
         <i class="fas fa-heartbeat text-lg md:text-2xl lg:text-3xl text-[#115c7e] mb-1 md:mb-2"></i>
         <p class="font-semibold text-[10px] md:text-sm bn-only">৫k+ পরিবার</p>
       </div>
-      <div class="bg-white rounded-lg md:rounded-xl p-2 md:p-4 text-center shadow-sm hover:shadow transition">
+      <div class="bg-white rounded-md p-2 md:p-4 text-center shadow-sm hover:shadow transition">
         <i class="fas fa-shield-alt text-lg md:text-2xl lg:text-3xl text-[#dd88a0] mb-1 md:mb-2"></i>
         <p class="font-semibold text-[10px] md:text-sm bn-only">বীমাকৃত</p>
       </div>

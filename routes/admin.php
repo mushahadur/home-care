@@ -15,13 +15,19 @@ use App\Http\Controllers\Backend\Pages\OrderProcessController;
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->name('admin.')
-    ->group(function () {
+    ->group(function () { //Analytics
 
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('dashboard');
 
+        Route::get('/analytics', [DashboardController::class, 'showAnalytics'])
+            ->name('analytics.index');
+
+        Route::get('/profile', 'App\\Http\\Controllers\\Backend\\Settings\\ProfileController@index')
+            ->name('profile.index');
+
         Route::middleware('route_permission')->group(function () {
-//
+            //
             Route::resource('roles', RoleController::class);
             Route::resource('permissions', PermissionController::class);
             Route::resource('users', UserController::class);
@@ -35,7 +41,7 @@ Route::middleware(['auth', 'verified'])
                 ->name('orders.index')
                 ->middleware('permission:orders-list');
 
-                Route::get('orders/{id}', [BackendOrderController::class, 'show'])
+            Route::get('orders/{id}', [BackendOrderController::class, 'show'])
                 ->name('orders.show')
                 ->middleware('permission:orders-show');
 
